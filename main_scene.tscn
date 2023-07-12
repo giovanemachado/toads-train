@@ -1,8 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://cvku8ipjd3ai7"]
+[gd_scene load_steps=3 format=3 uid="uid://cvku8ipjd3ai7"]
 
 [ext_resource type="Script" path="res://src/debug/Debug.gd" id="1_ago47"]
+[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="2_ow261"]
 
 [node name="Main" type="Node"]
 
 [node name="Debug" type="Node2D" parent="."]
 script = ExtResource("1_ago47")
+
+[node name="Sprite2D" type="Sprite2D" parent="Debug"]
+position = Vector2(546, 313)
+texture = ExtResource("2_ow261")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Units" type="Node" parent="."]
