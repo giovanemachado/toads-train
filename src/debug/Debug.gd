@@ -1,5 +1,5 @@
 extends Node2D
 
-# Giovane
+# Giovane Machado
 #
 #
