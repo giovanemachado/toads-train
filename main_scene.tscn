@@ -1,16 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvku8ipjd3ai7"]
+[gd_scene load_steps=7 format=3 uid="uid://cvku8ipjd3ai7"]
 
 [ext_resource type="Script" path="res://src/debug/Debug.gd" id="1_ago47"]
 [ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="2_ow261"]
+[ext_resource type="Script" path="res://src/debug/debug_states/DebugStateManager.gd" id="3_n3dx5"]
+[ext_resource type="Script" path="res://src/debug/debug_states/DebugIdleState.gd" id="4_ylb3p"]
+[ext_resource type="Script" path="res://src/debug/debug_states/DebugNotIdleAnymoreState.gd" id="5_uryi2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_su5tm"]
+size = Vector2(84, 89)
 
 [node name="Main" type="Node"]
 
 [node name="Debug" type="Node2D" parent="."]
 script = ExtResource("1_ago47")
 
-[node name="Sprite2D" type="Sprite2D" parent="Debug"]
-position = Vector2(546, 313)
+[node name="DebugFSM" type="StaticBody2D" parent="Debug"]
+position = Vector2(570, 320)
+
+[node name="Sprite2D" type="Sprite2D" parent="Debug/DebugFSM"]
 texture = ExtResource("2_ow261")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Debug/DebugFSM"]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_su5tm")
+
+[node name="StateManager" type="Node" parent="Debug" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("3_n3dx5")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="Debug/StateManager"]
+script = ExtResource("4_ylb3p")
+
+[node name="NotIdleAnymore" type="Node" parent="Debug/StateManager"]
+script = ExtResource("5_uryi2")
 
 [node name="Environment" type="Node" parent="."]
 
