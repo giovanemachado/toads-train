@@ -1,0 +1,101 @@
+[gd_scene load_steps=11 format=3 uid="uid://cvku8ipjd3ai7"]
+
+[ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
+[ext_resource type="Script" path="res://src/debug/Debug.gd" id="2_x4xsm"]
+[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="3_gwip8"]
+[ext_resource type="Script" path="res://src/debug/debug_states/DebugStateManager.gd" id="4_nwoxa"]
+[ext_resource type="Script" path="res://src/debug/debug_states/DebugIdleState.gd" id="5_a5cc2"]
+[ext_resource type="Script" path="res://src/debug/debug_states/DebugNotIdleAnymoreState.gd" id="6_3ocii"]
+[ext_resource type="Script" path="res://src/main_scenes/Player.gd" id="7_4jst0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_su5tm"]
+size = Vector2(84, 89)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2acc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gwip8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1sua"]
+radius = 27.0
+height = 94.0
+
+[node name="Main" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r6tyj")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/UI"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 35
+theme_override_constants/margin_top = 35
+theme_override_constants/margin_right = 35
+theme_override_constants/margin_bottom = 35
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Menu" type="Button" parent="CanvasLayer/UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Menu"
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Debug" type="Node2D" parent="."]
+script = ExtResource("2_x4xsm")
+
+[node name="DebugFSM" type="StaticBody2D" parent="Debug"]
+position = Vector2(570, 320)
+
+[node name="Sprite2D" type="Sprite2D" parent="Debug/DebugFSM"]
+texture = ExtResource("3_gwip8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Debug/DebugFSM"]
+position = Vector2(2, 0.5)
+shape = SubResource("RectangleShape2D_su5tm")
+
+[node name="StateManager" type="Node" parent="Debug" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_nwoxa")
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="Debug/StateManager"]
+script = ExtResource("5_a5cc2")
+
+[node name="NotIdleAnymore" type="Node" parent="Debug/StateManager"]
+script = ExtResource("6_3ocii")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("7_4jst0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+modulate = Color(0.384314, 0.529412, 0.878431, 1)
+sprite_frames = SubResource("SpriteFrames_m2acc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_d1sua")
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+
+[connection signal="pressed" from="CanvasLayer/UI/MarginContainer/VBoxContainer/Menu" to="CanvasLayer/UI" method="_on_menu_pressed"]
