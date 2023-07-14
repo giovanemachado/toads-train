@@ -16,4 +16,4 @@ mono_crash.*.json
 
 # Build
 build/
-build.zip
+build*
