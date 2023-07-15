@@ -1,5 +1,7 @@
 extends Node
 
+const ENEMY_GROUP = 'enemy'
+
 #enum ExampleEnum {A, B}
 #
 #const EXAMPLE_CONST = 'const value'

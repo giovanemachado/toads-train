@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://src/ui/Menu.gd" id="1_x4hru"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="menu_scene" type="CanvasLayer"]
 
 [node name="menu_scene" type="Control" parent="."]
 layout_mode = 3
