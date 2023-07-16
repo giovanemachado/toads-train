@@ -1,6 +1,7 @@
 extends Node
 
 const ENEMY_GROUP = 'enemy'
+const INTERACTABLE_GROUP = 'interactable'
 
 #enum ExampleEnum {A, B}
 #
