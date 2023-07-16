@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 class_name EnemyTest
 
+signal enemy_die
+
 @onready var movement: Movement = $Movement
 @onready var health: Health = $Health
 @onready var attack: Attack = $Attack
@@ -11,6 +13,9 @@ class_name EnemyTest
 @export var target_desired_distance = 4.0
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
+
+@export var money_per_kill: int = 1
+
 
 var agent_is_ready: bool = false
 
@@ -29,4 +34,5 @@ func actor_setup():
 
 
 func _on_health_dead():
+	enemy_die.emit(money_per_kill)
 	queue_free()

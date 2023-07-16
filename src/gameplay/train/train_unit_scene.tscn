@@ -1,0 +1,120 @@
+[gd_scene load_steps=12 format=3 uid="uid://dic06qvwx0s5o"]
+
+[ext_resource type="Script" path="res://src/gameplay/train/Train.gd" id="1_r503i"]
+[ext_resource type="Texture2D" uid="uid://cm6oidcsctgep" path="res://src/utils/assets/all_sizes.png" id="2_60hpw"]
+[ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="3_0as45"]
+[ext_resource type="Script" path="res://src/gameplay/train/LifeBarTrainManager.gd" id="4_u5hjn"]
+[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="5_d34jd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_co488"]
+size = Vector2(87, 683)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y5l5"]
+size = Vector2(87.5, 721)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbl7"]
+size = Vector2(2055, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc6pt"]
+size = Vector2(2113, 78)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcglj"]
+size = Vector2(102, 506)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_etcqh"]
+size = Vector2(834, 172)
+
+[node name="Train" type="Node2D"]
+position = Vector2(1437, 716)
+script = ExtResource("1_r503i")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.492917, 0.224444)
+texture = ExtResource("2_60hpw")
+
+[node name="Health" parent="." instance=ExtResource("3_0as45")]
+
+[node name="LifeBarTrainManager" type="Node" parent="."]
+script = ExtResource("4_u5hjn")
+
+[node name="FuelBar" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 25)
+offset_left = -197.0
+offset_top = -363.0
+offset_right = 3.0
+offset_bottom = -338.0
+step = 1.0
+show_percentage = false
+
+[node name="LifeBarTrain" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(200, 25)
+offset_left = -197.0
+offset_top = -403.0
+offset_right = 3.0
+offset_bottom = -378.0
+step = 1.0
+show_percentage = false
+
+[node name="FuelTimer" type="Timer" parent="."]
+
+[node name="InvisibleWalls" type="Node2D" parent="."]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="InvisibleWalls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D"]
+position = Vector2(-991.5, -73.5)
+shape = SubResource("RectangleShape2D_co488")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="InvisibleWalls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D2"]
+position = Vector2(990, -102.5)
+shape = SubResource("RectangleShape2D_0y5l5")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="InvisibleWalls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D3"]
+position = Vector2(5.5, -409)
+shape = SubResource("RectangleShape2D_0rbl7")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="InvisibleWalls"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D4"]
+position = Vector2(22.5, 282)
+shape = SubResource("RectangleShape2D_xc6pt")
+
+[node name="VisibleWalls" type="Node2D" parent="."]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="VisibleWalls"]
+position = Vector2(348, -114)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleWalls/StaticBody2D"]
+shape = SubResource("RectangleShape2D_tcglj")
+
+[node name="Sprite2D" type="Sprite2D" parent="VisibleWalls/StaticBody2D"]
+modulate = Color(0.238281, 0.238281, 0.238281, 1)
+scale = Vector2(1, 5)
+texture = ExtResource("5_d34jd")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="VisibleWalls"]
+position = Vector2(-348, 16)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleWalls/StaticBody2D2"]
+shape = SubResource("RectangleShape2D_etcqh")
+
+[node name="Sprite2D" type="Sprite2D" parent="VisibleWalls/StaticBody2D2"]
+modulate = Color(0.238281, 0.238281, 0.238281, 1)
+scale = Vector2(8.31999, 1.76)
+texture = ExtResource("5_d34jd")
+
+[node name="Distance" type="Node" parent="."]
+
+[node name="DistanceTimer" type="Timer" parent="Distance"]
+
+[connection signal="timeout" from="FuelTimer" to="." method="_on_fuel_timer_timeout"]
+[connection signal="timeout" from="Distance/DistanceTimer" to="." method="_on_distance_timer_timeout"]

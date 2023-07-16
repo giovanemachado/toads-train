@@ -2,7 +2,7 @@ extends State
 
 class_name EnemyTestChasingState
 
-@onready var state_manager = $".."
+@onready var state_manager: EnemyTestStateManager = $".."
 
 var enemy_test: EnemyTest
 var navigation_agent: NavigationAgent2D

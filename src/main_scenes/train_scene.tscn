@@ -1,13 +1,14 @@
-[gd_scene load_steps=26 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=21 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
 [ext_resource type="Script" path="res://src/gameplay/TrainGameplayManager.gd" id="3_c3a6g"]
-[ext_resource type="Script" path="res://src/gameplay/train/Train.gd" id="3_fdwhw"]
 [ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="3_gwip8"]
 [ext_resource type="Texture2D" uid="uid://cm6oidcsctgep" path="res://src/utils/assets/all_sizes.png" id="3_rpb1h"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="4_0clq0"]
-[ext_resource type="Script" path="res://src/gameplay/train/LifeBarTrainManager.gd" id="6_jjrh3"]
+[ext_resource type="PackedScene" uid="uid://dic06qvwx0s5o" path="res://src/gameplay/train/train_unit_scene.tscn" id="4_o8fs0"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/EnemiesManager.gd" id="7_4bgps"]
+[ext_resource type="Script" path="res://src/gameplay/visuals/AutoMovingParallaxLayer.gd" id="9_ah3o0"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="11_kgm50"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestStateManager.gd" id="12_1fqt6"]
 [ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="12_cw0wq"]
@@ -15,24 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestAttackingState.gd" id="15_d7qo4"]
 [ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="16_d68hh"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_co488"]
-size = Vector2(87, 683)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0y5l5"]
-size = Vector2(87.5, 721)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbl7"]
-size = Vector2(2055, 142)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xc6pt"]
-size = Vector2(2113, 78)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcglj"]
-size = Vector2(102, 506)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_etcqh"]
-size = Vector2(834, 172)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6hy"]
 vertices = PackedVector2Array(1727, 469, 1729, 865, 1513, 837, 1511, 634, 478, 465, 666, 635, 476, 996, 662, 841, 2392, 1008, 1846, 866, 2392, 465, 1842, 471)
@@ -56,11 +39,6 @@ animations = [{
 radius = 39.2938
 
 [node name="train_scene" type="Node"]
-
-[node name="DebugBG" type="Sprite2D" parent="."]
-modulate = Color(0.913725, 0.431373, 0.831373, 0.462745)
-position = Vector2(1920, -80)
-texture = ExtResource("3_rpb1h")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -106,6 +84,10 @@ layout_mode = 2
 size_flags_horizontal = 0
 text = "Debug - Garage"
 
+[node name="Distance" type="Label" parent="UI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "0"
+
 [node name="GameplayManager" parent="." instance=ExtResource("2_j3kmv")]
 
 [node name="TrainGameplayManager" type="Node" parent="GameplayManager"]
@@ -113,151 +95,92 @@ script = ExtResource("3_c3a6g")
 
 [node name="Environment" type="Node" parent="."]
 
-[node name="Train" type="Node2D" parent="Environment"]
-position = Vector2(1437, 716)
-script = ExtResource("3_fdwhw")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Train"]
-scale = Vector2(0.492917, 0.224444)
-texture = ExtResource("3_rpb1h")
-
-[node name="Health" parent="Environment/Train" instance=ExtResource("4_0clq0")]
-
-[node name="LifeBarTrainManager" type="Node" parent="Environment/Train"]
-script = ExtResource("6_jjrh3")
-
-[node name="FuelBar" type="ProgressBar" parent="Environment/Train"]
-custom_minimum_size = Vector2(200, 25)
-offset_left = -197.0
-offset_top = -363.0
-offset_right = 3.0
-offset_bottom = -338.0
-step = 1.0
-show_percentage = false
-
-[node name="LifeBarTrain" type="ProgressBar" parent="Environment/Train"]
-custom_minimum_size = Vector2(200, 25)
-offset_left = -197.0
-offset_top = -403.0
-offset_right = 3.0
-offset_bottom = -378.0
-step = 1.0
-show_percentage = false
-
-[node name="FuelTimer" type="Timer" parent="Environment/Train"]
-
-[node name="InvisibleWalls" type="Node2D" parent="Environment/Train"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Environment/Train/InvisibleWalls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/InvisibleWalls/StaticBody2D"]
-position = Vector2(-991.5, -73.5)
-shape = SubResource("RectangleShape2D_co488")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Environment/Train/InvisibleWalls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/InvisibleWalls/StaticBody2D2"]
-position = Vector2(990, -102.5)
-shape = SubResource("RectangleShape2D_0y5l5")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="Environment/Train/InvisibleWalls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/InvisibleWalls/StaticBody2D3"]
-position = Vector2(5.5, -409)
-shape = SubResource("RectangleShape2D_0rbl7")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="Environment/Train/InvisibleWalls"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/InvisibleWalls/StaticBody2D4"]
-position = Vector2(22.5, 282)
-shape = SubResource("RectangleShape2D_xc6pt")
-
-[node name="VisibleWalls" type="Node2D" parent="Environment/Train"]
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Environment/Train/VisibleWalls"]
-position = Vector2(348, -114)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/VisibleWalls/StaticBody2D"]
-shape = SubResource("RectangleShape2D_tcglj")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Train/VisibleWalls/StaticBody2D"]
-modulate = Color(0.238281, 0.238281, 0.238281, 1)
-scale = Vector2(1, 5)
-texture = ExtResource("3_gwip8")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="Environment/Train/VisibleWalls"]
-position = Vector2(-348, 16)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/VisibleWalls/StaticBody2D2"]
-shape = SubResource("RectangleShape2D_etcqh")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Train/VisibleWalls/StaticBody2D2"]
-modulate = Color(0.238281, 0.238281, 0.238281, 1)
-scale = Vector2(8.31999, 1.76)
-texture = ExtResource("3_gwip8")
+[node name="Train" parent="Environment" instance=ExtResource("4_o8fs0")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_sk6hy")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Environment"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Environment/ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1152, 0)
+script = ExtResource("9_ah3o0")
+auto_moving_speed = 50
+
+[node name="BG" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer"]
+modulate = Color(0.913725, 0.431373, 0.831373, 0.462745)
+position = Vector2(1920, -80)
+texture = ExtResource("3_rpb1h")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Environment/ParallaxBackground"]
+motion_mirroring = Vector2(1152, 0)
+script = ExtResource("9_ah3o0")
+auto_moving_speed = 300
+
+[node name="Ground" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer2"]
+modulate = Color(0.278431, 0.133333, 0.0980392, 1)
+position = Vector2(1920, 869)
+scale = Vector2(1, 0.12)
+texture = ExtResource("3_rpb1h")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="EnemyTest" type="CharacterBody2D" parent="Enemies" node_paths=PackedStringArray("target") groups=["enemy"]]
-position = Vector2(545, 752)
+[node name="EnemiesManager" type="Node" parent="Enemies"]
+script = ExtResource("7_4bgps")
+
+[node name="EnemyTest" type="CharacterBody2D" parent="Enemies/EnemiesManager" groups=["enemy"]]
+position = Vector2(197, 474)
 collision_layer = 4
 collision_mask = 4
 script = ExtResource("11_kgm50")
-target = NodePath("../../Player")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/EnemyTest"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/EnemiesManager/EnemyTest"]
 shape = SubResource("CapsuleShape2D_ieuyy")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/EnemyTest"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/EnemiesManager/EnemyTest"]
 modulate = Color(1, 0.247059, 0.188235, 1)
 sprite_frames = SubResource("SpriteFrames_axwgq")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemies/EnemyTest"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemies/EnemiesManager/EnemyTest"]
 radius = 20.0
-debug_enabled = true
 
-[node name="Movement" parent="Enemies/EnemyTest" instance=ExtResource("12_cw0wq")]
+[node name="Movement" parent="Enemies/EnemiesManager/EnemyTest" instance=ExtResource("12_cw0wq")]
 speed = 100.0
 
-[node name="EnemyTestStateManager" type="Node" parent="Enemies/EnemyTest" node_paths=PackedStringArray("initial_state")]
+[node name="EnemyTestStateManager" type="Node" parent="Enemies/EnemiesManager/EnemyTest" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("12_1fqt6")
 initial_state = NodePath("EnemyTestChasingState")
 
-[node name="EnemyTestChasingState" type="Node" parent="Enemies/EnemyTest/EnemyTestStateManager"]
+[node name="EnemyTestChasingState" type="Node" parent="Enemies/EnemiesManager/EnemyTest/EnemyTestStateManager"]
 script = ExtResource("13_4xxur")
 
-[node name="EnemyTestAttackingState" type="Node" parent="Enemies/EnemyTest/EnemyTestStateManager"]
+[node name="EnemyTestAttackingState" type="Node" parent="Enemies/EnemiesManager/EnemyTest/EnemyTestStateManager"]
 script = ExtResource("15_d7qo4")
 
-[node name="Health" parent="Enemies/EnemyTest" instance=ExtResource("4_0clq0")]
+[node name="Health" parent="Enemies/EnemiesManager/EnemyTest" instance=ExtResource("4_0clq0")]
 max_health_points = 1
 
-[node name="Attack" parent="Enemies/EnemyTest" instance=ExtResource("16_d68hh")]
+[node name="Attack" parent="Enemies/EnemiesManager/EnemyTest" instance=ExtResource("16_d68hh")]
 attack_group = "player"
 
-[node name="Area2D" type="Area2D" parent="Enemies/EnemyTest/Attack"]
+[node name="Area2D" type="Area2D" parent="Enemies/EnemiesManager/EnemyTest/Attack"]
 position = Vector2(82, 0)
 collision_layer = 15
 collision_mask = 15
 
-[node name="Sprite2D" type="Sprite2D" parent="Enemies/EnemyTest/Attack/Area2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/EnemiesManager/EnemyTest/Attack/Area2D"]
 modulate = Color(0.929412, 0.254902, 0.533333, 1)
 scale = Vector2(0.639995, 0.639995)
 texture = ExtResource("3_gwip8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/EnemyTest/Attack/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/EnemiesManager/EnemyTest/Attack/Area2D"]
 shape = SubResource("CircleShape2D_secqe")
 debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("15_bwlow")]
-position = Vector2(2086, 555)
+position = Vector2(1270, 548)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 zoom = Vector2(0.7, 0.7)
@@ -269,6 +192,7 @@ editor_draw_screen = false
 
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Menu" to="UI/Control" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Garage" to="UI/Control" method="_on_debug__garage_pressed"]
+[connection signal="distance_updated" from="Environment/Train" to="UI/Control" method="_on_train_distance_updated"]
 [connection signal="stopped" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_stopped"]
-[connection signal="timeout" from="Environment/Train/FuelTimer" to="Environment/Train" method="_on_fuel_timer_timeout"]
-[connection signal="dead" from="Enemies/EnemyTest/Health" to="Enemies/EnemyTest" method="_on_health_dead"]
+[connection signal="an_enemy_died" from="Enemies/EnemiesManager" to="GameplayManager/TrainGameplayManager" method="_on_enemies_manager_an_enemy_died"]
+[connection signal="dead" from="Enemies/EnemiesManager/EnemyTest/Health" to="Enemies/EnemiesManager/EnemyTest" method="_on_health_dead"]

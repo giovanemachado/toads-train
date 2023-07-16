@@ -9,5 +9,7 @@ func _on_train_cabin_player_entered_in_cabin():
 	gameplay_manager.change_scenes(Globals.MAIN_SCENES.TRAIN)
 
 
-func _on_fuel_tank_player_upgraded_fuel_tank():
-	gameplay_manager.player_progress.train_fuel += 10
+func _on_fuel_tank_player_upgraded_fuel_tank(cost: int):
+	if gameplay_manager.player_progress.money >= cost:
+		gameplay_manager.player_progress.train_fuel += 10
+		gameplay_manager.player_progress.money -= cost
