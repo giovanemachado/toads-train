@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+class_name Player
+
 @onready var attack: Attack = $Attack
 @onready var movement: Movement = $Movement
 @onready var health: Health = $Health

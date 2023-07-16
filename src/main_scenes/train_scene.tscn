@@ -1,27 +1,46 @@
-[gd_scene load_steps=18 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=22 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
-[ext_resource type="Script" path="res://src/debug/Debug.gd" id="2_x4xsm"]
 [ext_resource type="Script" path="res://src/gameplay/TrainGameplayManager.gd" id="3_c3a6g"]
 [ext_resource type="Script" path="res://src/gameplay/train/Train.gd" id="3_fdwhw"]
 [ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="3_gwip8"]
 [ext_resource type="Texture2D" uid="uid://cm6oidcsctgep" path="res://src/utils/assets/all_sizes.png" id="3_rpb1h"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="4_0clq0"]
-[ext_resource type="Script" path="res://src/debug/debug_states/DebugStateManager.gd" id="4_nwoxa"]
-[ext_resource type="Script" path="res://src/debug/debug_states/DebugIdleState.gd" id="5_a5cc2"]
-[ext_resource type="Script" path="res://src/debug/debug_states/DebugNotIdleAnymoreState.gd" id="6_3ocii"]
 [ext_resource type="Script" path="res://src/gameplay/train/LifeBarTrainManager.gd" id="6_jjrh3"]
-[ext_resource type="PackedScene" uid="uid://bn3lbr2suh5kx" path="res://src/gameplay/interactables/dummy/interactable_dummy_scene.tscn" id="7_na5ay"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="11_kgm50"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestStateManager.gd" id="12_1fqt6"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/dummy/Dummy.gd" id="12_a6pa8"]
+[ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="12_cw0wq"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestChasingState.gd" id="13_4xxur"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestAttackingState.gd" id="15_d7qo4"]
+[ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="16_d68hh"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6hy"]
+vertices = PackedVector2Array(-131, -63, 1369, -67, 1374, 693, -134, 710)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-131, -63, 1369, -67, 1374, 693, -134, 710)])
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8fxd2"]
 radius = 28.0
 height = 94.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_su5tm"]
-size = Vector2(451, 89)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ieuyy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axwgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_gwip8")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_secqe"]
+radius = 39.2938
 
 [node name="train_scene" type="Node"]
 
@@ -109,7 +128,8 @@ show_percentage = false
 
 [node name="FuelTimer" type="Timer" parent="Environment/Train"]
 
-[node name="InteractableDummy" parent="Environment" instance=ExtResource("7_na5ay")]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
+navigation_polygon = SubResource("NavigationPolygon_sk6hy")
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -126,30 +146,48 @@ shape = SubResource("CapsuleShape2D_8fxd2")
 
 [node name="Health" parent="Enemies/EnemyDummy" instance=ExtResource("4_0clq0")]
 
-[node name="Debug" type="Node2D" parent="."]
-position = Vector2(101, 168)
-script = ExtResource("2_x4xsm")
+[node name="EnemyTest" type="CharacterBody2D" parent="Enemies" node_paths=PackedStringArray("target") groups=["enemy"]]
+position = Vector2(119, 387)
+script = ExtResource("11_kgm50")
+target = NodePath("../../Player")
 
-[node name="DebugFSM" type="StaticBody2D" parent="Debug"]
-position = Vector2(570, 320)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/EnemyTest"]
+shape = SubResource("CapsuleShape2D_ieuyy")
 
-[node name="Sprite2D" type="Sprite2D" parent="Debug/DebugFSM"]
-scale = Vector2(4.6, 1)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemies/EnemyTest"]
+modulate = Color(1, 0.247059, 0.188235, 1)
+sprite_frames = SubResource("SpriteFrames_axwgq")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemies/EnemyTest"]
+
+[node name="Movement" parent="Enemies/EnemyTest" instance=ExtResource("12_cw0wq")]
+
+[node name="EnemyTestStateManager" type="Node" parent="Enemies/EnemyTest" node_paths=PackedStringArray("initial_state")]
+script = ExtResource("12_1fqt6")
+initial_state = NodePath("EnemyTestChasingState")
+
+[node name="EnemyTestChasingState" type="Node" parent="Enemies/EnemyTest/EnemyTestStateManager"]
+script = ExtResource("13_4xxur")
+
+[node name="EnemyTestAttackingState" type="Node" parent="Enemies/EnemyTest/EnemyTestStateManager"]
+script = ExtResource("15_d7qo4")
+
+[node name="Health" parent="Enemies/EnemyTest" instance=ExtResource("4_0clq0")]
+
+[node name="Attack" parent="Enemies/EnemyTest" instance=ExtResource("16_d68hh")]
+attack_group = "player"
+
+[node name="Area2D" type="Area2D" parent="Enemies/EnemyTest/Attack"]
+position = Vector2(82, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemies/EnemyTest/Attack/Area2D"]
+modulate = Color(0.929412, 0.254902, 0.533333, 1)
+scale = Vector2(0.639995, 0.639995)
 texture = ExtResource("3_gwip8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Debug/DebugFSM"]
-position = Vector2(-0.5, 0.5)
-shape = SubResource("RectangleShape2D_su5tm")
-
-[node name="StateManager" type="Node" parent="Debug" node_paths=PackedStringArray("initial_state")]
-script = ExtResource("4_nwoxa")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="Debug/StateManager"]
-script = ExtResource("5_a5cc2")
-
-[node name="NotIdleAnymore" type="Node" parent="Debug/StateManager"]
-script = ExtResource("6_3ocii")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemies/EnemyTest/Attack/Area2D"]
+shape = SubResource("CircleShape2D_secqe")
+debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
 
 [node name="Player" parent="." instance=ExtResource("15_bwlow")]
 
@@ -157,3 +195,4 @@ script = ExtResource("6_3ocii")
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Garage" to="UI/Control" method="_on_debug__garage_pressed"]
 [connection signal="stopped" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_stopped"]
 [connection signal="timeout" from="Environment/Train/FuelTimer" to="Environment/Train" method="_on_fuel_timer_timeout"]
+[connection signal="dead" from="Enemies/EnemyTest/Health" to="Enemies/EnemyTest" method="_on_health_dead"]

@@ -7,6 +7,7 @@ class_name Attack
 
 @export var attack_cooldown: float = 1
 @export var attack_damage: int = 1
+@export var attack_group: String
 
 var attack_in_cooldown = false
 
@@ -17,7 +18,7 @@ func attack():
 	var nodes: Array[Node2D] = hit_box.get_overlapping_bodies()
 	
 	for node in nodes:
-		if node.is_in_group(Globals.ENEMY_GROUP):
+		if node.is_in_group(attack_group):
 			node.health.damage(attack_damage)
 
 	attack_in_cooldown = true

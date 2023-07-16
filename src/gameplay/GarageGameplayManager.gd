@@ -10,5 +10,4 @@ func _on_train_cabin_player_entered_in_cabin():
 
 
 func _on_fuel_tank_player_upgraded_fuel_tank():
-	print("fuel upgrade")
 	gameplay_manager.player_progress.train_fuel += 10

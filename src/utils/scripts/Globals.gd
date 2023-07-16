@@ -1,7 +1,9 @@
 extends Node
 
 const ENEMY_GROUP = 'enemy'
+const PLAYER_GROUP = 'player'
 const INTERACTABLE_GROUP = 'interactable'
+
 const MAIN_SCENES = {
 	MENU = "res://src/main_scenes/menu_scene.tscn",
 	GARAGE = "res://src/main_scenes/garage_scene.tscn",

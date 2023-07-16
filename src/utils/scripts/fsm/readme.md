@@ -2,9 +2,9 @@
 Guide to use this FSM.
 
 - Create a Node inside your object called StateManager.
-- Attach a script to StateManager, extending from StateManager class. Called ObjectNameStateManager.
+- Attach a script to StateManager, extending from StateManager class. Called [ObjectName]StateManager.
 - Create all states Nodes inside StateManager, each one with his own state name, like Idle, Run, Attack, etc.
-- Attach a script for each Node, extending from State class. Called ObjectNameState.
+- Attach a script for each Node, extending from State class. Called [ObjectName][StateName]State.
 
 On ObjectNameStateManager script you can do:
 ```

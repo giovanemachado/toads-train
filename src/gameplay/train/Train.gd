@@ -14,7 +14,6 @@ var current_fuel: int
 
 func _ready():
 	current_fuel = gameplay_manager.player_progress.train_fuel
-	print("train fuel is ", current_fuel)
 	fuel_timer.start(fuel_timing)
 	fuel_bar.max_value = current_fuel
 	fuel_bar.value = current_fuel
