@@ -1,0 +1,78 @@
+[gd_scene load_steps=11 format=3 uid="uid://ib7ajxwbvqjn"]
+
+[ext_resource type="Script" path="res://src/gameplay/units/player/Player.gd" id="1_sw0e8"]
+[ext_resource type="Script" path="res://src/gameplay/units/attack/Attack.gd" id="3_mf7g5"]
+[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="4_a1avm"]
+[ext_resource type="Script" path="res://src/gameplay/units/movement/Movement.gd" id="5_ktfui"]
+[ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="6_tykmr"]
+[ext_resource type="Script" path="res://src/gameplay/units/player/interaction/Interaction.gd" id="7_a82dn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvkgu"]
+radius = 39.2938
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgvi1"]
+size = Vector2(178, 104)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_m2acc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_a1avm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1sua"]
+radius = 27.0
+height = 94.0
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(642, 310)
+script = ExtResource("1_sw0e8")
+
+[node name="Attack" type="Node2D" parent="."]
+script = ExtResource("3_mf7g5")
+
+[node name="Timer" type="Timer" parent="Attack"]
+
+[node name="Area2D" type="Area2D" parent="Attack"]
+position = Vector2(82, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Attack/Area2D"]
+modulate = Color(0.929412, 0.254902, 0.533333, 1)
+scale = Vector2(0.639995, 0.639995)
+texture = ExtResource("4_a1avm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/Area2D"]
+shape = SubResource("CircleShape2D_pvkgu")
+debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
+
+[node name="Movement" type="Node2D" parent="."]
+script = ExtResource("5_ktfui")
+
+[node name="Health" parent="." instance=ExtResource("6_tykmr")]
+
+[node name="Interaction" type="Node2D" parent="."]
+script = ExtResource("7_a82dn")
+
+[node name="Area2D" type="Area2D" parent="Interaction"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction/Area2D"]
+shape = SubResource("RectangleShape2D_xgvi1")
+debug_color = Color(0.690196, 0.407843, 0.74902, 0.32549)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.384314, 0.529412, 0.878431, 1)
+sprite_frames = SubResource("SpriteFrames_m2acc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_d1sua")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="Attack/Timer" to="Attack" method="_on_timer_timeout"]
+[connection signal="health_update" from="Health" to="." method="_on_health_health_update"]
+[connection signal="area_entered" from="Interaction/Area2D" to="Interaction" method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Interaction/Area2D" to="Interaction" method="_on_area_2d_area_exited"]

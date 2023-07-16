@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=19 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="Script" path="res://src/gameplay/Gameplay.gd" id="2_0c4th"]
@@ -11,14 +11,10 @@
 [ext_resource type="Script" path="res://src/debug/debug_states/DebugIdleState.gd" id="5_a5cc2"]
 [ext_resource type="Script" path="res://src/debug/debug_states/DebugNotIdleAnymoreState.gd" id="6_3ocii"]
 [ext_resource type="Script" path="res://src/gameplay/train/LifeBarTrainManager.gd" id="6_jjrh3"]
-[ext_resource type="Script" path="res://src/gameplay/units/player/Player.gd" id="7_b50cc"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/dummy/InteractableDummy.gd" id="7_m1u7u"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/Interactable.gd" id="9_25mrw"]
-[ext_resource type="Script" path="res://src/gameplay/units/attack/Attack.gd" id="10_snsl8"]
-[ext_resource type="Script" path="res://src/gameplay/units/movement/Movement.gd" id="11_lyo0j"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/dummy/Dummy.gd" id="12_a6pa8"]
-[ext_resource type="Script" path="res://src/gameplay/units/player/lifebar/LifeBarManager.gd" id="14_snfxw"]
-[ext_resource type="Script" path="res://src/gameplay/units/player/interaction/Interaction.gd" id="17_ak5jf"]
+[ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kjj6j"]
 size = Vector2(97, 97)
@@ -29,27 +25,6 @@ height = 94.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_su5tm"]
 size = Vector2(451, 89)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_pvkgu"]
-radius = 39.2938
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_xgvi1"]
-size = Vector2(178, 104)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_m2acc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("3_gwip8")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1sua"]
-radius = 27.0
-height = 94.0
 
 [node name="train_scene" type="Node"]
 
@@ -193,58 +168,9 @@ script = ExtResource("5_a5cc2")
 [node name="NotIdleAnymore" type="Node" parent="Debug/StateManager"]
 script = ExtResource("6_3ocii")
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(642, 310)
-script = ExtResource("7_b50cc")
-
-[node name="LifeBar" type="Node" parent="Player"]
-script = ExtResource("14_snfxw")
-
-[node name="Attack" type="Node2D" parent="Player"]
-script = ExtResource("10_snsl8")
-
-[node name="Timer" type="Timer" parent="Player/Attack"]
-
-[node name="Area2D" type="Area2D" parent="Player/Attack"]
-position = Vector2(82, 0)
-
-[node name="Sprite2D" type="Sprite2D" parent="Player/Attack/Area2D"]
-modulate = Color(0.929412, 0.254902, 0.533333, 1)
-scale = Vector2(0.639995, 0.639995)
-texture = ExtResource("3_gwip8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Attack/Area2D"]
-shape = SubResource("CircleShape2D_pvkgu")
-debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
-
-[node name="Movement" type="Node2D" parent="Player"]
-script = ExtResource("11_lyo0j")
-
-[node name="Health" parent="Player" instance=ExtResource("4_0clq0")]
-
-[node name="Interaction" type="Node2D" parent="Player"]
-script = ExtResource("17_ak5jf")
-
-[node name="Area2D" type="Area2D" parent="Player/Interaction"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Interaction/Area2D"]
-shape = SubResource("RectangleShape2D_xgvi1")
-debug_color = Color(0.690196, 0.407843, 0.74902, 0.32549)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-modulate = Color(0.384314, 0.529412, 0.878431, 1)
-sprite_frames = SubResource("SpriteFrames_m2acc")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("CapsuleShape2D_d1sua")
-
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Player" parent="." instance=ExtResource("15_bwlow")]
 
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Menu" to="UI/Control" method="_on_menu_pressed"]
 [connection signal="stopped" from="Environment/Train" to="Gameplay" method="_on_train_stopped"]
 [connection signal="timeout" from="Environment/Train/FuelTimer" to="Environment/Train" method="_on_fuel_timer_timeout"]
 [connection signal="player_interacted" from="Environment/InteractableDummy/Interactable" to="Environment/InteractableDummy" method="_on_interactable_player_interacted"]
-[connection signal="timeout" from="Player/Attack/Timer" to="Player/Attack" method="_on_timer_timeout"]
-[connection signal="health_update" from="Player/Health" to="Player/LifeBar" method="_on_health_health_update"]
-[connection signal="area_entered" from="Player/Interaction/Area2D" to="Player/Interaction" method="_on_area_2d_area_entered"]
-[connection signal="area_exited" from="Player/Interaction/Area2D" to="Player/Interaction" method="_on_area_2d_area_exited"]
