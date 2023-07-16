@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=17 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="Script" path="res://src/gameplay/Gameplay.gd" id="2_0c4th"]
@@ -11,13 +11,9 @@
 [ext_resource type="Script" path="res://src/debug/debug_states/DebugIdleState.gd" id="5_a5cc2"]
 [ext_resource type="Script" path="res://src/debug/debug_states/DebugNotIdleAnymoreState.gd" id="6_3ocii"]
 [ext_resource type="Script" path="res://src/gameplay/train/LifeBarTrainManager.gd" id="6_jjrh3"]
-[ext_resource type="Script" path="res://src/gameplay/interactables/dummy/InteractableDummy.gd" id="7_m1u7u"]
-[ext_resource type="Script" path="res://src/gameplay/interactables/Interactable.gd" id="9_25mrw"]
+[ext_resource type="PackedScene" uid="uid://bn3lbr2suh5kx" path="res://src/gameplay/interactables/dummy/interactable_dummy_scene.tscn" id="7_na5ay"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/dummy/Dummy.gd" id="12_a6pa8"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kjj6j"]
-size = Vector2(97, 97)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8fxd2"]
 radius = 28.0
@@ -62,10 +58,15 @@ layout_mode = 2
 step = 1.0
 show_percentage = false
 
-[node name="Menu" type="Button" parent="UI/Control/MarginContainer/VBoxContainer"]
+[node name="Debug - Menu" type="Button" parent="UI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Debug - Menu"
+
+[node name="Debug - Garage" type="Button" parent="UI/Control/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Debug - Garage"
 
 [node name="Gameplay" type="Node" parent="."]
 script = ExtResource("2_0c4th")
@@ -105,28 +106,7 @@ show_percentage = false
 
 [node name="FuelTimer" type="Timer" parent="Environment/Train"]
 
-[node name="InteractableDummy" type="Node2D" parent="Environment"]
-position = Vector2(413, 386)
-script = ExtResource("7_m1u7u")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/InteractableDummy"]
-self_modulate = Color(3.94672e-06, 0.426804, 0.00505585, 1)
-texture = ExtResource("3_gwip8")
-
-[node name="Interactable" type="Node2D" parent="Environment/InteractableDummy" groups=["interactable"]]
-script = ExtResource("9_25mrw")
-
-[node name="Icon" type="Sprite2D" parent="Environment/InteractableDummy/Interactable"]
-visible = false
-position = Vector2(-4, -64)
-scale = Vector2(0.201418, 0.201418)
-texture = ExtResource("3_gwip8")
-
-[node name="Area2D" type="Area2D" parent="Environment/InteractableDummy/Interactable"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/InteractableDummy/Interactable/Area2D"]
-position = Vector2(0.5, 1.5)
-shape = SubResource("RectangleShape2D_kjj6j")
+[node name="InteractableDummy" parent="Environment" instance=ExtResource("7_na5ay")]
 
 [node name="Enemies" type="Node" parent="."]
 
@@ -170,7 +150,7 @@ script = ExtResource("6_3ocii")
 
 [node name="Player" parent="." instance=ExtResource("15_bwlow")]
 
-[connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Menu" to="UI/Control" method="_on_menu_pressed"]
+[connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Menu" to="UI/Control" method="_on_menu_pressed"]
+[connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Garage" to="UI/Control" method="_on_debug__garage_pressed"]
 [connection signal="stopped" from="Environment/Train" to="Gameplay" method="_on_train_stopped"]
 [connection signal="timeout" from="Environment/Train/FuelTimer" to="Environment/Train" method="_on_fuel_timer_timeout"]
-[connection signal="player_interacted" from="Environment/InteractableDummy/Interactable" to="Environment/InteractableDummy" method="_on_interactable_player_interacted"]
