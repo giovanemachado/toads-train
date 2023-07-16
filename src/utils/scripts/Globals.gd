@@ -2,6 +2,11 @@ extends Node
 
 const ENEMY_GROUP = 'enemy'
 const INTERACTABLE_GROUP = 'interactable'
+const MAIN_SCENES = {
+	MENU = "res://src/main_scenes/menu_scene.tscn",
+	GARAGE = "res://src/main_scenes/garage_scene.tscn",
+	TRAIN = "res://src/main_scenes/train_scene.tscn"
+}
 
 #enum ExampleEnum {A, B}
 #

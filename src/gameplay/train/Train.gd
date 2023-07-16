@@ -2,21 +2,22 @@ extends Node2D
 
 signal stopped
 
-@onready var health: Health = $Health
+@onready var gameplay_manager: GameplayManager = $"../../GameplayManager"
 
+@onready var health: Health = $Health
 @onready var fuel_bar: ProgressBar = $FuelBar
 @onready var fuel_timer: Timer = $FuelTimer
 @export var fuel_timing: float = 1
-@export var initial_fuel: int = 50
 @export var fuel_amount_per_tick = 2
 var current_fuel: int
 
 
 func _ready():
-	current_fuel = initial_fuel
+	current_fuel = gameplay_manager.player_progress.train_fuel
+	print("train fuel is ", current_fuel)
 	fuel_timer.start(fuel_timing)
-	fuel_bar.max_value = initial_fuel
-	fuel_bar.value = initial_fuel
+	fuel_bar.max_value = current_fuel
+	fuel_bar.value = current_fuel
 
 
 func spend_fuel():

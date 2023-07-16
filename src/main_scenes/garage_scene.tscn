@@ -1,13 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgj4dcy60majr"]
+[gd_scene load_steps=10 format=3 uid="uid://cgj4dcy60majr"]
 
+[ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="1_mqfaw"]
 [ext_resource type="Texture2D" uid="uid://cm6oidcsctgep" path="res://src/utils/assets/all_sizes.png" id="1_ttsww"]
-[ext_resource type="Script" path="res://src/gameplay/interactables/garage/train_cabin/TrainCabin.gd" id="2_b2li1"]
+[ext_resource type="Script" path="res://src/gameplay/GarageGameplayManager.gd" id="2_t24wa"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="2_xctpp"]
 [ext_resource type="PackedScene" uid="uid://5ao27mu0w7gw" path="res://src/gameplay/interactables/interactable_scene.tscn" id="3_ecjp1"]
 [ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="3_h75yp"]
 [ext_resource type="PackedScene" uid="uid://bn3lbr2suh5kx" path="res://src/gameplay/interactables/dummy/interactable_dummy_scene.tscn" id="3_idf4v"]
+[ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainCabin.gd" id="4_6yt7a"]
+[ext_resource type="Script" path="res://src/gameplay/interactables/garage/FuelTank.gd" id="7_07v8x"]
 
 [node name="garage_scene" type="Node2D"]
+
+[node name="GameplayManager" parent="." instance=ExtResource("1_mqfaw")]
+
+[node name="GarageGameplayManager" type="Node" parent="GameplayManager"]
+script = ExtResource("2_t24wa")
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -25,7 +33,7 @@ position = Vector2(157, 316)
 
 [node name="TrainCabin" type="Node2D" parent="Environment"]
 position = Vector2(367, 509)
-script = ExtResource("2_b2li1")
+script = ExtResource("4_6yt7a")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainCabin"]
 modulate = Color(0.65098, 0.47451, 0.152941, 1)
@@ -33,10 +41,23 @@ texture = ExtResource("3_h75yp")
 
 [node name="Interactable" parent="Environment/TrainCabin" instance=ExtResource("3_ecjp1")]
 
+[node name="FuelTank" type="Node2D" parent="Environment"]
+position = Vector2(1040, 358)
+script = ExtResource("7_07v8x")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/FuelTank"]
+modulate = Color(0.468276, 0.321616, 0.699581, 1)
+texture = ExtResource("3_h75yp")
+
+[node name="Interactable" parent="Environment/FuelTank" instance=ExtResource("3_ecjp1")]
+
 [node name="TempBackground" type="Sprite2D" parent="."]
 position = Vector2(778, 278)
 texture = ExtResource("1_ttsww")
 
 [node name="Player" parent="." instance=ExtResource("2_xctpp")]
 
+[connection signal="player_entered_in_cabin" from="Environment/TrainCabin" to="GameplayManager/GarageGameplayManager" method="_on_train_cabin_player_entered_in_cabin"]
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted"]
+[connection signal="player_upgraded_fuel_tank" from="Environment/FuelTank" to="GameplayManager/GarageGameplayManager" method="_on_fuel_tank_player_upgraded_fuel_tank"]
+[connection signal="player_interacted" from="Environment/FuelTank/Interactable" to="Environment/FuelTank" method="_on_interactable_player_interacted"]
