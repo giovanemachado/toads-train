@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhthmwkb6wrb6"]
+
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/dummy/Dummy.gd" id="1_k4h8e"]
+[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="2_fe84a"]
+[ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="3_6smmy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8fxd2"]
+radius = 28.0
+height = 94.0
+
+[node name="EnemyDummy" type="CharacterBody2D" groups=["enemy"]]
+position = Vector2(956, 310)
+script = ExtResource("1_k4h8e")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0.388235, 0.313726, 1)
+texture = ExtResource("2_fe84a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_8fxd2")
+
+[node name="Health" parent="." instance=ExtResource("3_6smmy")]

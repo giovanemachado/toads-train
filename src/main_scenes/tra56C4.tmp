@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=25 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
@@ -31,13 +31,10 @@ size = Vector2(2113, 78)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tcglj"]
 size = Vector2(102, 506)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_etcqh"]
-size = Vector2(834, 172)
-
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6hy"]
-vertices = PackedVector2Array(1727, 469, 1729, 865, 1513, 837, 1511, 634, 478, 465, 666, 635, 476, 996, 662, 841, 2392, 1008, 1846, 866, 2392, 465, 1842, 471)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(8, 6, 7, 2, 1), PackedInt32Array(8, 1, 9), PackedInt32Array(10, 8, 9, 11)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(478, 465, 1727, 469, 1729, 865, 1846, 866, 1842, 471, 2392, 465, 2392, 1008, 476, 996), PackedVector2Array(666, 635, 662, 841, 1513, 837, 1511, 634)])
+vertices = PackedVector2Array(478, 465, 2392, 465, 2392, 1008, 476, 996)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(478, 465, 2392, 465, 2392, 1008, 476, 996)])
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ieuyy"]
 
@@ -179,6 +176,10 @@ position = Vector2(348, -114)
 collision_layer = 3
 collision_mask = 3
 
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Environment/Train/VisibleWalls/StaticBody2D"]
+avoidance_enabled = true
+debug_enabled = true
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/VisibleWalls/StaticBody2D"]
 shape = SubResource("RectangleShape2D_tcglj")
 
@@ -187,28 +188,15 @@ modulate = Color(0.238281, 0.238281, 0.238281, 1)
 scale = Vector2(1, 5)
 texture = ExtResource("3_gwip8")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="Environment/Train/VisibleWalls"]
-position = Vector2(-348, 16)
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Train/VisibleWalls/StaticBody2D2"]
-shape = SubResource("RectangleShape2D_etcqh")
-
-[node name="Sprite2D" type="Sprite2D" parent="Environment/Train/VisibleWalls/StaticBody2D2"]
-modulate = Color(0.238281, 0.238281, 0.238281, 1)
-scale = Vector2(8.31999, 1.76)
-texture = ExtResource("3_gwip8")
-
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
 navigation_polygon = SubResource("NavigationPolygon_sk6hy")
 
 [node name="Enemies" type="Node" parent="."]
 
 [node name="EnemyTest" type="CharacterBody2D" parent="Enemies" node_paths=PackedStringArray("target") groups=["enemy"]]
-position = Vector2(545, 752)
-collision_layer = 4
-collision_mask = 4
+position = Vector2(600, 766)
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("11_kgm50")
 target = NodePath("../../Player")
 
@@ -220,11 +208,10 @@ modulate = Color(1, 0.247059, 0.188235, 1)
 sprite_frames = SubResource("SpriteFrames_axwgq")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemies/EnemyTest"]
-radius = 20.0
+avoidance_enabled = true
 debug_enabled = true
 
 [node name="Movement" parent="Enemies/EnemyTest" instance=ExtResource("12_cw0wq")]
-speed = 100.0
 
 [node name="EnemyTestStateManager" type="Node" parent="Enemies/EnemyTest" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("12_1fqt6")
@@ -237,15 +224,12 @@ script = ExtResource("13_4xxur")
 script = ExtResource("15_d7qo4")
 
 [node name="Health" parent="Enemies/EnemyTest" instance=ExtResource("4_0clq0")]
-max_health_points = 1
 
 [node name="Attack" parent="Enemies/EnemyTest" instance=ExtResource("16_d68hh")]
 attack_group = "player"
 
 [node name="Area2D" type="Area2D" parent="Enemies/EnemyTest/Attack"]
 position = Vector2(82, 0)
-collision_layer = 15
-collision_mask = 15
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemies/EnemyTest/Attack/Area2D"]
 modulate = Color(0.929412, 0.254902, 0.533333, 1)
@@ -271,4 +255,5 @@ editor_draw_screen = false
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Garage" to="UI/Control" method="_on_debug__garage_pressed"]
 [connection signal="stopped" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_stopped"]
 [connection signal="timeout" from="Environment/Train/FuelTimer" to="Environment/Train" method="_on_fuel_timer_timeout"]
+[connection signal="velocity_computed" from="Enemies/EnemyTest/NavigationAgent2D" to="Enemies/EnemyTest/EnemyTestStateManager/EnemyTestChasingState" method="_on_navigation_agent_2d_velocity_computed"]
 [connection signal="dead" from="Enemies/EnemyTest/Health" to="Enemies/EnemyTest" method="_on_health_dead"]
