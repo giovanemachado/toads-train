@@ -1,0 +1,90 @@
+[gd_scene load_steps=13 format=3 uid="uid://bkq1ueojo62vb"]
+
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="1_15g8g"]
+[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="2_jcx0w"]
+[ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="3_ivy8j"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestStateManager.gd" id="4_j5ohk"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestChasingState.gd" id="5_o2h13"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestAttackingState.gd" id="6_uw22n"]
+[ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="7_5ngm2"]
+[ext_resource type="Script" path="res://src/gameplay/units/player/PlayerAttack.gd" id="8_6sfs5"]
+[ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="8_q45ml"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ieuyy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_axwgq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_jcx0w")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_secqe"]
+radius = 39.2938
+
+[node name="EnemyTest" type="CharacterBody2D" groups=["enemy"]]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_15g8g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ieuyy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(1, 0.247059, 0.188235, 1)
+sprite_frames = SubResource("SpriteFrames_axwgq")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+radius = 20.0
+
+[node name="Movement" parent="." instance=ExtResource("3_ivy8j")]
+speed = 100.0
+
+[node name="EnemyTestStateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("4_j5ohk")
+initial_state = NodePath("EnemyTestChasingState")
+
+[node name="EnemyTestChasingState" type="Node" parent="EnemyTestStateManager"]
+script = ExtResource("5_o2h13")
+
+[node name="EnemyTestAttackingState" type="Node" parent="EnemyTestStateManager"]
+script = ExtResource("6_uw22n")
+
+[node name="Health" parent="." instance=ExtResource("7_5ngm2")]
+max_health_points = 1
+
+[node name="EnemyAttack" type="Node" parent="."]
+script = ExtResource("8_6sfs5")
+
+[node name="RightAttackPosition" type="Marker2D" parent="EnemyAttack"]
+position = Vector2(82, 0)
+scale = Vector2(2.85069, 2.85069)
+
+[node name="LeftAttackPosition" type="Marker2D" parent="EnemyAttack"]
+position = Vector2(-82, 0)
+scale = Vector2(2.98692, 2.98692)
+
+[node name="Attack" parent="." instance=ExtResource("8_q45ml")]
+attack_group = "player"
+
+[node name="Area2D" type="Area2D" parent="Attack"]
+position = Vector2(-82, 0)
+collision_layer = 15
+collision_mask = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="Attack/Area2D"]
+modulate = Color(0.929412, 0.254902, 0.533333, 1)
+scale = Vector2(0.639995, 0.639995)
+texture = ExtResource("2_jcx0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/Area2D"]
+shape = SubResource("CircleShape2D_secqe")
+debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
+
+[connection signal="turning_to" from="Movement" to="." method="_on_movement_turning_to"]
+[connection signal="turning_to" from="Movement" to="EnemyAttack" method="_on_movement_turning_to"]
+[connection signal="dead" from="Health" to="." method="_on_health_dead"]

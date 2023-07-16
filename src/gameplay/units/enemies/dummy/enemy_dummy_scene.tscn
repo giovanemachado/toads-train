@@ -20,3 +20,6 @@ texture = ExtResource("2_fe84a")
 shape = SubResource("CapsuleShape2D_8fxd2")
 
 [node name="Health" parent="." instance=ExtResource("3_6smmy")]
+max_health_points = 100000
+
+[connection signal="dead" from="Health" to="." method="_on_health_dead"]

@@ -16,6 +16,8 @@ signal enemy_die
 
 @export var money_per_kill: int = 1
 
+@onready var sprite = $AnimatedSprite2D
+
 
 var agent_is_ready: bool = false
 
@@ -36,3 +38,7 @@ func actor_setup():
 func _on_health_dead():
 	enemy_die.emit(money_per_kill)
 	queue_free()
+
+
+func _on_movement_turning_to(direction: int):
+	sprite.flip_h = direction == 1

@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Attack
 
+signal attacked
+
 @onready var hit_box: Area2D = $Area2D
 @onready var timer: Timer = $Timer
 
@@ -20,6 +22,7 @@ func attack():
 	for node in nodes:
 		if node.is_in_group(attack_group):
 			node.health.damage(attack_damage)
+			attacked.emit()
 
 	attack_in_cooldown = true
 	timer.start(attack_cooldown)
