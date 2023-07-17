@@ -11,6 +11,9 @@ signal attacked
 @export var attack_damage: int = 1
 @export var attack_group: String
 
+@export var strong_attack_cooldown: float = 1
+@export var strong_attack_damage: int = 1
+
 var attack_in_cooldown = false
 
 func attack():
@@ -30,3 +33,18 @@ func attack():
 
 func _on_timer_timeout():
 	attack_in_cooldown = false
+
+
+func strong_attack():
+	if attack_in_cooldown:
+		return
+
+	var nodes: Array[Node2D] = hit_box.get_overlapping_bodies()
+	
+	for node in nodes:
+		if node.is_in_group(attack_group):
+			node.health.damage(strong_attack_damage, global_position)
+			attacked.emit()
+
+	attack_in_cooldown = true
+	timer.start(strong_attack_cooldown)

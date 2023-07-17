@@ -10,6 +10,7 @@ signal an_enemy_died
 var enemies: Dictionary = {}
 var enemy_test = preload("res://src/gameplay/units/enemies/test/enemy_test_scene.tscn")
 
+
 func get_all_enemies():
 	for child in get_children():
 		if child.is_in_group(Globals.ENEMY_GROUP):
@@ -18,8 +19,10 @@ func get_all_enemies():
 			if !child.enemy_die.is_connected(on_enemy_die):
 				child.enemy_die.connect(on_enemy_die)
 
+
 func _ready():
 	timer.start(timing_to_spawn)
+
 
 func spawn_enemies():
 	var enemy_test_instance = enemy_test.instantiate()

@@ -38,6 +38,7 @@ sprite_frames = SubResource("SpriteFrames_m2acc")
 
 [node name="PlayerAttack" type="Node" parent="."]
 script = ExtResource("3_4rp0i")
+reset_combo_timing = 0.5
 
 [node name="RightAttackPosition" type="Marker2D" parent="PlayerAttack"]
 position = Vector2(82, 0)
@@ -47,10 +48,13 @@ scale = Vector2(2.85069, 2.85069)
 position = Vector2(-82, 0)
 scale = Vector2(2.98692, 2.98692)
 
+[node name="ComboTimer" type="Timer" parent="PlayerAttack"]
+
 [node name="Attack" parent="." instance=ExtResource("2_41y0w")]
 attack_cooldown = 0.25
 attack_damage = 2
 attack_group = "enemy"
+strong_attack_damage = 5
 
 [node name="Area2D" type="Area2D" parent="Attack"]
 position = Vector2(-82, 0)
@@ -83,7 +87,10 @@ debug_color = Color(0.690196, 0.407843, 0.74902, 0.32549)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_d1sua")
 
+[connection signal="update_combo" from="PlayerAttack" to="." method="_on_player_attack_update_combo"]
+[connection signal="timeout" from="PlayerAttack/ComboTimer" to="PlayerAttack" method="_on_combo_timer_timeout"]
 [connection signal="attacked" from="Attack" to="." method="_on_attack_attacked"]
+[connection signal="attacked" from="Attack" to="PlayerAttack" method="_on_attack_attacked"]
 [connection signal="turning_to" from="Movement" to="." method="_on_movement_turning_to"]
 [connection signal="turning_to" from="Movement" to="PlayerAttack" method="_on_movement_turning_to"]
 [connection signal="dead" from="Health" to="." method="_on_health_dead"]

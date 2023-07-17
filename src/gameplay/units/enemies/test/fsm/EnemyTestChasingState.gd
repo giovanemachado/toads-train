@@ -7,6 +7,7 @@ class_name EnemyTestChasingState
 var enemy_test: EnemyTest
 var navigation_agent: NavigationAgent2D
 var is_original_ready_done = false
+var health: Health
 
 
 func _on_update(_delta: float):
@@ -14,6 +15,7 @@ func _on_update(_delta: float):
 		enemy_test = state_manager.enemy_test
 		navigation_agent = enemy_test.navigation_agent
 		is_original_ready_done = true
+		health = enemy_test.health
 		return
 
 	if !enemy_test.agent_is_ready:
@@ -27,6 +29,9 @@ func _on_update(_delta: float):
 
 func _on_physics_update(delta):
 	if !is_original_ready_done:
+		return
+
+	if health.is_damaged:
 		return
 
 	if navigation_agent.is_navigation_finished():

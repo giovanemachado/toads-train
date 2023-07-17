@@ -72,6 +72,18 @@ text = "Money
 layout_mode = 2
 text = "0"
 
+[node name="HBoxContainer4" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="ComboDebugDesc" type="Label" parent="UI/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "Combo
+"
+
+[node name="ComboDebug" type="Label" parent="UI/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0"
+
 [node name="Environment" type="Node" parent="."]
 
 [node name="TrainCabin" type="Node2D" parent="Environment"]
@@ -110,3 +122,4 @@ position = Vector2(232, 567)
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted" flags=18]
 [connection signal="player_upgraded_fuel_tank" from="Environment/FuelTank" to="GameplayManager/GarageGameplayManager" method="_on_fuel_tank_player_upgraded_fuel_tank" flags=18]
 [connection signal="player_interacted" from="Environment/FuelTank/Interactable" to="Environment/FuelTank" method="_on_interactable_player_interacted" flags=18]
+[connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]

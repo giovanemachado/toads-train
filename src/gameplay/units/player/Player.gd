@@ -4,6 +4,8 @@ class_name Player
 
 signal player_is_dead
 
+signal update_combo(numb: int)
+
 @onready var attack: Attack = $Attack
 @onready var movement: Movement = $Movement
 @onready var health: Health = $Health
@@ -12,11 +14,14 @@ signal player_is_dead
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var camera: Camera2D = $Camera2D
 
+var life_bar_is_ready = false
+
 func _ready():
 	# isso pode ser null quando estamos na garage_scene
-	if life_bar != null:
+	if !life_bar_is_ready && life_bar != null:
 		life_bar.max_value = health.max_health_points
 		life_bar.value = health.max_health_points
+		life_bar_is_ready = true
 	
 	
 func _physics_process(delta):
@@ -25,12 +30,22 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("player_attack"):
 		attack.attack()
+		
+	
+	if Input.is_action_just_pressed("player_strong_attack"):
+		attack.strong_attack()
+	
 
 	if Input.is_action_just_pressed("player_interact"):
 		interaction.interaction()
 
 
-func _on_health_health_update(old_value, new_value):
+func _on_health_health_update(old_value, new_value, damager_position: Vector2):
+	if !life_bar_is_ready && life_bar != null:
+		life_bar.max_value = health.max_health_points
+		life_bar.value = health.max_health_points
+		life_bar_is_ready = true
+
 	if life_bar != null:
 		life_bar.value = new_value
 
@@ -45,3 +60,7 @@ func _on_movement_turning_to(direction: int):
 
 func _on_attack_attacked():
 	camera.shake(0.20, 2.5)
+
+
+func _on_player_attack_update_combo(numb):
+	update_combo.emit(numb)

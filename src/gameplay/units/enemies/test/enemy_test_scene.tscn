@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestChasingState.gd" id="5_o2h13"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestAttackingState.gd" id="6_uw22n"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="7_5ngm2"]
-[ext_resource type="Script" path="res://src/gameplay/units/player/PlayerAttack.gd" id="8_6sfs5"]
 [ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="8_q45ml"]
+[ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyAttack.gd" id="8_xuq4l"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ieuyy"]
 
@@ -58,7 +58,7 @@ script = ExtResource("6_uw22n")
 max_health_points = 1
 
 [node name="EnemyAttack" type="Node" parent="."]
-script = ExtResource("8_6sfs5")
+script = ExtResource("8_xuq4l")
 
 [node name="RightAttackPosition" type="Marker2D" parent="EnemyAttack"]
 position = Vector2(82, 0)
