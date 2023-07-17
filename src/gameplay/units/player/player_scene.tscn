@@ -48,7 +48,7 @@ position = Vector2(-82, 0)
 scale = Vector2(2.98692, 2.98692)
 
 [node name="Attack" parent="." instance=ExtResource("2_41y0w")]
-attack_cooldown = 0.5
+attack_cooldown = 0.25
 attack_damage = 2
 attack_group = "enemy"
 

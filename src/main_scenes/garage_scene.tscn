@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://deraw4ot1ok6y"]
+[gd_scene load_steps=11 format=3 uid="uid://deraw4ot1ok6y"]
 
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="1_mqfaw"]
 [ext_resource type="Script" path="res://src/gameplay/GarageGameplayManager.gd" id="2_t24wa"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/FuelTank.gd" id="6_li1gu"]
 [ext_resource type="Texture2D" uid="uid://cm6oidcsctgep" path="res://src/utils/assets/all_sizes.png" id="7_yqotg"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="8_khro0"]
+[ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="9_dg3ip"]
+[ext_resource type="PackedScene" uid="uid://bhthmwkb6wrb6" path="res://src/gameplay/units/enemies/dummy/enemy_dummy_scene.tscn" id="9_hsxub"]
 
 [node name="garage_scene" type="Node2D"]
 
@@ -73,7 +75,7 @@ text = "0"
 [node name="Environment" type="Node" parent="."]
 
 [node name="TrainCabin" type="Node2D" parent="Environment"]
-position = Vector2(367, 509)
+position = Vector2(120, 367)
 script = ExtResource("3_qsfj7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainCabin"]
@@ -99,7 +101,10 @@ texture = ExtResource("7_yqotg")
 [node name="Player" parent="." instance=ExtResource("8_khro0")]
 position = Vector2(614.322, 382.678)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="Camera2D" parent="Player" instance=ExtResource("9_dg3ip")]
+
+[node name="EnemyDummy" parent="." instance=ExtResource("9_hsxub")]
+position = Vector2(232, 567)
 
 [connection signal="player_entered_in_cabin" from="Environment/TrainCabin" to="GameplayManager/GarageGameplayManager" method="_on_train_cabin_player_entered_in_cabin" flags=18]
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted" flags=18]

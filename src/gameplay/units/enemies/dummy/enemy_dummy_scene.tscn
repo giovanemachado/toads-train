@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhthmwkb6wrb6"]
+[gd_scene load_steps=6 format=3 uid="uid://bhthmwkb6wrb6"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/dummy/Dummy.gd" id="1_k4h8e"]
 [ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="2_fe84a"]
@@ -8,13 +8,19 @@
 radius = 28.0
 height = 94.0
 
-[node name="EnemyDummy" type="CharacterBody2D" groups=["enemy"]]
-position = Vector2(956, 310)
-script = ExtResource("1_k4h8e")
+[sub_resource type="SpriteFrames" id="SpriteFrames_l5t82"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fe84a")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0.388235, 0.313726, 1)
-texture = ExtResource("2_fe84a")
+[node name="EnemyDummy" type="CharacterBody2D" groups=["enemy"]]
+script = ExtResource("1_k4h8e")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_8fxd2")
@@ -22,4 +28,8 @@ shape = SubResource("CapsuleShape2D_8fxd2")
 [node name="Health" parent="." instance=ExtResource("3_6smmy")]
 max_health_points = 100000
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l5t82")
+
 [connection signal="dead" from="Health" to="." method="_on_health_dead"]
+[connection signal="health_update" from="Health" to="." method="_on_health_health_update"]

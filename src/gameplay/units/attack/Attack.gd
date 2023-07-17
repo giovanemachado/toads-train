@@ -21,7 +21,7 @@ func attack():
 	
 	for node in nodes:
 		if node.is_in_group(attack_group):
-			node.health.damage(attack_damage)
+			node.health.damage(attack_damage, global_position)
 			attacked.emit()
 
 	attack_in_cooldown = true

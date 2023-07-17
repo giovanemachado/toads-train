@@ -7,8 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://dic06qvwx0s5o" path="res://src/gameplay/train/train_unit_scene.tscn" id="4_o8fs0"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/EnemiesManager.gd" id="7_4bgps"]
 [ext_resource type="PackedScene" uid="uid://bhthmwkb6wrb6" path="res://src/gameplay/units/enemies/dummy/enemy_dummy_scene.tscn" id="8_s2j0a"]
-[ext_resource type="Script" path="res://src/gameplay/camera/Camera.gd" id="9_5443q"]
 [ext_resource type="Script" path="res://src/gameplay/visuals/AutoMovingParallaxLayer.gd" id="9_ah3o0"]
+[ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="10_cfm16"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6hy"]
@@ -141,17 +141,7 @@ position = Vector2(892, 570)
 unique_name_in_owner = true
 position = Vector2(1140, 531)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(0.7, 0.7)
-limit_left = 0
-limit_top = 0
-limit_right = 3100
-limit_bottom = 1000
-editor_draw_screen = false
-script = ExtResource("9_5443q")
-
-[node name="Timer" type="Timer" parent="Player/Camera2D"]
-one_shot = true
+[node name="Camera2D" parent="Player" instance=ExtResource("10_cfm16")]
 
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Menu" to="UI/Control" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Garage" to="UI/Control" method="_on_debug__garage_pressed"]
@@ -161,4 +151,3 @@ one_shot = true
 [connection signal="an_enemy_died" from="Enemies/EnemiesManager" to="GameplayManager/TrainGameplayManager" method="_on_enemies_manager_an_enemy_died"]
 [connection signal="timeout" from="Enemies/EnemiesManager/Timer" to="Enemies/EnemiesManager" method="_on_timer_timeout"]
 [connection signal="player_is_dead" from="Player" to="GameplayManager/TrainGameplayManager" method="_on_player_player_is_dead"]
-[connection signal="timeout" from="Player/Camera2D/Timer" to="Player/Camera2D" method="_on_timer_timeout"]

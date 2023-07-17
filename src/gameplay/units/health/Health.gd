@@ -2,7 +2,7 @@ extends Node2D
 
 class_name Health
 
-signal health_update(old_value: int, new_value: int)
+signal health_update(old_value: int, new_value: int, damager_position: Vector2)
 signal dead
 
 @export var max_health_points = 10
@@ -20,17 +20,17 @@ func heal(amount: int):
 	else:
 		health_points += amount
 
-	health_update.emit(old_value, health_points)
+	health_update.emit(old_value, health_points, Vector2.ZERO)
 
 
-func damage(amount: int):
+func damage(amount: int, damager_position: Vector2):
 	var old_value = health_points
 	if (health_points - amount < 0):
 		health_points = 0
 	else:
 		health_points -= amount
 
-	health_update.emit(old_value, health_points)
+	health_update.emit(old_value, health_points, damager_position)
 	
 	if (health_points == 0):
 		death()

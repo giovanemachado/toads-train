@@ -44,4 +44,4 @@ func _on_movement_turning_to(direction: int):
 
 
 func _on_attack_attacked():
-	camera.shake(0.25, 5)
+	camera.shake(0.20, 2.5)

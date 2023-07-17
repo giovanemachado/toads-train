@@ -1,11 +1,8 @@
-extends CharacterBody2D
+extends Enemy
 
 class_name EnemyTest
 
-signal enemy_die
-
 @onready var movement: Movement = $Movement
-@onready var health: Health = $Health
 @onready var attack: Attack = $Attack
 
 @export var target: CharacterBody2D
@@ -17,7 +14,6 @@ signal enemy_die
 @export var money_per_kill: int = 1
 
 @onready var sprite = $AnimatedSprite2D
-
 
 var agent_is_ready: bool = false
 
