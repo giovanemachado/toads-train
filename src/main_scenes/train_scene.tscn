@@ -124,12 +124,34 @@ texture = ExtResource("3_rpb1h")
 
 [node name="Enemies" type="Node" parent="."]
 
-[node name="EnemiesManager" type="Node" parent="Enemies"]
+[node name="EnemiesManager" type="Node" parent="Enemies" node_paths=PackedStringArray("spawns_marks")]
 script = ExtResource("7_4bgps")
-timing_to_spawn = 3.0
+spawns_marks = [NodePath("SpawnMarks/Marker2D"), NodePath("SpawnMarks/Marker2D2"), NodePath("SpawnMarks/Marker2D3"), NodePath("SpawnMarks/Marker2D4"), NodePath("SpawnMarks/Marker2D5"), NodePath("SpawnMarks/Marker2D6")]
 
-[node name="Marker2D" type="Marker2D" parent="Enemies/EnemiesManager"]
+[node name="SpawnMarks" type="Node" parent="Enemies/EnemiesManager"]
+
+[node name="Marker2D" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
+position = Vector2(-199, 262)
+scale = Vector2(7.64117, 7.64117)
+
+[node name="Marker2D2" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
 position = Vector2(-199, 584)
+scale = Vector2(7.64117, 7.64117)
+
+[node name="Marker2D3" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
+position = Vector2(-199, 859)
+scale = Vector2(7.64117, 7.64117)
+
+[node name="Marker2D4" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
+position = Vector2(2941, 296)
+scale = Vector2(7.64117, 7.64117)
+
+[node name="Marker2D5" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
+position = Vector2(2924, 592)
+scale = Vector2(7.64117, 7.64117)
+
+[node name="Marker2D6" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
+position = Vector2(2937, 876)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Timer" type="Timer" parent="Enemies/EnemiesManager"]

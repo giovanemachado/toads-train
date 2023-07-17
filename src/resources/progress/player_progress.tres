@@ -5,5 +5,5 @@
 [resource]
 script = ExtResource("1_hecnw")
 max_distance_reach = 32
-money = 13
+money = 59
 train_fuel = 150
