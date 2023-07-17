@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemySpawn" load_steps=2 format=3 uid="uid://g71esecrx0qy"]
+
+[ext_resource type="Script" path="res://src/resources/enemy_spawn/EnemySpawn.gd" id="1_0pbxh"]
+
+[resource]
+script = ExtResource("1_0pbxh")
+positions = Array[int]([0, 5])
+types = Array[String](["EnemyTest"])
+qtd_per_type = Array[String](["3"])

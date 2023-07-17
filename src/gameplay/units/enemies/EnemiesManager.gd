@@ -2,14 +2,13 @@ extends Node
 
 signal an_enemy_died
 
-@onready var spawn: Marker2D = $Marker2D
 @onready var timer: Timer = $Timer
 
-@export var timing_to_spawn: float = 1
+@export var timing_to_first_spawn: float = 1
+@export var spawns_marks : Array[Marker2D]
 
 var enemies: Dictionary = {}
 var enemy_test = preload("res://src/gameplay/units/enemies/test/enemy_test_scene.tscn")
-
 
 func get_all_enemies():
 	for child in get_children():
@@ -21,15 +20,80 @@ func get_all_enemies():
 
 
 func _ready():
-	timer.start(timing_to_spawn)
+	timer.start(timing_to_first_spawn)
 
 
 func spawn_enemies():
-	var enemy_test_instance = enemy_test.instantiate()
-	enemy_test_instance.position = spawn.position
-	add_child(enemy_test_instance)
+	var enemy_test_name = 'enemytest'
+	
+	var waves_of_enemies = [
+		{ 
+			wave = 0,
+			wave_cooldown = 5,
+			possible_spawning_positions = [
+				{
+					position_number = 0,
+					enemies = [
+						{
+							type = enemy_test_name,
+							qtd = 3
+						}
+					]
+				}
+			]
+		},
+		{ 
+			wave = 1,
+			wave_cooldown = 10,
+			possible_spawning_positions = [
+				{
+					position_number = 0,
+					enemies = [
+						{
+							type = enemy_test_name,
+							qtd = 3
+						}
+					]
+				},
+				{
+					position_number = 3,
+					enemies = [
+						{
+							type = enemy_test_name,
+							qtd = 3
+						}
+					]
+				}
+			]
+		}
+	]
+	
+	var wave_number = 1
+	var spawn_pos = waves_of_enemies[wave_number].possible_spawning_positions
+	
+	for k in spawn_pos.size():
+		var current_spawn_pos = spawn_pos[k]
+		
+		for l in current_spawn_pos.enemies.size():
+			var enemy_to_spawn = current_spawn_pos.enemies[l]
+		
+			if enemy_to_spawn.type.to_lower() == enemy_test_name:
+				for m in enemy_to_spawn.qtd:
+					var slightly_random_spawn_position = randomize_position(spawns_marks[current_spawn_pos.position_number].global_position)
+					var enemy_to_spawn_instance = enemy_test.instantiate()
+					enemy_to_spawn_instance.position = slightly_random_spawn_position
+					add_child(enemy_to_spawn_instance)
+
+	timer.start(waves_of_enemies[wave_number].wave_cooldown)
+
 	get_all_enemies()
 
+func randomize_position(pos: Vector2):
+	var new_pos: Vector2 = pos
+	new_pos.x += randf_range(-50, 50)
+	new_pos.y += randf_range(-50, 50)
+	return new_pos
+	
 
 func on_enemy_die(value: int):
 	an_enemy_died.emit(value)
@@ -37,4 +101,3 @@ func on_enemy_die(value: int):
 
 func _on_timer_timeout():
 	spawn_enemies()
-	timer.start(timing_to_spawn)
