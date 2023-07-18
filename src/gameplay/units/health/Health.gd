@@ -27,7 +27,6 @@ func heal(amount: int):
 
 
 func damage(amount: int, damager_position: Vector2):
-	
 	is_damaged = true
 	timer.start(damaged_timing)
 	

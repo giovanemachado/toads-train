@@ -42,7 +42,7 @@ func spawn_enemies():
 				}
 			]
 		},
-		{ 
+		{
 			wave = 1,
 			wave_cooldown = 10,
 			possible_spawning_positions = [
@@ -65,10 +65,25 @@ func spawn_enemies():
 					]
 				}
 			]
+		},
+		{
+			wave = 2,
+			wave_cooldown = 100,
+			possible_spawning_positions = [
+				{
+					position_number = 1,
+					enemies = [
+						{
+							type = enemy_test_name,
+							qtd = 1
+						}
+					]
+				},
+			]
 		}
 	]
 	
-	var wave_number = 1
+	var wave_number = 0
 	var spawn_pos = waves_of_enemies[wave_number].possible_spawning_positions
 	
 	for k in spawn_pos.size():

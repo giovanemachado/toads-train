@@ -26,7 +26,6 @@ func _on_update(_delta: float):
 	if navigation_agent.distance_to_target() < 100:
 		Transitioned.emit(self, "EnemyTestAttackingState") 
 
-
 func _on_physics_update(delta):
 	if !is_original_ready_done:
 		return

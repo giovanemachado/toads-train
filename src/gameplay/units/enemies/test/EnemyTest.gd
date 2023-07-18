@@ -37,4 +37,4 @@ func _on_health_dead():
 
 
 func _on_movement_turning_to(direction: int):
-	sprite.flip_h = direction == 1
+	sprite.flip_h = direction != 1

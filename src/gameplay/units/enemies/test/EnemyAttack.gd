@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 
 @onready var attack_area: Area2D = $"../Attack/Area2D"
@@ -12,4 +12,3 @@ func _on_movement_turning_to(direction: int):
 		
 	if direction == 0: # left
 		attack_area.position = left_attack_position.position
-

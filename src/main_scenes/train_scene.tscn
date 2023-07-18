@@ -126,6 +126,7 @@ texture = ExtResource("3_rpb1h")
 
 [node name="EnemiesManager" type="Node" parent="Enemies" node_paths=PackedStringArray("spawns_marks")]
 script = ExtResource("7_4bgps")
+timing_to_first_spawn = 0.1
 spawns_marks = [NodePath("SpawnMarks/Marker2D"), NodePath("SpawnMarks/Marker2D2"), NodePath("SpawnMarks/Marker2D3"), NodePath("SpawnMarks/Marker2D4"), NodePath("SpawnMarks/Marker2D5"), NodePath("SpawnMarks/Marker2D6")]
 
 [node name="SpawnMarks" type="Node" parent="Enemies/EnemiesManager"]

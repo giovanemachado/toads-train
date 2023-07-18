@@ -1,7 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://bkq1ueojo62vb"]
+[gd_scene load_steps=16 format=3 uid="uid://bkq1ueojo62vb"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="1_15g8g"]
-[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="2_jcx0w"]
 [ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="3_ivy8j"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestStateManager.gd" id="4_j5ohk"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/fsm/EnemyTestChasingState.gd" id="5_o2h13"]
@@ -15,59 +14,6 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_secqe"]
 radius = 39.2938
-
-[sub_resource type="Animation" id="Animation_8hh5j"]
-resource_name = "run"
-length = 0.6
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:hframes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [4]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:vframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("../Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("../Sprite2D:texture")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("10_7ymjg")]
-}
 
 [sub_resource type="Animation" id="Animation_c1dif"]
 length = 0.001
@@ -171,6 +117,59 @@ tracks/3/keys = {
 "values": [3]
 }
 
+[sub_resource type="Animation" id="Animation_8hh5j"]
+resource_name = "run"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../Sprite2D:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../Sprite2D:texture")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("10_7ymjg")]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yxjkr"]
 _data = {
 "RESET": SubResource("Animation_c1dif"),
@@ -203,9 +202,9 @@ script = ExtResource("5_o2h13")
 script = ExtResource("6_uw22n")
 
 [node name="Health" parent="." instance=ExtResource("7_5ngm2")]
-max_health_points = 1
+max_health_points = 3
 
-[node name="EnemyAttack" type="Node" parent="."]
+[node name="EnemyAttack" type="Node2D" parent="."]
 script = ExtResource("8_xuq4l")
 
 [node name="RightAttackPosition" type="Marker2D" parent="EnemyAttack"]
@@ -217,17 +216,14 @@ position = Vector2(-82, 0)
 scale = Vector2(2.98692, 2.98692)
 
 [node name="Attack" parent="." instance=ExtResource("8_q45ml")]
+attack_cooldown = 1.6
+attack_delay = 1.0
 attack_group = "player"
 
 [node name="Area2D" type="Area2D" parent="Attack"]
-position = Vector2(-82, 0)
+position = Vector2(82, 0)
 collision_layer = 15
 collision_mask = 15
-
-[node name="Sprite2D" type="Sprite2D" parent="Attack/Area2D"]
-modulate = Color(0.929412, 0.254902, 0.533333, 1)
-scale = Vector2(0.639995, 0.639995)
-texture = ExtResource("2_jcx0w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/Area2D"]
 shape = SubResource("CircleShape2D_secqe")
@@ -249,3 +245,4 @@ libraries = {
 [connection signal="turning_to" from="Movement" to="." method="_on_movement_turning_to"]
 [connection signal="turning_to" from="Movement" to="EnemyAttack" method="_on_movement_turning_to"]
 [connection signal="dead" from="Health" to="." method="_on_health_dead"]
+[connection signal="health_update" from="Health" to="." method="_on_health_health_update"]

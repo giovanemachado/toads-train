@@ -111,12 +111,15 @@ position = Vector2(778, 278)
 texture = ExtResource("7_yqotg")
 
 [node name="Player" parent="." instance=ExtResource("8_khro0")]
-position = Vector2(614.322, 382.678)
+position = Vector2(522, 592)
 
 [node name="Camera2D" parent="Player" instance=ExtResource("9_dg3ip")]
 
 [node name="EnemyDummy" parent="." instance=ExtResource("9_hsxub")]
-position = Vector2(232, 567)
+position = Vector2(766, 593)
+floor_stop_on_slope = false
+platform_on_leave = 2
+platform_floor_layers = 4278190080
 
 [connection signal="player_entered_in_cabin" from="Environment/TrainCabin" to="GameplayManager/GarageGameplayManager" method="_on_train_cabin_player_entered_in_cabin" flags=18]
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted" flags=18]
