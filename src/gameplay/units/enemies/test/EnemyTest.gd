@@ -13,7 +13,7 @@ class_name EnemyTest
 
 @export var money_per_kill: int = 1
 
-@onready var sprite = $AnimatedSprite2D
+@onready var sprite = $Sprite2D
 
 var agent_is_ready: bool = false
 
