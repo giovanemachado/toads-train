@@ -4,9 +4,11 @@ class_name Health
 
 signal health_update(old_value: int, new_value: int, damager_position: Vector2)
 signal dead
+signal stagger
+signal stagger_recovered
 
 @onready var timer: Timer = $Timer
-@export var damaged_timing: float = 1
+@export var stagger_timing: float = 1
 var is_damaged: bool = false
 @export var max_health_points = 10
 
@@ -28,7 +30,8 @@ func heal(amount: int):
 
 func damage(amount: int, damager_position: Vector2):
 	is_damaged = true
-	timer.start(damaged_timing)
+	stagger.emit()
+	timer.start(stagger_timing)
 	
 	var old_value = health_points
 	
@@ -49,3 +52,4 @@ func death():
 
 func _on_timer_timeout():
 	is_damaged = false
+	stagger_recovered.emit()

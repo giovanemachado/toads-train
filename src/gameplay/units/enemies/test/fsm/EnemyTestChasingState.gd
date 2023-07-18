@@ -45,3 +45,7 @@ func _on_physics_update(delta):
 
 func _on_exit():
 	enemy_test.movement.movement(Vector2.ZERO)
+
+
+func _on_health_health_update(old_value, new_value, damager_position):
+	Transitioned.emit(self, "EnemyTestStaggerState")

@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://drrrtqtdwhf1u" path="res://src/gameplay/units/player/animation/Main Char run side.png" id="10_mfchk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h8ium"]
-radius = 47.0956
+radius = 58.903
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgvi1"]
 size = Vector2(178, 104)

@@ -26,7 +26,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	if player_state_manager.current_state.name.to_lower() != "playerstaggerstate":
+	if player_state_manager.current_state.name.to_lower() != "playerstaggerstate" && player_state_manager.current_state.name.to_lower() != "playerattackstate":
 		var input_vector = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 		movement.movement(input_vector)
 
