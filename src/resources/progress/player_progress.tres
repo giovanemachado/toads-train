@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="PlayerProgress" load_steps=2 format=3 uid="uid://d277toj8atijk"]
+[gd_resource type="Resource" script_class="PlayerProgress" load_steps=2 format=3]
 
 [ext_resource type="Script" path="res://src/resources/progress/PlayerProgress.gd" id="1_hecnw"]
 
 [resource]
 script = ExtResource("1_hecnw")
 max_distance_reach = 39
-money = 75
+money = 81
 train_fuel = 510
