@@ -2,49 +2,61 @@ extends Node2D
 
 class_name Attack
 
-signal attacked
+signal successful_attack
+signal attack_try
+signal attack_is_done
 
 @onready var hit_box: Area2D = $Area2D
 @onready var timer: Timer = $Timer
+@onready var delay_to_attack_timer: Timer = $Timer
 
 @export var attack_cooldown: float = 1
+@export var attack_delay: float = 0.5
 @export var attack_damage: int = 1
 @export var attack_group: String
 
 @export var strong_attack_cooldown: float = 1
+@export var strong_attack_delay: float = 0.5
 @export var strong_attack_damage: int = 1
 
+var damage_to_cause = 0
 var attack_in_cooldown = false
 
 func attack():
 	if attack_in_cooldown:
 		return
 
-	var nodes: Array[Node2D] = hit_box.get_overlapping_bodies()
-	
-	for node in nodes:
-		if node.is_in_group(attack_group):
-			node.health.damage(attack_damage, global_position)
-			attacked.emit()
+	delay_to_attack_timer.start(strong_attack_delay)
+	damage_to_cause = attack_damage
 
+	attack_try.emit()
 	attack_in_cooldown = true
 	timer.start(attack_cooldown)
 
 
 func _on_timer_timeout():
 	attack_in_cooldown = false
+	attack_is_done.emit()
 
 
 func strong_attack():
 	if attack_in_cooldown:
 		return
 
+	delay_to_attack_timer.start(strong_attack_delay)
+	damage_to_cause = strong_attack_damage
+	
+	attack_try.emit()
+	attack_in_cooldown = true
+	timer.start(strong_attack_cooldown)
+
+func cause_damage():
 	var nodes: Array[Node2D] = hit_box.get_overlapping_bodies()
 	
 	for node in nodes:
 		if node.is_in_group(attack_group):
 			node.health.damage(strong_attack_damage, global_position)
-			attacked.emit()
+			successful_attack.emit()
 
-	attack_in_cooldown = true
-	timer.start(strong_attack_cooldown)
+func _on_delay_to_attack_timeout():
+	cause_damage()

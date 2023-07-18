@@ -101,6 +101,7 @@ navigation_polygon = SubResource("NavigationPolygon_sk6hy")
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Environment"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Environment/ParallaxBackground"]
+position = Vector2(0, 128)
 motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(1152, 0)
 script = ExtResource("9_ah3o0")
@@ -112,6 +113,7 @@ position = Vector2(1920, -80)
 texture = ExtResource("3_rpb1h")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Environment/ParallaxBackground"]
+position = Vector2(0, 128)
 motion_mirroring = Vector2(1152, 0)
 script = ExtResource("9_ah3o0")
 auto_moving_speed = 300

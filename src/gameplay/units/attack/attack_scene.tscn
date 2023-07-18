@@ -7,4 +7,7 @@ script = ExtResource("1_dganp")
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="DelayToAttack" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="DelayToAttack" to="." method="_on_delay_to_attack_timeout"]

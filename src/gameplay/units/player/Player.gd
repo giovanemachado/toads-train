@@ -13,6 +13,7 @@ signal update_combo(numb: int)
 @onready var life_bar: ProgressBar = %LifeBar
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var camera: Camera2D = $Camera2D
+@onready var player_state_manager: PlayerStateManager = $PlayerStateManager
 
 var life_bar_is_ready = false
 
@@ -25,14 +26,15 @@ func _ready():
 	
 	
 func _physics_process(delta):
-	var input_vector = Input.get_vector("player_left", "player_right", "player_up", "player_down")
-	movement.movement(input_vector)
-	
+	if player_state_manager.current_state.name.to_lower() != "playerstaggerstate":
+		var input_vector = Input.get_vector("player_left", "player_right", "player_up", "player_down")
+		movement.movement(input_vector)
+
 
 	if Input.is_action_just_pressed("player_attack"):
 		attack.attack()
 		
-	
+
 	if Input.is_action_just_pressed("player_strong_attack"):
 		attack.strong_attack()
 	
@@ -56,7 +58,7 @@ func _on_health_dead():
 
 
 func _on_movement_turning_to(direction: int):
-	sprite.flip_h = direction == 1
+	sprite.flip_h = direction != 1
 
 
 func _on_attack_attacked():

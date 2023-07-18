@@ -1,18 +1,22 @@
-[gd_scene load_steps=19 format=3 uid="uid://ib7ajxwbvqjn"]
+[gd_scene load_steps=23 format=3 uid="uid://ib7ajxwbvqjn"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/player/Player.gd" id="1_sw0e8"]
 [ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="2_41y0w"]
+[ext_resource type="Script" path="res://src/gameplay/units/player/fsm/PlayerStateManager.gd" id="2_cupxn"]
 [ext_resource type="Script" path="res://src/gameplay/units/player/PlayerAttack.gd" id="3_4rp0i"]
-[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="4_a1avm"]
+[ext_resource type="Script" path="res://src/gameplay/units/player/fsm/PlayerIdleState.gd" id="3_jg7sw"]
 [ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="4_a7s6j"]
+[ext_resource type="Script" path="res://src/gameplay/units/player/fsm/PlayerAttackState.gd" id="4_qj042"]
+[ext_resource type="Script" path="res://src/gameplay/units/player/fsm/PlayerRunState.gd" id="5_v0nnk"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="6_tykmr"]
+[ext_resource type="Script" path="res://src/gameplay/units/player/fsm/PlayerStaggerState.gd" id="6_wd7oa"]
 [ext_resource type="Script" path="res://src/gameplay/units/player/interaction/Interaction.gd" id="7_a82dn"]
 [ext_resource type="Texture2D" uid="uid://cmc4nxpo1nwf1" path="res://src/gameplay/units/player/animation/Main Char Idle front.png" id="8_3xo6u"]
 [ext_resource type="Texture2D" uid="uid://d4vk0pe0cei6" path="res://src/gameplay/units/player/animation/Main Char side atk.png" id="8_c8feq"]
 [ext_resource type="Texture2D" uid="uid://drrrtqtdwhf1u" path="res://src/gameplay/units/player/animation/Main Char run side.png" id="10_mfchk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h8ium"]
-radius = 39.2938
+radius = 47.0956
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xgvi1"]
 size = Vector2(178, 104)
@@ -20,59 +24,6 @@ size = Vector2(178, 104)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1sua"]
 radius = 27.0
 height = 94.0
-
-[sub_resource type="Animation" id="Animation_p8vvr"]
-resource_name = "idle front"
-length = 2.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("8_3xo6u")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [12]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:vframes")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
-}
 
 [sub_resource type="Animation" id="Animation_i0nki"]
 length = 0.001
@@ -231,6 +182,59 @@ tracks/3/keys = {
 "values": [0, 1, 2, 3]
 }
 
+[sub_resource type="Animation" id="Animation_p8vvr"]
+resource_name = "idle front"
+length = 2.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_3xo6u")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [12]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 11]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6m1sy"]
 _data = {
 "RESET": SubResource("Animation_i0nki"),
@@ -242,24 +246,41 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_sw0e8")
 
+[node name="PlayerStateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+script = ExtResource("2_cupxn")
+initial_state = NodePath("PlayerIdleState")
+
+[node name="PlayerIdleState" type="Node" parent="PlayerStateManager"]
+script = ExtResource("3_jg7sw")
+
+[node name="PlayerAttackState" type="Node" parent="PlayerStateManager"]
+script = ExtResource("4_qj042")
+
+[node name="PlayerRunState" type="Node" parent="PlayerStateManager"]
+script = ExtResource("5_v0nnk")
+
+[node name="PlayerStaggerState" type="Node" parent="PlayerStateManager"]
+script = ExtResource("6_wd7oa")
+
 [node name="PlayerAttack" type="Node" parent="."]
 script = ExtResource("3_4rp0i")
 reset_combo_timing = 0.5
 
 [node name="RightAttackPosition" type="Marker2D" parent="PlayerAttack"]
-position = Vector2(82, 0)
+position = Vector2(46.131, 0)
 scale = Vector2(2.85069, 2.85069)
 
 [node name="LeftAttackPosition" type="Marker2D" parent="PlayerAttack"]
-position = Vector2(-82, 0)
+position = Vector2(-46.1308, 0)
 scale = Vector2(2.98692, 2.98692)
 
 [node name="ComboTimer" type="Timer" parent="PlayerAttack"]
 
 [node name="Attack" parent="." instance=ExtResource("2_41y0w")]
-attack_cooldown = 0.25
+attack_delay = 0.2
 attack_damage = 2
 attack_group = "enemy"
+strong_attack_delay = 1.0
 strong_attack_damage = 5
 
 [node name="Area2D" type="Area2D" parent="Attack"]
@@ -267,12 +288,8 @@ position = Vector2(-82, 0)
 collision_layer = 15
 collision_mask = 15
 
-[node name="Sprite2D" type="Sprite2D" parent="Attack/Area2D"]
-modulate = Color(0.929412, 0.254902, 0.533333, 1)
-scale = Vector2(0.639995, 0.639995)
-texture = ExtResource("4_a1avm")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/Area2D"]
+position = Vector2(35.8692, 0)
 shape = SubResource("CircleShape2D_h8ium")
 debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
 
@@ -307,8 +324,10 @@ libraries = {
 
 [connection signal="update_combo" from="PlayerAttack" to="." method="_on_player_attack_update_combo"]
 [connection signal="timeout" from="PlayerAttack/ComboTimer" to="PlayerAttack" method="_on_combo_timer_timeout"]
-[connection signal="attacked" from="Attack" to="." method="_on_attack_attacked"]
-[connection signal="attacked" from="Attack" to="PlayerAttack" method="_on_attack_attacked"]
+[connection signal="attack_is_done" from="Attack" to="PlayerStateManager/PlayerAttackState" method="_on_attack_attack_is_done"]
+[connection signal="attack_try" from="Attack" to="PlayerStateManager/PlayerIdleState" method="_on_attack_attacked"]
+[connection signal="attack_try" from="Attack" to="PlayerStateManager/PlayerRunState" method="_on_attack_attacked"]
+[connection signal="successful_attack" from="Attack" to="." method="_on_attack_attacked"]
 [connection signal="turning_to" from="Movement" to="." method="_on_movement_turning_to"]
 [connection signal="turning_to" from="Movement" to="PlayerAttack" method="_on_movement_turning_to"]
 [connection signal="dead" from="Health" to="." method="_on_health_dead"]

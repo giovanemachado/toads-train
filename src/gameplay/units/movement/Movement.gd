@@ -9,7 +9,7 @@ signal turning_to # 0 left 1 right
 @export var aceleration: float = 10.8
 @export var friction: float = 1000.6
 
-var current_direction = 0 # 0 left 1 right
+var current_direction = 1 # 0 left 1 right
 
 func movement(input_vector: Vector2):
 	character.velocity = input_vector * speed
