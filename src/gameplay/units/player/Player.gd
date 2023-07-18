@@ -11,7 +11,7 @@ signal update_combo(numb: int)
 @onready var health: Health = $Health
 @onready var interaction: Interaction = $Interaction
 @onready var life_bar: ProgressBar = %LifeBar
-@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var camera: Camera2D = $Camera2D
 
 var life_bar_is_ready = false
@@ -27,6 +27,7 @@ func _ready():
 func _physics_process(delta):
 	var input_vector = Input.get_vector("player_left", "player_right", "player_up", "player_down")
 	movement.movement(input_vector)
+	
 
 	if Input.is_action_just_pressed("player_attack"):
 		attack.attack()
@@ -64,3 +65,6 @@ func _on_attack_attacked():
 
 func _on_player_attack_update_combo(numb):
 	update_combo.emit(numb)
+
+func _set_state():
+	var state = "idle front"
