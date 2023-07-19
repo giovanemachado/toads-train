@@ -11,16 +11,23 @@ signal distance_updated
 @onready var fuel_timer: Timer = $FuelTimer
 @export var fuel_timing: float = 1
 @export var fuel_amount_per_tick = 2
-var current_fuel: int
 
 @export_group("Distance")
 @onready var distance_timer: Timer = $Distance/DistanceTimer
 @export var distance_timing: float = 1
 @export var distance_amount_per_tick = 1
+
 var current_distance: int = 0
+
+var current_fuel: int = 0
+var current_speed: int = 0
+var current_resist: int = 0
 
 func _ready():
 	current_fuel = gameplay_manager.player_progress.train_fuel
+	current_speed = gameplay_manager.player_progress.train_speed
+	current_resist = gameplay_manager.player_progress.train_resist
+	
 	fuel_timer.start(fuel_timing)
 	fuel_bar.max_value = current_fuel
 	fuel_bar.value = current_fuel
@@ -56,4 +63,10 @@ func _on_fuel_timer_timeout():
 
 func _on_distance_timer_timeout():
 	increase_distance()
-	distance_timer.start(distance_timing)
+	var speed_in_miliseconds: float = float(current_speed) / 1000.0
+	var next_timing: float = distance_timing - speed_in_miliseconds
+
+	if next_timing < 0.1:
+		next_timing = 0.1
+	
+	distance_timer.start(next_timing)

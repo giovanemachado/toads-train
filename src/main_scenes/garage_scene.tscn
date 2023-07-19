@@ -147,6 +147,10 @@ texture = ExtResource("4_2fy4i")
 [node name="FuelTank" type="Node2D" parent="Environment"]
 position = Vector2(1032, 309)
 script = ExtResource("6_li1gu")
+upgrade_name = "train_fuel"
+cost_to_upgrade_by_level = Array[int]([50, 50])
+upgrade_amount_by_level = Array[int]([50, 50])
+max_level = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/FuelTank"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
@@ -154,19 +158,38 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/FuelTank" instance=ExtResource("5_rjc3w")]
 
+[node name="Label2" type="Label" parent="Environment/FuelTank"]
+offset_left = -44.0
+offset_top = 70.0
+offset_right = 48.0
+offset_bottom = 96.0
+text = "Train Fuel"
+
 [node name="TrainResistence" type="Node2D" parent="Environment"]
 position = Vector2(1032, 515)
 script = ExtResource("7_yypja")
+upgrade_name = "train_resist"
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainResistence"]
-modulate = Color(0.468276, 0.321616, 0.699581, 1)
+modulate = Color(0.701961, 0.231373, 0.211765, 1)
 texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/TrainResistence" instance=ExtResource("5_rjc3w")]
 
+[node name="Label2" type="Label" parent="Environment/TrainResistence"]
+offset_left = -44.0
+offset_top = 70.0
+offset_right = 48.0
+offset_bottom = 96.0
+text = "Train Resist (HP)"
+
 [node name="TrainSpeed" type="Node2D" parent="Environment"]
 position = Vector2(1032, 741)
 script = ExtResource("8_6ir4g")
+upgrade_name = "train_speed"
+cost_to_upgrade_by_level = Array[int]([50, 100])
+upgrade_amount_by_level = Array[int]([100, 100])
+max_level = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainSpeed"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
@@ -174,9 +197,20 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/TrainSpeed" instance=ExtResource("5_rjc3w")]
 
+[node name="Label" type="Label" parent="Environment/TrainSpeed"]
+offset_left = -42.0
+offset_top = 59.0
+offset_right = 50.0
+offset_bottom = 85.0
+text = "Train Speed"
+
 [node name="PlayerDamage" type="Node2D" parent="Environment"]
 position = Vector2(177, 790)
 script = ExtResource("9_exm60")
+upgrade_name = "damage"
+cost_to_upgrade_by_level = Array[int]([10, 20, 30])
+upgrade_amount_by_level = Array[int]([1, 1, 1])
+max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerDamage"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
@@ -184,9 +218,20 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/PlayerDamage" instance=ExtResource("5_rjc3w")]
 
+[node name="Label2" type="Label" parent="Environment/PlayerDamage"]
+offset_left = -44.0
+offset_top = 70.0
+offset_right = 48.0
+offset_bottom = 96.0
+text = "Player Damage"
+
 [node name="PlayerHP" type="Node2D" parent="Environment"]
 position = Vector2(451, 903)
 script = ExtResource("10_rt46t")
+upgrade_name = "hp"
+cost_to_upgrade_by_level = Array[int]([10, 20])
+upgrade_amount_by_level = Array[int]([5, 5])
+max_level = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerHP"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
@@ -194,15 +239,33 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/PlayerHP" instance=ExtResource("5_rjc3w")]
 
+[node name="Label2" type="Label" parent="Environment/PlayerHP"]
+offset_left = -44.0
+offset_top = 70.0
+offset_right = 48.0
+offset_bottom = 96.0
+text = "Player HP"
+
 [node name="PlayerSpeed" type="Node2D" parent="Environment"]
 position = Vector2(781, 856)
 script = ExtResource("11_5m07c")
+upgrade_name = "speed"
+cost_to_upgrade_by_level = Array[int]([50, 50])
+upgrade_amount_by_level = Array[int]([100, 100])
+max_level = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerSpeed"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
 texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/PlayerSpeed" instance=ExtResource("5_rjc3w")]
+
+[node name="Label2" type="Label" parent="Environment/PlayerSpeed"]
+offset_left = -44.0
+offset_top = 70.0
+offset_right = 48.0
+offset_bottom = 96.0
+text = "Player Speed"
 
 [node name="TempBackground" type="Sprite2D" parent="."]
 position = Vector2(778, 278)
@@ -215,16 +278,16 @@ position = Vector2(522, 592)
 
 [connection signal="player_entered_in_cabin" from="Environment/TrainCabin" to="GameplayManager/GarageGameplayManager" method="_on_train_cabin_player_entered_in_cabin" flags=18]
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted" flags=18]
-[connection signal="player_upgraded_fuel_tank" from="Environment/FuelTank" to="GameplayManager/GarageGameplayManager" method="_on_fuel_tank_player_upgraded_fuel_tank" flags=18]
+[connection signal="upgrade_success" from="Environment/FuelTank" to="GameplayManager/GarageGameplayManager" method="_on_fuel_tank_upgrade_success"]
 [connection signal="player_interacted" from="Environment/FuelTank/Interactable" to="Environment/FuelTank" method="_on_interactable_player_interacted" flags=18]
-[connection signal="player_upgraded_train_resist" from="Environment/TrainResistence" to="GameplayManager/GarageGameplayManager" method="_on_train_resistence_player_upgraded_train_resist"]
+[connection signal="upgrade_success" from="Environment/TrainResistence" to="GameplayManager/GarageGameplayManager" method="_on_train_resistence_upgrade_success"]
 [connection signal="player_interacted" from="Environment/TrainResistence/Interactable" to="Environment/TrainResistence" method="_on_interactable_player_interacted" flags=18]
-[connection signal="player_upgraded_train_speed" from="Environment/TrainSpeed" to="GameplayManager/GarageGameplayManager" method="_on_train_speed_player_upgraded_train_speed"]
+[connection signal="upgrade_success" from="Environment/TrainSpeed" to="GameplayManager/GarageGameplayManager" method="_on_train_speed_upgrade_success"]
 [connection signal="player_interacted" from="Environment/TrainSpeed/Interactable" to="Environment/TrainSpeed" method="_on_interactable_player_interacted" flags=18]
-[connection signal="player_upgraded_damage" from="Environment/PlayerDamage" to="GameplayManager/GarageGameplayManager" method="_on_player_damage_player_upgraded_damage"]
+[connection signal="upgrade_success" from="Environment/PlayerDamage" to="GameplayManager/GarageGameplayManager" method="_on_player_damage_upgrade_success"]
 [connection signal="player_interacted" from="Environment/PlayerDamage/Interactable" to="Environment/PlayerDamage" method="_on_interactable_player_interacted" flags=18]
-[connection signal="player_upgraded_hp" from="Environment/PlayerHP" to="GameplayManager/GarageGameplayManager" method="_on_player_hp_player_upgraded_hp"]
+[connection signal="upgrade_success" from="Environment/PlayerHP" to="GameplayManager/GarageGameplayManager" method="_on_player_hp_upgrade_success"]
 [connection signal="player_interacted" from="Environment/PlayerHP/Interactable" to="Environment/PlayerHP" method="_on_interactable_player_interacted" flags=18]
-[connection signal="player_upgraded_speed" from="Environment/PlayerSpeed" to="GameplayManager/GarageGameplayManager" method="_on_player_speed_player_upgraded_speed"]
+[connection signal="upgrade_success" from="Environment/PlayerSpeed" to="GameplayManager/GarageGameplayManager" method="_on_player_speed_upgrade_success"]
 [connection signal="player_interacted" from="Environment/PlayerSpeed/Interactable" to="Environment/PlayerSpeed" method="_on_interactable_player_interacted" flags=18]
 [connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]

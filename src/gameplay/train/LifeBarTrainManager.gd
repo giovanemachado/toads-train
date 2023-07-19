@@ -1,9 +1,11 @@
 extends Node
 
+@onready var train = $".."
 @onready var life_bar: ProgressBar = $"../LifeBarTrain"
 @onready var health: Health = $"../Health"
 
 func _ready():
+	health.max_health_points = train.current_resist
 	life_bar.max_value = health.max_health_points
 	life_bar.value = health.max_health_points
 

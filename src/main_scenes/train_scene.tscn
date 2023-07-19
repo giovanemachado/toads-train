@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=12 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
 [ext_resource type="Script" path="res://src/gameplay/TrainGameplayManager.gd" id="3_c3a6g"]
 [ext_resource type="PackedScene" uid="uid://dic06qvwx0s5o" path="res://src/gameplay/train/train_unit_scene.tscn" id="4_o8fs0"]
+[ext_resource type="Texture2D" uid="uid://bgyhkbtrs4xwp" path="res://src/utils/assets/all_sizes.png" id="6_mo4hc"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/EnemiesManager.gd" id="7_4bgps"]
 [ext_resource type="Script" path="res://src/gameplay/visuals/AutoMovingParallaxLayer.gd" id="9_ah3o0"]
 [ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="10_cfm16"]
@@ -95,6 +96,7 @@ script = ExtResource("3_c3a6g")
 
 [node name="Train" parent="Environment" instance=ExtResource("4_o8fs0")]
 distance_timing = 0.5
+distance_amount_per_tick = 5
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
 visible = false
@@ -107,16 +109,15 @@ position = Vector2(1284, 400)
 motion_scale = Vector2(0.5, 0.5)
 motion_mirroring = Vector2(2560, 0)
 script = ExtResource("9_ah3o0")
-auto_moving_speed = 50
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer"]
-scale = Vector2(2, 2)
+scale = Vector2(0.646934, 0.646934)
+texture = ExtResource("6_mo4hc")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Environment/ParallaxBackground"]
 position = Vector2(0, 128)
 motion_mirroring = Vector2(1152, 0)
 script = ExtResource("9_ah3o0")
-auto_moving_speed = 300
 
 [node name="Ground" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer2"]
 modulate = Color(0.278431, 0.133333, 0.0980392, 1)

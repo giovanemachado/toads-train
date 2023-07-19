@@ -31,6 +31,7 @@ size = Vector2(1850, 453)
 position = Vector2(1437, 716)
 script = ExtResource("1_r503i")
 fuel_amount_per_tick = 1
+distance_amount_per_tick = 10
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.492917, 0.224444)

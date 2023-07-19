@@ -1,9 +1,11 @@
-extends Node2D
+extends Upgrade
 
-signal player_upgraded_speed
-
-@export var cost_to_upgrade: int = 2
-@export var amount: int = 1
+func _ready():
+	garage_gameplay_manager = $"../../GameplayManager/GarageGameplayManager"
+	super._ready()
 
 func _on_interactable_player_interacted():
-	player_upgraded_speed.emit(cost_to_upgrade, amount)
+	if upgrade():
+		upgrade_success.emit(upgrade_name)
+	else:
+		upgrade_fail.emit(upgrade_name)

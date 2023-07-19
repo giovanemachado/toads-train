@@ -6,6 +6,8 @@ signal player_is_dead
 
 signal update_combo(numb: int)
 
+@onready var gameplay_manager: GameplayManager = $"../GameplayManager"
+
 @onready var attack: Attack = $Attack
 @onready var movement: Movement = $Movement
 @onready var health: Health = $Health
@@ -18,6 +20,10 @@ signal update_combo(numb: int)
 var life_bar_is_ready = false
 
 func _ready():
+	health.max_health_points = gameplay_manager.player_progress.hp
+	movement.speed = gameplay_manager.player_progress.speed
+	attack.attack_damage = gameplay_manager.player_progress.damage
+	
 	# isso pode ser null quando estamos na garage_scene
 	if !life_bar_is_ready && life_bar != null:
 		life_bar.max_value = health.max_health_points
@@ -67,6 +73,7 @@ func _on_attack_attacked():
 
 func _on_player_attack_update_combo(numb):
 	update_combo.emit(numb)
+
 
 func _set_state():
 	var state = "idle front"

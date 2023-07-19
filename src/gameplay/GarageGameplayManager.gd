@@ -9,7 +9,7 @@ class_name GarageGameplayManager
 @onready var speed_label = $"../../UI/VBoxContainer/HBoxContainer5/SpeedDebug"
 @onready var money_label = $"../../UI/VBoxContainer/HBoxContainer2/Money"
 @onready var distance_label = $"../../UI/VBoxContainer/HBoxContainer/Distance"
-@onready var combo_label = $"../../UI/VBoxContainer/HBoxContainer4/ComboDebug"
+#@onready var combo_label = $"../../UI/VBoxContainer/HBoxContainer4/ComboDebug"
 
 @onready var player_speed_label =$"../../UI/VBoxContainer/HBoxContainer4/Money"
 @onready var player_damage_label = $"../../UI/VBoxContainer/HBoxContainer8/ResistDebug"
@@ -23,13 +23,6 @@ func _on_train_cabin_player_entered_in_cabin():
 	gameplay_manager.change_scenes(Globals.MAIN_SCENES.TRAIN)
 
 
-func _on_fuel_tank_player_upgraded_fuel_tank(cost: int, amount):
-	if gameplay_manager.player_progress.money >= cost:
-		gameplay_manager.player_progress.train_fuel += amount
-		gameplay_manager.player_progress.money -= cost
-		update_labels_debug()
-		
-		
 func update_labels_debug():
 	fuel_label.text = str(gameplay_manager.player_progress.train_fuel)
 	resist_label.text = str(gameplay_manager.player_progress.train_resist)
@@ -42,39 +35,30 @@ func update_labels_debug():
 
 
 func _on_player_update_combo(numb):
-	combo_label.text = str(numb)
+#	combo_label.text = str(numb)
+	pass
 
 
-func _on_train_speed_player_upgraded_train_speed(cost, amount):
-	if gameplay_manager.player_progress.money >= cost:
-		gameplay_manager.player_progress.train_speed += amount
-		gameplay_manager.player_progress.money -= cost
-		update_labels_debug()
+func _on_fuel_tank_upgrade_success(upgrade_name):
+	update_labels_debug()
 
 
-func _on_train_resistence_player_upgraded_train_resist(cost, amount):
-	if gameplay_manager.player_progress.money >= cost:
-		gameplay_manager.player_progress.train_resist += amount
-		gameplay_manager.player_progress.money -= cost
-		update_labels_debug()
+func _on_train_speed_upgrade_success(upgrade_name):
+	update_labels_debug()
+	
+	
 
+func _on_player_damage_upgrade_success(upgrade_name):
+	update_labels_debug()
+	
+	
+func _on_player_hp_upgrade_success(upgrade_name):
+	update_labels_debug()
+	
 
-func _on_player_speed_player_upgraded_speed(cost, amount):
-	if gameplay_manager.player_progress.money >= cost:
-		gameplay_manager.player_progress.speed += amount
-		gameplay_manager.player_progress.money -= cost
-		update_labels_debug()
+func _on_player_speed_upgrade_success(upgrade_name):
+	update_labels_debug()
+	
 
-
-func _on_player_hp_player_upgraded_hp(cost, amount):
-	if gameplay_manager.player_progress.money >= cost:
-		gameplay_manager.player_progress.hp += amount
-		gameplay_manager.player_progress.money -= cost
-		update_labels_debug()
-
-
-func _on_player_damage_player_upgraded_damage(cost, amount):
-	if gameplay_manager.player_progress.money >= cost:
-		gameplay_manager.player_progress.damage += amount
-		gameplay_manager.player_progress.money -= cost
-		update_labels_debug()
+func _on_train_resistence_upgrade_success(upgrade_name):
+	update_labels_debug()
