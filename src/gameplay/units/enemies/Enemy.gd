@@ -5,9 +5,9 @@ class_name Enemy
 signal enemy_die
 
 @onready var health: Health = $Health
-#@onready var animation_player = $AnimationPlayer
 
 var pushback_force = Vector2.ZERO
+
 
 func _on_health_dead():
 	enemy_die.emit()

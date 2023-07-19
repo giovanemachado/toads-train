@@ -1,11 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=11 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
 [ext_resource type="Script" path="res://src/gameplay/TrainGameplayManager.gd" id="3_c3a6g"]
 [ext_resource type="PackedScene" uid="uid://dic06qvwx0s5o" path="res://src/gameplay/train/train_unit_scene.tscn" id="4_o8fs0"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/EnemiesManager.gd" id="7_4bgps"]
-[ext_resource type="PackedScene" uid="uid://bhthmwkb6wrb6" path="res://src/gameplay/units/enemies/dummy/enemy_dummy_scene.tscn" id="8_s2j0a"]
 [ext_resource type="Script" path="res://src/gameplay/visuals/AutoMovingParallaxLayer.gd" id="9_ah3o0"]
 [ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="10_cfm16"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
@@ -95,6 +94,7 @@ script = ExtResource("3_c3a6g")
 [node name="Environment" type="Node" parent="."]
 
 [node name="Train" parent="Environment" instance=ExtResource("4_o8fs0")]
+distance_timing = 0.5
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
 visible = false
@@ -134,39 +134,37 @@ spawns_marks = [NodePath("SpawnMarks/Marker2D"), NodePath("SpawnMarks/Marker2D2"
 [node name="SpawnMarks" type="Node" parent="Enemies/EnemiesManager"]
 
 [node name="Marker2D" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
-position = Vector2(-199, 262)
+position = Vector2(667, -154)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Marker2D2" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
-position = Vector2(-199, 584)
+position = Vector2(93, -59)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Marker2D3" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
-position = Vector2(-199, 859)
+position = Vector2(-155, 348)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Marker2D4" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
-position = Vector2(2941, 296)
+position = Vector2(1797, -147)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Marker2D5" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
-position = Vector2(2924, 592)
+position = Vector2(2528, -99)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Marker2D6" type="Marker2D" parent="Enemies/EnemiesManager/SpawnMarks"]
-position = Vector2(2937, 876)
+position = Vector2(3177, 41)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Timer" type="Timer" parent="Enemies/EnemiesManager"]
-
-[node name="EnemyDummy" parent="Enemies/EnemiesManager" instance=ExtResource("8_s2j0a")]
-position = Vector2(892, 570)
 
 [node name="Player" parent="." instance=ExtResource("15_bwlow")]
 unique_name_in_owner = true
 position = Vector2(1140, 531)
 
 [node name="Camera2D" parent="Player" instance=ExtResource("10_cfm16")]
+editor_draw_limits = true
 
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Menu" to="UI/Control" method="_on_menu_pressed"]
 [connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Garage" to="UI/Control" method="_on_debug__garage_pressed"]

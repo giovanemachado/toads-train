@@ -7,4 +7,4 @@ class_name PlayerProgress
 @export var money: int = 0
 
 @export_group("Train Info")
-@export var train_fuel: int = 25
+@export var train_fuel: int = 30
