@@ -215,6 +215,9 @@ func spawn_enemies():
 	timer.start(cooldown)
 	get_all_enemies()
 	wave_number += 1
+	
+	if wave_number > 8:
+		wave_number = 8
 
 func randomize_position(pos: Vector2):
 	var new_pos: Vector2 = pos

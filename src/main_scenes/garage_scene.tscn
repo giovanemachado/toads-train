@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://deraw4ot1ok6y"]
+[gd_scene load_steps=15 format=3 uid="uid://deraw4ot1ok6y"]
 
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="1_mqfaw"]
 [ext_resource type="Script" path="res://src/gameplay/GarageGameplayManager.gd" id="2_t24wa"]
@@ -7,8 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://5ao27mu0w7gw" path="res://src/gameplay/interactables/interactable_scene.tscn" id="5_rjc3w"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/FuelTank.gd" id="6_li1gu"]
 [ext_resource type="Texture2D" uid="uid://bgyhkbtrs4xwp" path="res://src/utils/assets/all_sizes.png" id="7_yqotg"]
+[ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainResistence.gd" id="7_yypja"]
+[ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainSpeed.gd" id="8_6ir4g"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="8_khro0"]
 [ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="9_dg3ip"]
+[ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerDamage.gd" id="9_exm60"]
+[ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerHP.gd" id="10_rt46t"]
+[ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerSpeed.gd" id="11_5m07c"]
 
 [node name="garage_scene" type="Node2D"]
 
@@ -71,15 +76,59 @@ text = "Money
 layout_mode = 2
 text = "0"
 
+[node name="HBoxContainer5" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpeedDebugDesc" type="Label" parent="UI/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "Speed"
+
+[node name="SpeedDebug" type="Label" parent="UI/VBoxContainer/HBoxContainer5"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResistDebugDesc" type="Label" parent="UI/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "Resistencia"
+
+[node name="ResistDebug" type="Label" parent="UI/VBoxContainer/HBoxContainer6"]
+layout_mode = 2
+text = "0"
+
 [node name="HBoxContainer4" type="HBoxContainer" parent="UI/VBoxContainer"]
 layout_mode = 2
 
-[node name="ComboDebugDesc" type="Label" parent="UI/VBoxContainer/HBoxContainer4"]
+[node name="MoneyDesc" type="Label" parent="UI/VBoxContainer/HBoxContainer4"]
 layout_mode = 2
-text = "Combo
+text = "Player Speed
 "
 
-[node name="ComboDebug" type="Label" parent="UI/VBoxContainer/HBoxContainer4"]
+[node name="Money" type="Label" parent="UI/VBoxContainer/HBoxContainer4"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="SpeedDebugDesc" type="Label" parent="UI/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "Player HP"
+
+[node name="SpeedDebug" type="Label" parent="UI/VBoxContainer/HBoxContainer7"]
+layout_mode = 2
+text = "0"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="UI/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResistDebugDesc" type="Label" parent="UI/VBoxContainer/HBoxContainer8"]
+layout_mode = 2
+text = "Player Damage"
+
+[node name="ResistDebug" type="Label" parent="UI/VBoxContainer/HBoxContainer8"]
 layout_mode = 2
 text = "0"
 
@@ -96,7 +145,7 @@ texture = ExtResource("4_2fy4i")
 [node name="Interactable" parent="Environment/TrainCabin" instance=ExtResource("5_rjc3w")]
 
 [node name="FuelTank" type="Node2D" parent="Environment"]
-position = Vector2(1040, 358)
+position = Vector2(1032, 309)
 script = ExtResource("6_li1gu")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/FuelTank"]
@@ -104,6 +153,56 @@ modulate = Color(0.468276, 0.321616, 0.699581, 1)
 texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/FuelTank" instance=ExtResource("5_rjc3w")]
+
+[node name="TrainResistence" type="Node2D" parent="Environment"]
+position = Vector2(1032, 515)
+script = ExtResource("7_yypja")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TrainResistence"]
+modulate = Color(0.468276, 0.321616, 0.699581, 1)
+texture = ExtResource("4_2fy4i")
+
+[node name="Interactable" parent="Environment/TrainResistence" instance=ExtResource("5_rjc3w")]
+
+[node name="TrainSpeed" type="Node2D" parent="Environment"]
+position = Vector2(1032, 741)
+script = ExtResource("8_6ir4g")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/TrainSpeed"]
+modulate = Color(0.468276, 0.321616, 0.699581, 1)
+texture = ExtResource("4_2fy4i")
+
+[node name="Interactable" parent="Environment/TrainSpeed" instance=ExtResource("5_rjc3w")]
+
+[node name="PlayerDamage" type="Node2D" parent="Environment"]
+position = Vector2(177, 790)
+script = ExtResource("9_exm60")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerDamage"]
+modulate = Color(0.468276, 0.321616, 0.699581, 1)
+texture = ExtResource("4_2fy4i")
+
+[node name="Interactable" parent="Environment/PlayerDamage" instance=ExtResource("5_rjc3w")]
+
+[node name="PlayerHP" type="Node2D" parent="Environment"]
+position = Vector2(451, 903)
+script = ExtResource("10_rt46t")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerHP"]
+modulate = Color(0.468276, 0.321616, 0.699581, 1)
+texture = ExtResource("4_2fy4i")
+
+[node name="Interactable" parent="Environment/PlayerHP" instance=ExtResource("5_rjc3w")]
+
+[node name="PlayerSpeed" type="Node2D" parent="Environment"]
+position = Vector2(781, 856)
+script = ExtResource("11_5m07c")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerSpeed"]
+modulate = Color(0.468276, 0.321616, 0.699581, 1)
+texture = ExtResource("4_2fy4i")
+
+[node name="Interactable" parent="Environment/PlayerSpeed" instance=ExtResource("5_rjc3w")]
 
 [node name="TempBackground" type="Sprite2D" parent="."]
 position = Vector2(778, 278)
@@ -118,4 +217,14 @@ position = Vector2(522, 592)
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted" flags=18]
 [connection signal="player_upgraded_fuel_tank" from="Environment/FuelTank" to="GameplayManager/GarageGameplayManager" method="_on_fuel_tank_player_upgraded_fuel_tank" flags=18]
 [connection signal="player_interacted" from="Environment/FuelTank/Interactable" to="Environment/FuelTank" method="_on_interactable_player_interacted" flags=18]
+[connection signal="player_upgraded_train_resist" from="Environment/TrainResistence" to="GameplayManager/GarageGameplayManager" method="_on_train_resistence_player_upgraded_train_resist"]
+[connection signal="player_interacted" from="Environment/TrainResistence/Interactable" to="Environment/TrainResistence" method="_on_interactable_player_interacted" flags=18]
+[connection signal="player_upgraded_train_speed" from="Environment/TrainSpeed" to="GameplayManager/GarageGameplayManager" method="_on_train_speed_player_upgraded_train_speed"]
+[connection signal="player_interacted" from="Environment/TrainSpeed/Interactable" to="Environment/TrainSpeed" method="_on_interactable_player_interacted" flags=18]
+[connection signal="player_upgraded_damage" from="Environment/PlayerDamage" to="GameplayManager/GarageGameplayManager" method="_on_player_damage_player_upgraded_damage"]
+[connection signal="player_interacted" from="Environment/PlayerDamage/Interactable" to="Environment/PlayerDamage" method="_on_interactable_player_interacted" flags=18]
+[connection signal="player_upgraded_hp" from="Environment/PlayerHP" to="GameplayManager/GarageGameplayManager" method="_on_player_hp_player_upgraded_hp"]
+[connection signal="player_interacted" from="Environment/PlayerHP/Interactable" to="Environment/PlayerHP" method="_on_interactable_player_interacted" flags=18]
+[connection signal="player_upgraded_speed" from="Environment/PlayerSpeed" to="GameplayManager/GarageGameplayManager" method="_on_player_speed_player_upgraded_speed"]
+[connection signal="player_interacted" from="Environment/PlayerSpeed/Interactable" to="Environment/PlayerSpeed" method="_on_interactable_player_interacted" flags=18]
 [connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]
