@@ -28,10 +28,9 @@ func attack():
 
 	delay_to_attack_timer.start(attack_delay)
 	damage_to_cause = attack_damage
-
 	attack_try.emit()
 	attack_in_cooldown = true
-	timer.start(attack_cooldown)
+	timer.start(attack_cooldown + attack_delay)
 
 
 func _on_timer_timeout():
@@ -48,7 +47,7 @@ func strong_attack():
 	
 	attack_try.emit()
 	attack_in_cooldown = true
-	timer.start(strong_attack_cooldown)
+	timer.start(strong_attack_cooldown + strong_attack_delay)
 
 
 func cause_damage():

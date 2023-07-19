@@ -10,6 +10,10 @@ var health: Health
 var navigation_agent: NavigationAgent2D
 
 
+func _on_enter():
+	state_manager.animation_player.play("atk")
+
+
 func _on_update(_delta: float):
 	if !is_original_ready_done:
 		enemy_test = state_manager.enemy_test
@@ -30,3 +34,7 @@ func _on_update(_delta: float):
 
 func _on_health_health_update(old_value, new_value, damager_position):
 	Transitioned.emit(self, "EnemyTestStaggerState")
+
+
+func _on_attack_attack_is_done():
+	Transitioned.emit(self, "EnemyTestChasingState") 

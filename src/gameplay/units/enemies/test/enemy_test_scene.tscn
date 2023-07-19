@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkq1ueojo62vb"]
+[gd_scene load_steps=23 format=3 uid="uid://bkq1ueojo62vb"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="1_15g8g"]
 [ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="3_ivy8j"]
@@ -76,57 +76,56 @@ tracks/3/keys = {
 "values": [ExtResource("10_7ymjg")]
 }
 
-[sub_resource type="Animation" id="Animation_8hh5j"]
-resource_name = "run"
-length = 0.6
-loop_mode = 1
+[sub_resource type="Animation" id="Animation_plfff"]
+resource_name = "atk"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:hframes")
+tracks/0/path = NodePath("../Sprite2D:texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [4]
+"values": [ExtResource("13_6ydic")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:vframes")
+tracks/1/path = NodePath("../Sprite2D:hframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [1]
+"values": [5]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Sprite2D:frame")
+tracks/2/path = NodePath("../Sprite2D:vframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [1]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Sprite2D:texture")
+tracks/3/path = NodePath("../Sprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.9, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [ExtResource("10_7ymjg")]
+"values": [0, 1, 2, 3, 4]
 }
 
 [sub_resource type="Animation" id="Animation_fn8qc"]
@@ -182,57 +181,57 @@ tracks/3/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_plfff"]
-resource_name = "atk"
-length = 0.7
+[sub_resource type="Animation" id="Animation_8hh5j"]
+resource_name = "run"
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../Sprite2D:texture")
+tracks/0/path = NodePath("../Sprite2D:hframes")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("13_6ydic")]
+"values": [4]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("../Sprite2D:hframes")
+tracks/1/path = NodePath("../Sprite2D:vframes")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [5]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("../Sprite2D:vframes")
+tracks/2/path = NodePath("../Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [1]
+"values": [0, 1, 2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("../Sprite2D:frame")
+tracks/3/path = NodePath("../Sprite2D:texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.4, 0.6),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [0, 1, 2, 3, 4]
+"values": [ExtResource("10_7ymjg")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yxjkr"]
@@ -243,46 +242,12 @@ _data = {
 "run": SubResource("Animation_8hh5j")
 }
 
-[sub_resource type="Animation" id="Animation_3v531"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_opacity")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_ukfvn"]
-resource_name = "stagger"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/hit_opacity")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_7vqtb"]
-_data = {
-"RESET": SubResource("Animation_3v531"),
-"stagger": SubResource("Animation_ukfvn")
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_18d0u"]
+size = Vector2(84, 75)
 
 [node name="EnemyTest" type="CharacterBody2D" groups=["enemy"]]
 collision_layer = 8
-collision_mask = 4
+collision_mask = 0
 script = ExtResource("1_15g8g")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -316,21 +281,19 @@ max_health_points = 3
 script = ExtResource("8_xuq4l")
 
 [node name="RightAttackPosition" type="Marker2D" parent="EnemyAttack"]
-position = Vector2(82, 0)
+position = Vector2(50.507, 0)
 scale = Vector2(2.85069, 2.85069)
 
 [node name="LeftAttackPosition" type="Marker2D" parent="EnemyAttack"]
-position = Vector2(-82, 0)
+position = Vector2(-50.507, 0)
 scale = Vector2(2.98692, 2.98692)
 
 [node name="Attack" parent="." instance=ExtResource("8_q45ml")]
-attack_delay = 1.5
+attack_delay = 1.0
 attack_group = "player"
 
 [node name="Area2D" type="Area2D" parent="Attack"]
-position = Vector2(82, 0)
-collision_layer = 15
-collision_mask = 15
+position = Vector2(50.5069, 0.506899)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/Area2D"]
 shape = SubResource("CircleShape2D_secqe")
@@ -345,15 +308,19 @@ hframes = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")
-autoplay = "run"
 libraries = {
 "": SubResource("AnimationLibrary_yxjkr")
 }
 
-[node name="Effects" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_7vqtb")
-}
+[node name="DetectTrain" type="Node2D" parent="."]
+
+[node name="Area2D" type="Area2D" parent="DetectTrain"]
+collision_layer = 524288
+collision_mask = 524288
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DetectTrain/Area2D"]
+position = Vector2(2, -7.5)
+shape = SubResource("RectangleShape2D_18d0u")
 
 [connection signal="turning_to" from="Movement" to="." method="_on_movement_turning_to"]
 [connection signal="turning_to" from="Movement" to="EnemyAttack" method="_on_movement_turning_to"]
@@ -361,5 +328,6 @@ libraries = {
 [connection signal="health_update" from="Health" to="." method="_on_health_health_update"]
 [connection signal="health_update" from="Health" to="EnemyTestStateManager/EnemyTestChasingState" method="_on_health_health_update"]
 [connection signal="health_update" from="Health" to="EnemyTestStateManager/EnemyTestAttackingState" method="_on_health_health_update"]
-[connection signal="health_update" from="Health" to="EnemyTestStateManager/EnemyTestStaggerState" method="_on_health_health_update"]
 [connection signal="stagger_recovered" from="Health" to="EnemyTestStateManager/EnemyTestStaggerState" method="_on_health_stagger_recovered"]
+[connection signal="attack_is_done" from="Attack" to="EnemyTestStateManager/EnemyTestAttackingState" method="_on_attack_attack_is_done"]
+[connection signal="area_entered" from="DetectTrain/Area2D" to="EnemyTestStateManager/EnemyTestChasingState" method="_on_area_2d_area_entered"]

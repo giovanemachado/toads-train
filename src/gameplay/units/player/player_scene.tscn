@@ -244,6 +244,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_mask = 3
 script = ExtResource("1_sw0e8")
 
 [node name="PlayerStateManager" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
@@ -285,8 +286,7 @@ strong_attack_damage = 5
 
 [node name="Area2D" type="Area2D" parent="Attack"]
 position = Vector2(46.131, 0)
-collision_layer = 15
-collision_mask = 15
+collision_mask = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/Area2D"]
 shape = SubResource("CircleShape2D_h8ium")
@@ -295,7 +295,7 @@ debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
 [node name="Movement" parent="." instance=ExtResource("4_a7s6j")]
 
 [node name="Health" parent="." instance=ExtResource("6_tykmr")]
-max_health_points = 5
+max_health_points = 15
 
 [node name="Interaction" type="Node2D" parent="."]
 script = ExtResource("7_a82dn")

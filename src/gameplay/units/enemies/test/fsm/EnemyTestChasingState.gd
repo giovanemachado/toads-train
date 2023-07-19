@@ -8,6 +8,12 @@ var enemy_test: EnemyTest
 var navigation_agent: NavigationAgent2D
 var is_original_ready_done = false
 var health: Health
+var is_in_train = false
+var chasing_animation = "falling"
+
+
+func _on_enter():
+	state_manager.animation_player.play(chasing_animation)
 
 
 func _on_update(_delta: float):
@@ -49,3 +55,15 @@ func _on_exit():
 
 func _on_health_health_update(old_value, new_value, damager_position):
 	Transitioned.emit(self, "EnemyTestStaggerState")
+
+
+func _on_area_2d_area_entered(area):
+	if !area.is_in_group("detect_train"):
+		return
+
+	if is_in_train:
+		return
+		
+	chasing_animation = "run"
+	is_in_train = true
+	state_manager.animation_player.play(chasing_animation)
