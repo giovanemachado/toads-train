@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://bksmbrfcbh8k7" path="res://src/gameplay/units/enemies/animation/staple frog run .png" id="10_7ymjg"]
 [ext_resource type="Texture2D" uid="uid://bblltl4n3c0cb" path="res://src/gameplay/units/enemies/animation/staple frog falling.png" id="12_58v1m"]
 [ext_resource type="Texture2D" uid="uid://djj545qb270kq" path="res://src/gameplay/units/enemies/animation/Staple frog atk.png" id="13_6ydic"]
+[ext_resource type="Texture2D" uid="uid://ch30ntmci2frq" path="res://src/gameplay/units/enemies/animation/staple frog hurt.png" id="14_fdnh4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ieuyy"]
 radius = 31.0
@@ -239,6 +240,7 @@ _data = {
 "RESET": SubResource("Animation_c1dif"),
 "atk": SubResource("Animation_plfff"),
 "falling": SubResource("Animation_fn8qc"),
+"hurt": SubResource("Animation_sl5gr"),
 "run": SubResource("Animation_8hh5j")
 }
 
