@@ -18,9 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6hy"]
-vertices = PackedVector2Array(2345, 746, 3052, 456, 3152, 453, 3357, 457, 3360, 885, 2343, 890, -69, 945, 3530, 918, 4388, 944, 682, 964, -358, 955, -107, 911, 2030, 260, 2009, 473, 1927, 264, 1480, -1030, 1926, 465, 588, 254, -494, -996, 1475, 270, 1579, 267, 2728, 258, 2724, 457, 2627, 261, 2408, -1087, 2626, 459, 685, 898, 676, 452, 1111, 456, 1114, 625, 1121, 891, 1119, 749, 1202, 749, 2220, 464, 2222, 609, 2221, 747, 2348, 457, 2342, 608, 3047, 255, 3157, 256, 2220, 886, 1203, 890, 1581, 460, 1209, 619, 1482, 462, 4501, -629, 3507, 263, 2221, 261, 1216, 464)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 6, 10), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 14, 13), PackedInt32Array(17, 11, 10, 18, 15), PackedInt32Array(19, 17, 15, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(25, 23, 22), PackedInt32Array(26, 27, 28, 29), PackedInt32Array(30, 26, 29, 31), PackedInt32Array(32, 13, 33, 34, 35), PackedInt32Array(22, 1, 0, 25), PackedInt32Array(36, 25, 0, 37), PackedInt32Array(37, 0, 35, 34), PackedInt32Array(2, 1, 38, 39), PackedInt32Array(40, 41, 32, 35), PackedInt32Array(42, 16, 13, 32, 31, 43, 44), PackedInt32Array(31, 29, 43), PackedInt32Array(45, 8, 7, 46), PackedInt32Array(24, 45, 46, 39), PackedInt32Array(24, 39, 38), PackedInt32Array(24, 38, 21), PackedInt32Array(15, 24, 23, 47, 12), PackedInt32Array(15, 14, 20), PackedInt32Array(19, 20, 42, 44), PackedInt32Array(44, 43, 48)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-494, -996, 1480, -1030, 2408, -1087, 4501, -629, 4388, 944, 682, 964, -358, 955), PackedVector2Array(676, 452, 685, 898, 1121, 891, 1119, 749, 1202, 749, 1203, 890, 2220, 886, 2221, 747, 2345, 746, 2343, 890, 3360, 885, 3357, 457, 3152, 453, 3157, 256, 3507, 263, 3530, 918, -69, 945, -107, 911, 588, 254, 1475, 270, 1482, 462, 1216, 464, 1209, 619, 1114, 625, 1111, 456), PackedVector2Array(1579, 267, 1581, 460, 1926, 465, 1927, 264), PackedVector2Array(2030, 260, 2009, 473, 2220, 464, 2222, 609, 2342, 608, 2348, 457, 2626, 459, 2627, 261, 2221, 261), PackedVector2Array(2728, 258, 2724, 457, 3052, 456, 3047, 255)])
+vertices = PackedVector2Array(2345, 746, 3052, 456, 3152, 453, 3357, 457, 3360, 885, 2343, 890, 601, 943, 3530, 918, 4388, 944, 682, 964, -358, 955, 1927, 264, 2030, 260, 2009, 473, 1926, 465, -494, -996, 1480, -1030, 588, 254, 2728, 258, 2724, 457, 2627, 261, 2408, -1087, 2626, 459, 1202, 749, 2220, 464, 2222, 609, 2221, 747, 2348, 457, 2342, 608, 1116, 604, 1119, 749, 1121, 891, 685, 898, 678, 459, 864, 459, 950, 463, 1211, 598, 1212, 461, 1483, 465, 857, 257, 956, 255, 3047, 255, 3157, 256, 1116.79, 463.626, 2220, 886, 1203, 890, 1568, 466, 1483, 261, 1579, 267, 4501, -629, 3507, 263, 2221, 261)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 12, 13, 14), PackedInt32Array(10, 15, 16, 17), PackedInt32Array(18, 19, 20, 21), PackedInt32Array(22, 20, 19), PackedInt32Array(23, 13, 24, 25, 26), PackedInt32Array(19, 1, 0, 22), PackedInt32Array(27, 22, 0, 28), PackedInt32Array(29, 30, 31, 32, 33, 34, 35), PackedInt32Array(28, 0, 26, 25), PackedInt32Array(36, 37, 38), PackedInt32Array(17, 6, 10), PackedInt32Array(39, 17, 16, 40), PackedInt32Array(2, 1, 41, 42), PackedInt32Array(35, 43, 29), PackedInt32Array(44, 45, 23, 26), PackedInt32Array(14, 13, 23, 46), PackedInt32Array(38, 46, 23, 36), PackedInt32Array(29, 36, 23, 30), PackedInt32Array(40, 35, 34, 39), PackedInt32Array(47, 40, 16, 12, 11), PackedInt32Array(46, 38, 47, 48), PackedInt32Array(49, 8, 7, 50), PackedInt32Array(21, 49, 50, 42), PackedInt32Array(21, 42, 41), PackedInt32Array(21, 41, 18), PackedInt32Array(16, 21, 20, 51, 12), PackedInt32Array(47, 11, 48)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-494, -996, 1480, -1030, 2408, -1087, 4501, -629, 4388, 944, 682, 964, -358, 955), PackedVector2Array(864, 459, 678, 459, 685, 898, 1121, 891, 1119, 749, 1202, 749, 1203, 890, 2220, 886, 2221, 747, 2345, 746, 2343, 890, 3360, 885, 3357, 457, 3152, 453, 3157, 256, 3507, 263, 3530, 918, 601, 943, 588, 254, 857, 257), PackedVector2Array(1579, 267, 1568, 466, 1926, 465, 1927, 264), PackedVector2Array(1483, 261, 1483, 465, 1212, 461, 1211, 598, 1116, 604, 1116.79, 463.626, 950, 463, 956, 255), PackedVector2Array(2030, 260, 2009, 473, 2220, 464, 2222, 609, 2342, 608, 2348, 457, 2626, 459, 2627, 261, 2221, 261), PackedVector2Array(2728, 258, 2724, 457, 3052, 456, 3047, 255)])
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_khbpd"]
 load_path = "res://.godot/imported/all_sizes.png-e3e4c38394243e5424b121e8072d4f5c.ctex"
@@ -108,12 +108,6 @@ layout_mode = 2
 step = 1.0
 show_percentage = false
 
-[node name="FuelBar" type="ProgressBar" parent="UI/Control/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 25)
-layout_mode = 2
-step = 1.0
-show_percentage = false
-
 [node name="Debug - Menu" type="Button" parent="UI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
@@ -147,12 +141,6 @@ text = "Money
 layout_mode = 2
 text = "0"
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-
-[node name="Event" type="Label" parent="UI/Control/MarginContainer/VBoxContainer/HBoxContainer3"]
-layout_mode = 2
-
 [node name="GameplayManager" parent="." instance=ExtResource("2_j3kmv")]
 
 [node name="TrainGameplayManager" type="Node" parent="GameplayManager"]
@@ -166,6 +154,7 @@ distance_timing = 0.5
 distance_amount_per_tick = 5
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
+visible = false
 navigation_polygon = SubResource("NavigationPolygon_sk6hy")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Environment"]
@@ -238,7 +227,7 @@ offset_left = -49.0
 offset_top = 70.0
 offset_right = 48.0
 offset_bottom = 96.0
-text = "Explosive Valve"
+text = "Fuel Leaking"
 
 [node name="Timer" type="Timer" parent="Environment/ExplosiveValve"]
 
@@ -266,7 +255,7 @@ offset_left = -49.0
 offset_top = 70.0
 offset_right = 48.0
 offset_bottom = 96.0
-text = "Explosive Valve"
+text = "Fuel Leaking"
 
 [node name="Timer" type="Timer" parent="Environment/ExplosiveValve2"]
 
@@ -294,7 +283,7 @@ offset_left = -49.0
 offset_top = 70.0
 offset_right = 48.0
 offset_bottom = 96.0
-text = "Explosive Valve"
+text = "Fuel Leaking"
 
 [node name="Timer" type="Timer" parent="Environment/ExplosiveValve3"]
 
@@ -373,23 +362,16 @@ editor_draw_limits = true
 [connection signal="money_updated" from="GameplayManager/TrainGameplayManager" to="UI/Control" method="_on_train_gameplay_manager_money_updated"]
 [connection signal="distance_updated" from="Environment/Train" to="UI/Control" method="_on_train_distance_updated"]
 [connection signal="stopped" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_stopped"]
-[connection signal="event_fail" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_fail"]
 [connection signal="event_started" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_started"]
 [connection signal="event_success" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_success"]
 [connection signal="player_interacted" from="Environment/FuelLeaking/Interactable" to="Environment/FuelLeaking" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/FuelLeaking/Timer" to="Environment/FuelLeaking" method="_on_timer_timeout"]
 [connection signal="event_fail" from="Environment/ExplosiveValve" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_event_fail"]
-[connection signal="event_started" from="Environment/ExplosiveValve" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_event_started"]
-[connection signal="event_success" from="Environment/ExplosiveValve" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_event_success"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve/Interactable" to="Environment/ExplosiveValve" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve/Timer" to="Environment/ExplosiveValve" method="_on_timer_timeout"]
 [connection signal="event_fail" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_fail"]
-[connection signal="event_started" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_started"]
-[connection signal="event_success" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_success"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve2/Interactable" to="Environment/ExplosiveValve2" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve2/Timer" to="Environment/ExplosiveValve2" method="_on_timer_timeout"]
-[connection signal="event_fail" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_fail"]
-[connection signal="event_started" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_started"]
 [connection signal="event_success" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_success"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve3/Interactable" to="Environment/ExplosiveValve3" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve3/Timer" to="Environment/ExplosiveValve3" method="_on_timer_timeout"]

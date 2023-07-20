@@ -1,13 +1,16 @@
 extends Node2D
 
+class_name Train
+
 signal stopped
 signal distance_updated
 
 @onready var gameplay_manager: GameplayManager = $"../../GameplayManager"
-@onready var health: Health = $Health
+
+@export var train_max_speed: int = 700
 
 @export_group("Fuel")
-@onready var fuel_bar: ProgressBar = $FuelBar
+@onready var fuel_bar: ProgressBar = $"../../UI/Control/MarginContainer/VBoxContainer/FuelBar"
 @onready var fuel_timer: Timer = $FuelTimer
 @export var fuel_timing: float = 1
 @export var fuel_amount_per_tick = 2
@@ -16,6 +19,8 @@ signal distance_updated
 @onready var distance_timer: Timer = $Distance/DistanceTimer
 @export var distance_timing: float = 1
 @export var distance_amount_per_tick = 1
+
+@onready var motor = $"../Motor"
 
 var current_distance: int = 0
 
@@ -29,10 +34,16 @@ func _ready():
 	current_resist = gameplay_manager.player_progress.train_resist
 	
 	fuel_timer.start(fuel_timing)
-	fuel_bar.max_value = current_fuel
-	fuel_bar.value = current_fuel
+	if fuel_bar != null:
+		fuel_bar.max_value = current_fuel
+		fuel_bar.value = current_fuel
 	
 	distance_timer.start(distance_timing)
+
+
+func _process(delta):
+	if current_speed >= train_max_speed:
+		stopped.emit()
 
 
 func spend_fuel():

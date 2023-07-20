@@ -13,10 +13,16 @@ var is_damaged: bool = false
 @export var max_health_points = 10
 
 var health_points: int
+var invunerable = false
 
 func _ready():
 	health_points = max_health_points
 
+func update_max_hp():
+	health_points = max_health_points
+
+func can_be_attacked(can: bool):
+	invunerable = !can
 
 func heal(amount: int):
 	var old_value = health_points
@@ -29,6 +35,9 @@ func heal(amount: int):
 
 
 func damage(amount: int, damager_position: Vector2):
+	if invunerable:
+		return
+		
 	is_damaged = true
 	stagger.emit()
 	timer.start(stagger_timing)

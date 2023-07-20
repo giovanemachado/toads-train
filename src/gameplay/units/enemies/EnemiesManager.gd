@@ -10,7 +10,10 @@ signal an_enemy_died
 
 var enemies: Dictionary = {}
 var enemy_test = preload("res://src/gameplay/units/enemies/test/enemy_test_scene.tscn")
-var wave_number = 3
+var wave_number = 0
+@export var chance_of_attack_motor = 30
+
+@onready var train_gameplay_manager: TrainGameplayManager = $"../../GameplayManager/TrainGameplayManager"
 
 func get_all_enemies():
 	for child in get_children():
@@ -28,7 +31,7 @@ func _ready():
 func spawn_enemies():
 	var enemy_test_name = 'enemytest'
 	var waves_of_enemies = get_waves_of_enemies()
-	var difficult_multiplier = get_difficult_multiplier()
+	var difficult_multiplier = train_gameplay_manager.get_difficult_multiplier()
 	var spawn_pos = waves_of_enemies[wave_number].possible_spawning_positions
 	
 	for k in spawn_pos.size():
@@ -38,11 +41,19 @@ func spawn_enemies():
 			var enemy_to_spawn = current_spawn_pos.enemies[l]
 		
 			if enemy_to_spawn.type.to_lower() == enemy_test_name:
-				var qtd_to_spawn = enemy_to_spawn.qtd + difficult_multiplier
+				var qtd_to_spawn = randi_range(1, enemy_to_spawn.qtd + difficult_multiplier)
+				
 				for m in qtd_to_spawn:
 					var slightly_random_spawn_position = randomize_position(spawns_marks[current_spawn_pos.position_number].global_position)
 					var enemy_to_spawn_instance = enemy_test.instantiate()
 					enemy_to_spawn_instance.position = slightly_random_spawn_position
+					
+					var n = randf_range(0, 100)
+					
+					if chance_of_attack_motor > n:
+						enemy_to_spawn_instance.attack_motor()
+						enemy_to_spawn_instance.difficult_was_born(difficult_multiplier)
+					
 					add_child(enemy_to_spawn_instance)
 
 
@@ -71,32 +82,11 @@ func on_enemy_die(value: int):
 func _on_timer_timeout():
 	spawn_enemies()
 
-
-func get_difficult_multiplier():
-	var difficult_multiplier = 0
-	
-	if train.current_distance > 100:
-		difficult_multiplier = 1
-	
-	if train.current_distance > 500:
-		difficult_multiplier = 2
-		
-	if train.current_distance > 800:
-		difficult_multiplier = 3
-		
-	if train.current_distance > 1000:
-		difficult_multiplier = 4
-		
-	if train.current_distance > 1500:
-		difficult_multiplier = 5
-	
-	return difficult_multiplier
-	
 func get_waves_of_enemies():
 	var enemy_test_name = 'enemytest'
 	var w = [
 		{
-			wave_cooldown = 5,
+			wave_cooldown = 10,
 			possible_spawning_positions = [
 				{
 					position_number = 0,
@@ -110,7 +100,7 @@ func get_waves_of_enemies():
 			]
 		},
 		{
-			wave_cooldown = 5,
+			wave_cooldown = 10,
 			possible_spawning_positions = [
 				{
 					position_number = 1,
@@ -124,7 +114,7 @@ func get_waves_of_enemies():
 			]
 		},
 		{
-			wave_cooldown = 5,
+			wave_cooldown = 10,
 			possible_spawning_positions = [
 				{
 					position_number = 2,
@@ -138,7 +128,7 @@ func get_waves_of_enemies():
 			]
 		},
 		{
-			wave_cooldown = 5,
+			wave_cooldown = 10,
 			possible_spawning_positions = [
 				{
 					position_number = 3,
@@ -152,7 +142,7 @@ func get_waves_of_enemies():
 			]
 		},
 		{
-			wave_cooldown = 5,
+			wave_cooldown = 10,
 			possible_spawning_positions = [
 				{
 					position_number = 4,
@@ -166,7 +156,7 @@ func get_waves_of_enemies():
 			]
 		},
 		{
-			wave_cooldown = 5,
+			wave_cooldown = 10,
 			possible_spawning_positions = [
 				{
 					position_number = 5,

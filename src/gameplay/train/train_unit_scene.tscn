@@ -1,64 +1,50 @@
 [gd_scene load_steps=13 format=3 uid="uid://dic06qvwx0s5o"]
 
 [ext_resource type="Script" path="res://src/gameplay/train/Train.gd" id="1_r503i"]
+[ext_resource type="Texture2D" uid="uid://c7c4vsoelehjq" path="res://src/gameplay/train/sprites/train_map.png" id="2_7e2vk"]
 [ext_resource type="Texture2D" uid="uid://bgyhkbtrs4xwp" path="res://src/utils/assets/all_sizes.png" id="2_60hpw"]
-[ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="3_0as45"]
-[ext_resource type="Script" path="res://src/gameplay/train/LifeBarTrainManager.gd" id="4_u5hjn"]
-[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="5_d34jd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co488"]
-size = Vector2(87, 683)
+size = Vector2(101, 683)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0y5l5"]
-size = Vector2(87.5, 721)
+size = Vector2(100.75, 721)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0rbl7"]
-size = Vector2(2055, 142)
+size = Vector2(2786, 142)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xc6pt"]
-size = Vector2(2113, 78)
+size = Vector2(2781, 96)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcglj"]
-size = Vector2(102, 506)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_83ipv"]
+size = Vector2(107, 215.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_etcqh"]
-size = Vector2(834, 172)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06kwv"]
+size = Vector2(137, 229)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qeadj"]
+size = Vector2(136, 154.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moe05"]
+size = Vector2(107, 173.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxgge"]
-size = Vector2(1850, 453)
+size = Vector2(2676, 425)
 
 [node name="Train" type="Node2D"]
-position = Vector2(1437, 716)
 script = ExtResource("1_r503i")
 fuel_amount_per_tick = 1
 distance_amount_per_tick = 10
 
+[node name="TrainMap" type="Sprite2D" parent="."]
+position = Vector2(160, -86.9999)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_7e2vk")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 scale = Vector2(0.492917, 0.224444)
 texture = ExtResource("2_60hpw")
-
-[node name="Health" parent="." instance=ExtResource("3_0as45")]
-
-[node name="LifeBarTrainManager" type="Node" parent="."]
-script = ExtResource("4_u5hjn")
-
-[node name="FuelBar" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(200, 25)
-offset_left = -197.0
-offset_top = -363.0
-offset_right = 3.0
-offset_bottom = -338.0
-step = 1.0
-show_percentage = false
-
-[node name="LifeBarTrain" type="ProgressBar" parent="."]
-custom_minimum_size = Vector2(200, 25)
-offset_left = -197.0
-offset_top = -403.0
-offset_right = 3.0
-offset_bottom = -378.0
-step = 1.0
-show_percentage = false
 
 [node name="FuelTimer" type="Timer" parent="."]
 
@@ -66,71 +52,84 @@ show_percentage = false
 visible = false
 
 [node name="StaticBody2D" type="StaticBody2D" parent="InvisibleWalls"]
+position = Vector2(-216, 21)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D"]
-position = Vector2(-991.5, -73.5)
+position = Vector2(-984.5, -73.5)
 shape = SubResource("RectangleShape2D_co488")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="InvisibleWalls"]
+position = Vector2(569, 39)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D2"]
-position = Vector2(990, -102.5)
+position = Vector2(983.375, -102.5)
 shape = SubResource("RectangleShape2D_0y5l5")
 
 [node name="StaticBody2D3" type="StaticBody2D" parent="InvisibleWalls"]
+position = Vector2(-168, 48)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D3"]
-position = Vector2(5.5, -409)
+position = Vector2(371, -409)
 shape = SubResource("RectangleShape2D_0rbl7")
 
 [node name="StaticBody2D4" type="StaticBody2D" parent="InvisibleWalls"]
+position = Vector2(0, -20)
 collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D4"]
-position = Vector2(22.5, 282)
+position = Vector2(211.5, 273)
 shape = SubResource("RectangleShape2D_xc6pt")
 
-[node name="VisibleWalls" type="Node2D" parent="."]
+[node name="StaticBody2D5" type="StaticBody2D" parent="InvisibleWalls"]
+collision_layer = 2
+collision_mask = 0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="VisibleWalls"]
-position = Vector2(348, -114)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D5"]
+position = Vector2(-686.5, -229.75)
+shape = SubResource("RectangleShape2D_83ipv")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleWalls/StaticBody2D"]
-shape = SubResource("RectangleShape2D_tcglj")
+[node name="StaticBody2D6" type="StaticBody2D" parent="InvisibleWalls"]
+collision_layer = 2
+collision_mask = 0
 
-[node name="Sprite2D" type="Sprite2D" parent="VisibleWalls/StaticBody2D"]
-modulate = Color(0.238281, 0.238281, 0.238281, 1)
-scale = Vector2(1, 5)
-texture = ExtResource("5_d34jd")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D6"]
+position = Vector2(432.5, -237)
+shape = SubResource("RectangleShape2D_06kwv")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="VisibleWalls"]
-position = Vector2(-348, 16)
+[node name="StaticBody2D7" type="StaticBody2D" parent="InvisibleWalls"]
+collision_layer = 2
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="VisibleWalls/StaticBody2D2"]
-shape = SubResource("RectangleShape2D_etcqh")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D7"]
+position = Vector2(433, 150.25)
+shape = SubResource("RectangleShape2D_qeadj")
 
-[node name="Sprite2D" type="Sprite2D" parent="VisibleWalls/StaticBody2D2"]
-modulate = Color(0.238281, 0.238281, 0.238281, 1)
-scale = Vector2(8.31999, 1.76)
-texture = ExtResource("5_d34jd")
+[node name="StaticBody2D8" type="StaticBody2D" parent="InvisibleWalls"]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InvisibleWalls/StaticBody2D8"]
+position = Vector2(-688.5, 160.25)
+shape = SubResource("RectangleShape2D_moe05")
 
 [node name="Distance" type="Node" parent="."]
 
 [node name="DistanceTimer" type="Timer" parent="Distance"]
 
 [node name="TrainArea" type="Area2D" parent="." groups=["detect_train"]]
+visible = false
 collision_layer = 524288
 collision_mask = 524288
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrainArea"]
-position = Vector2(-8, 0.5)
+position = Vector2(180, -2.5)
 shape = SubResource("RectangleShape2D_vxgge")
 
 [connection signal="timeout" from="FuelTimer" to="." method="_on_fuel_timer_timeout"]
