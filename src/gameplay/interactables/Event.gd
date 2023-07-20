@@ -29,7 +29,6 @@ func tried_to_solve():
 	if !event_is_happening:
 		return
 		
-		
 	current_kicks += 1
 	
 	if current_kicks >= kicks_to_solve:
