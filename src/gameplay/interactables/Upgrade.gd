@@ -13,12 +13,19 @@ signal upgrade_fail(upgrade_name: String)
 var current_level: int = 0
 var garage_gameplay_manager: GarageGameplayManager
 
+@onready var label_cost = $MarginContainer/MarginContainer2/VBoxContainer/Cost
+
 
 func _ready():
 	var costs_count = cost_to_upgrade_by_level.size()
 	var amounts_count = upgrade_amount_by_level.size()
 	current_level = garage_gameplay_manager.gameplay_manager.player_progress[upgrade_name + "_level"]
-
+	
+	if current_level >= max_level:
+		label_cost.text = "MAX LEVEL"
+	else:
+		label_cost.text = "Cost: $" + str(cost_to_upgrade_by_level[current_level])
+		
 	assert(costs_count > 0, "No costs declared. Upgrade name: " + upgrade_name)
 	assert(amounts_count > 0, "No upgrade amounts declared. Upgrade name: " + upgrade_name)
 	assert(costs_count == amounts_count, "Levels and amounts are different. Upgrade name: " + upgrade_name)

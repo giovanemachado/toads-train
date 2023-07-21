@@ -15,8 +15,35 @@ class_name GarageGameplayManager
 @onready var player_damage_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer8/ResistDebug"
 @onready var player_hp_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer7/SpeedDebug"
 
+@onready var player: Player = $"../../Player"
+@onready var timer: Timer = $Timer
+var lore_timing = 0.2
+@onready var text_tutorial = $"../../Environment/Tutorial"
+
+var random_phrases = [
+	"Here we go again...",
+	"One more time.",
+	"I need to train more.",
+	"Frogs...",
+	"They drunk too much uranium, I think",
+	"Where does this sword come from?"
+]
+
+
 func _ready():
 	update_labels_debug()
+	timer.start(lore_timing)
+
+
+func _on_timer_timeout():
+	if gameplay_manager.player_progress.garage_visited == 0:
+		player.text_box.show_text("Damn it! I hate how frogs learned to think and hate trains.")
+	
+	if gameplay_manager.player_progress.garage_visited >= 1:
+		text_tutorial.hide()
+		player.text_box.show_text(random_phrases.pick_random())
+	
+	gameplay_manager.player_progress.garage_visited += 1
 
 
 func _on_train_cabin_player_entered_in_cabin():

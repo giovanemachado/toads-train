@@ -249,7 +249,7 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control:position")
+tracks/0/path = NodePath("TextBox:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -261,7 +261,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control:rotation")
+tracks/1/path = NodePath("TextBox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -277,7 +277,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Control:position")
+tracks/0/path = NodePath("TextBox:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -289,7 +289,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Control:rotation")
+tracks/1/path = NodePath("TextBox:rotation")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -402,8 +402,7 @@ libraries = {
 "": SubResource("AnimationLibrary_dq6sd")
 }
 
-[node name="Control" type="Control" parent="."]
-visible = false
+[node name="TextBox" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_left = -18.0
@@ -413,7 +412,7 @@ offset_bottom = -78.0
 size_flags_vertical = 3
 script = ExtResource("15_e11nd")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="MarginContainer" type="MarginContainer" parent="TextBox"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -422,24 +421,27 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
 
-[node name="Panel" type="Panel" parent="Control/MarginContainer"]
+[node name="Panel" type="Panel" parent="TextBox/MarginContainer"]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_rplvg")
 
-[node name="MarginContainer2" type="MarginContainer" parent="Control/MarginContainer"]
+[node name="MarginContainer2" type="MarginContainer" parent="TextBox/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 15
 
-[node name="Label" type="Label" parent="Control/MarginContainer/MarginContainer2"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextBox/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextBox/MarginContainer/MarginContainer2/VBoxContainer"]
 custom_minimum_size = Vector2(500, 100)
 layout_mode = 2
 label_settings = SubResource("LabelSettings_s4kxl")
 horizontal_alignment = 1
 vertical_alignment = 1
-autowrap_mode = 1
+autowrap_mode = 3
 clip_text = true
 uppercase = true
 visible_characters = 0

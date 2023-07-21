@@ -16,6 +16,7 @@ signal update_combo(numb: int)
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var camera: Camera2D = $Camera2D
 @onready var player_state_manager: PlayerStateManager = $PlayerStateManager
+@onready var text_box: TextBox = $TextBox
 
 var life_bar_is_ready = false
 

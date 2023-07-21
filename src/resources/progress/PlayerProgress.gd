@@ -21,3 +21,6 @@ class_name PlayerProgress
 @export var train_resist_level: int = 0
 @export var train_speed: int = 100
 @export var train_speed_level: int = 0
+
+@export_group("Lore")
+@export var garage_visited: int = 0

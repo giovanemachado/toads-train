@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b7ea3yswnma8o"]
 
 [ext_resource type="Script" path="res://src/gameplay/GameManager.gd" id="1_et7km"]
-[ext_resource type="Resource" uid="uid://mex7iboqwva3" path="res://src/resources/progress/player_progress.tres" id="2_5jlpj"]
+[ext_resource type="Resource" uid="uid://capbyo57ra6h3" path="res://src/resources/progress/player_progress.tres" id="2_5jlpj"]
 
 [node name="GameplayManager" type="Node"]
 script = ExtResource("1_et7km")

@@ -1,12 +1,12 @@
-[gd_scene load_steps=15 format=3 uid="uid://deraw4ot1ok6y"]
+[gd_scene load_steps=21 format=3 uid="uid://deraw4ot1ok6y"]
 
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="1_mqfaw"]
+[ext_resource type="Texture2D" uid="uid://ck08m57ywe1f" path="res://src/gameplay/train/sprites/train map.png" id="2_d0271"]
 [ext_resource type="Script" path="res://src/gameplay/GarageGameplayManager.gd" id="2_t24wa"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainCabin.gd" id="3_qsfj7"]
 [ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="4_2fy4i"]
 [ext_resource type="PackedScene" uid="uid://5ao27mu0w7gw" path="res://src/gameplay/interactables/interactable_scene.tscn" id="5_rjc3w"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/FuelTank.gd" id="6_li1gu"]
-[ext_resource type="Texture2D" uid="uid://bgyhkbtrs4xwp" path="res://src/utils/assets/all_sizes.png" id="7_yqotg"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainResistence.gd" id="7_yypja"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainSpeed.gd" id="8_6ir4g"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="8_khro0"]
@@ -14,13 +14,52 @@
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerDamage.gd" id="9_exm60"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerHP.gd" id="10_rt46t"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerSpeed.gd" id="11_5m07c"]
+[ext_resource type="Texture2D" uid="uid://5xrmapbvv6s0" path="res://src/gameplay/environments/garage map.png" id="15_axgft"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i4kl"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.709804, 0.709804, 0.709804, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cwhb2"]
+size = Vector2(101, 1219)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kb7xa"]
+size = Vector2(100.75, 1149)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ii3kt"]
+size = Vector2(2786, 142)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r5was"]
+size = Vector2(2781, 96)
 
 [node name="garage_scene" type="Node2D"]
+
+[node name="GarageBackground2" type="Sprite2D" parent="."]
+position = Vector2(1840, 1345)
+scale = Vector2(-3, -3)
+texture = ExtResource("15_axgft")
+
+[node name="GarageBackground" type="Sprite2D" parent="."]
+position = Vector2(1840, 85)
+scale = Vector2(3, 3)
+texture = ExtResource("15_axgft")
+
+[node name="TrainMap" type="Sprite2D" parent="."]
+position = Vector2(1607, 218)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_d0271")
 
 [node name="GameplayManager" parent="." instance=ExtResource("1_mqfaw")]
 
 [node name="GarageGameplayManager" type="Node" parent="GameplayManager"]
 script = ExtResource("2_t24wa")
+
+[node name="Timer" type="Timer" parent="GameplayManager/GarageGameplayManager"]
+one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -168,10 +207,18 @@ size_flags_vertical = 8
 layout_mode = 2
 text = "...."
 
+[node name="Player" parent="." instance=ExtResource("8_khro0")]
+position = Vector2(761, 832)
+
+[node name="Camera2D" parent="Player" instance=ExtResource("9_dg3ip")]
+zoom = Vector2(1, 1)
+limit_right = 1500
+editor_draw_limits = true
+
 [node name="Environment" type="Node" parent="."]
 
 [node name="TrainCabin" type="Node2D" parent="Environment"]
-position = Vector2(120, 367)
+position = Vector2(1054, 512)
 script = ExtResource("3_qsfj7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainCabin"]
@@ -180,13 +227,48 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/TrainCabin" instance=ExtResource("5_rjc3w")]
 
+[node name="MarginContainer" type="MarginContainer" parent="Environment/TrainCabin"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/TrainCabin/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/TrainCabin/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/TrainCabin/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/TrainCabin/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/TrainCabin/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to play"
+
 [node name="FuelTank" type="Node2D" parent="Environment"]
-position = Vector2(1032, 309)
+position = Vector2(760, 586)
 script = ExtResource("6_li1gu")
 upgrade_name = "train_fuel"
-cost_to_upgrade_by_level = Array[int]([50, 50])
-upgrade_amount_by_level = Array[int]([50, 50])
-max_level = 2
+cost_to_upgrade_by_level = Array[int]([15, 50, 100])
+upgrade_amount_by_level = Array[int]([50, 75, 175])
+max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/FuelTank"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
@@ -194,17 +276,53 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/FuelTank" instance=ExtResource("5_rjc3w")]
 
-[node name="Label2" type="Label" parent="Environment/FuelTank"]
-offset_left = -44.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Train Fuel"
+[node name="MarginContainer" type="MarginContainer" parent="Environment/FuelTank"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/FuelTank/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/FuelTank/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/FuelTank/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/FuelTank/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/FuelTank/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to upgrade fuel"
+
+[node name="Cost" type="Label" parent="Environment/FuelTank/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Cost: $10"
 
 [node name="TrainResistence" type="Node2D" parent="Environment"]
-position = Vector2(1032, 515)
+position = Vector2(1351, 927)
 script = ExtResource("7_yypja")
 upgrade_name = "train_resist"
+cost_to_upgrade_by_level = Array[int]([15, 50, 100])
+upgrade_amount_by_level = Array[int]([15, 15, 15])
+max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainResistence"]
 modulate = Color(0.701961, 0.231373, 0.211765, 1)
@@ -212,20 +330,53 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/TrainResistence" instance=ExtResource("5_rjc3w")]
 
-[node name="Label2" type="Label" parent="Environment/TrainResistence"]
-offset_left = -44.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Train Resist (HP)"
+[node name="MarginContainer" type="MarginContainer" parent="Environment/TrainResistence"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/TrainResistence/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/TrainResistence/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/TrainResistence/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/TrainResistence/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/TrainResistence/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to upgrade motor resistance"
+
+[node name="Cost" type="Label" parent="Environment/TrainResistence/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Cost: $10"
 
 [node name="TrainSpeed" type="Node2D" parent="Environment"]
-position = Vector2(1032, 741)
+position = Vector2(1379, 570)
 script = ExtResource("8_6ir4g")
 upgrade_name = "train_speed"
-cost_to_upgrade_by_level = Array[int]([50, 100])
-upgrade_amount_by_level = Array[int]([100, 100])
-max_level = 2
+cost_to_upgrade_by_level = Array[int]([50, 100, 200])
+upgrade_amount_by_level = Array[int]([100, 150, 150])
+max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainSpeed"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
@@ -233,15 +384,48 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/TrainSpeed" instance=ExtResource("5_rjc3w")]
 
-[node name="Label" type="Label" parent="Environment/TrainSpeed"]
-offset_left = -42.0
-offset_top = 59.0
-offset_right = 50.0
-offset_bottom = 85.0
-text = "Train Speed"
+[node name="MarginContainer" type="MarginContainer" parent="Environment/TrainSpeed"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/TrainSpeed/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/TrainSpeed/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/TrainSpeed/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/TrainSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/TrainSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to upgrade train speed"
+
+[node name="Cost" type="Label" parent="Environment/TrainSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Cost: $10"
 
 [node name="PlayerDamage" type="Node2D" parent="Environment"]
-position = Vector2(177, 790)
+position = Vector2(160, 598)
 script = ExtResource("9_exm60")
 upgrade_name = "damage"
 cost_to_upgrade_by_level = Array[int]([10, 20, 30])
@@ -254,20 +438,53 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/PlayerDamage" instance=ExtResource("5_rjc3w")]
 
-[node name="Label2" type="Label" parent="Environment/PlayerDamage"]
-offset_left = -44.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Player Damage"
+[node name="MarginContainer" type="MarginContainer" parent="Environment/PlayerDamage"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/PlayerDamage/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/PlayerDamage/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/PlayerDamage/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/PlayerDamage/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/PlayerDamage/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to upgrade damage"
+
+[node name="Cost" type="Label" parent="Environment/PlayerDamage/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Cost: $10"
 
 [node name="PlayerHP" type="Node2D" parent="Environment"]
-position = Vector2(451, 903)
+position = Vector2(79, 815)
 script = ExtResource("10_rt46t")
 upgrade_name = "hp"
-cost_to_upgrade_by_level = Array[int]([10, 20])
-upgrade_amount_by_level = Array[int]([5, 5])
-max_level = 2
+cost_to_upgrade_by_level = Array[int]([10, 20, 50])
+upgrade_amount_by_level = Array[int]([5, 5, 5])
+max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerHP"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)
@@ -275,18 +492,51 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/PlayerHP" instance=ExtResource("5_rjc3w")]
 
-[node name="Label2" type="Label" parent="Environment/PlayerHP"]
-offset_left = -44.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Player HP"
+[node name="MarginContainer" type="MarginContainer" parent="Environment/PlayerHP"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/PlayerHP/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/PlayerHP/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/PlayerHP/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/PlayerHP/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/PlayerHP/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to upgrade HP"
+
+[node name="Cost" type="Label" parent="Environment/PlayerHP/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Cost: $10"
 
 [node name="PlayerSpeed" type="Node2D" parent="Environment"]
-position = Vector2(781, 856)
+position = Vector2(409, 950)
 script = ExtResource("11_5m07c")
 upgrade_name = "speed"
-cost_to_upgrade_by_level = Array[int]([50, 50])
+cost_to_upgrade_by_level = Array[int]([25, 50])
 upgrade_amount_by_level = Array[int]([100, 100])
 max_level = 2
 
@@ -296,23 +546,143 @@ texture = ExtResource("4_2fy4i")
 
 [node name="Interactable" parent="Environment/PlayerSpeed" instance=ExtResource("5_rjc3w")]
 
-[node name="Label2" type="Label" parent="Environment/PlayerSpeed"]
-offset_left = -44.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Player Speed"
-
-[node name="TempBackground" type="Sprite2D" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="Environment/PlayerSpeed"]
 visible = false
-position = Vector2(778, 278)
-texture = ExtResource("7_yqotg")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
 
-[node name="Player" parent="." instance=ExtResource("8_khro0")]
-position = Vector2(522, 592)
+[node name="Panel" type="Panel" parent="Environment/PlayerSpeed/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
 
-[node name="Camera2D" parent="Player" instance=ExtResource("9_dg3ip")]
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/PlayerSpeed/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
 
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/PlayerSpeed/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/PlayerSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/PlayerSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to upgrade speed"
+
+[node name="Cost" type="Label" parent="Environment/PlayerSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Cost: $10"
+
+[node name="InvisibleWalls" type="Node2D" parent="Environment"]
+visible = false
+position = Vector2(1148, 276)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/InvisibleWalls"]
+position = Vector2(-216, 21)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/InvisibleWalls/StaticBody2D"]
+position = Vector2(-984.5, 194.5)
+shape = SubResource("RectangleShape2D_cwhb2")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Environment/InvisibleWalls"]
+position = Vector2(-563, 107)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/InvisibleWalls/StaticBody2D2"]
+position = Vector2(983.375, 111.5)
+shape = SubResource("RectangleShape2D_kb7xa")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Environment/InvisibleWalls"]
+position = Vector2(-484, 780)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/InvisibleWalls/StaticBody2D3"]
+position = Vector2(367, -600)
+shape = SubResource("RectangleShape2D_ii3kt")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="Environment/InvisibleWalls"]
+position = Vector2(0, -20)
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/InvisibleWalls/StaticBody2D4"]
+position = Vector2(-40, 797)
+shape = SubResource("RectangleShape2D_r5was")
+
+[node name="Tutorial" type="Control" parent="Environment"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 746.0
+offset_top = 918.0
+offset_right = 786.0
+offset_bottom = 958.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Environment/Tutorial"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -45.0
+offset_right = 97.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/Tutorial/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/Tutorial/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/Tutorial/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/Tutorial/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="Environment/Tutorial/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[W][A][S][D] to move"
+
+[node name="Label2" type="Label" parent="Environment/Tutorial/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[J] to attack"
+
+[node name="Label" type="Label" parent="Environment/Tutorial/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to interact/close text"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/Tutorial"]
+root_node = NodePath("")
+
+[connection signal="timeout" from="GameplayManager/GarageGameplayManager/Timer" to="GameplayManager/GarageGameplayManager" method="_on_timer_timeout"]
+[connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]
 [connection signal="player_entered_in_cabin" from="Environment/TrainCabin" to="GameplayManager/GarageGameplayManager" method="_on_train_cabin_player_entered_in_cabin" flags=18]
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted" flags=18]
 [connection signal="upgrade_success" from="Environment/FuelTank" to="GameplayManager/GarageGameplayManager" method="_on_fuel_tank_upgrade_success"]
@@ -327,4 +697,3 @@ position = Vector2(522, 592)
 [connection signal="player_interacted" from="Environment/PlayerHP/Interactable" to="Environment/PlayerHP" method="_on_interactable_player_interacted" flags=18]
 [connection signal="upgrade_success" from="Environment/PlayerSpeed" to="GameplayManager/GarageGameplayManager" method="_on_player_speed_upgrade_success"]
 [connection signal="player_interacted" from="Environment/PlayerSpeed/Interactable" to="Environment/PlayerSpeed" method="_on_interactable_player_interacted" flags=18]
-[connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]

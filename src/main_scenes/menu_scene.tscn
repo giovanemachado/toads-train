@@ -48,7 +48,7 @@ text = "Play"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-text = "Debug_go_to_garage"
+text = "debug_train"
 
 [connection signal="pressed" from="menu_scene/MarginContainer/VBoxContainer/Play" to="menu_scene" method="_on_play_pressed"]
 [connection signal="pressed" from="menu_scene/MarginContainer/VBoxContainer/Debug_go_to_garage" to="menu_scene" method="_on_debug_go_to_garage_pressed"]

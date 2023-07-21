@@ -4,7 +4,7 @@ class_name Interactable
 
 signal player_interacted
 
-@onready var icon: Sprite2D = $Icon
+@onready var icon = $"../MarginContainer"
 var there_is_interactable_in_range: bool = false
 
 

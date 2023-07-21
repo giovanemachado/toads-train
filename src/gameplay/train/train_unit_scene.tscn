@@ -1,8 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://dic06qvwx0s5o"]
+[gd_scene load_steps=12 format=3 uid="uid://dic06qvwx0s5o"]
 
 [ext_resource type="Script" path="res://src/gameplay/train/Train.gd" id="1_r503i"]
-[ext_resource type="Texture2D" uid="uid://c7c4vsoelehjq" path="res://src/gameplay/train/sprites/train_map.png" id="2_7e2vk"]
-[ext_resource type="Texture2D" uid="uid://bgyhkbtrs4xwp" path="res://src/utils/assets/all_sizes.png" id="2_60hpw"]
+[ext_resource type="Texture2D" uid="uid://ck08m57ywe1f" path="res://src/gameplay/train/sprites/train map.png" id="2_jsr8s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co488"]
 size = Vector2(101, 683)
@@ -37,14 +36,9 @@ fuel_amount_per_tick = 1
 distance_amount_per_tick = 10
 
 [node name="TrainMap" type="Sprite2D" parent="."]
-position = Vector2(160, -86.9999)
+position = Vector2(-132, -86.9999)
 scale = Vector2(3.5, 3.5)
-texture = ExtResource("2_7e2vk")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
-scale = Vector2(0.492917, 0.224444)
-texture = ExtResource("2_60hpw")
+texture = ExtResource("2_jsr8s")
 
 [node name="FuelTimer" type="Timer" parent="."]
 
