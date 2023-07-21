@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://deraw4ot1ok6y"]
+[gd_scene load_steps=22 format=3 uid="uid://deraw4ot1ok6y"]
 
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="1_mqfaw"]
 [ext_resource type="Texture2D" uid="uid://ck08m57ywe1f" path="res://src/gameplay/train/sprites/train map.png" id="2_d0271"]
@@ -12,17 +12,10 @@
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="8_khro0"]
 [ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="9_dg3ip"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerDamage.gd" id="9_exm60"]
+[ext_resource type="Theme" uid="uid://bdnxwfd5an272" path="res://src/assets/general_theme.tres" id="10_06lja"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerHP.gd" id="10_rt46t"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerSpeed.gd" id="11_5m07c"]
 [ext_resource type="Texture2D" uid="uid://5xrmapbvv6s0" path="res://src/gameplay/environments/garage map.png" id="15_axgft"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i4kl"]
-bg_color = Color(0.192157, 0.192157, 0.192157, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.709804, 0.709804, 0.709804, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwhb2"]
 size = Vector2(101, 1219)
@@ -35,6 +28,12 @@ size = Vector2(2786, 142)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r5was"]
 size = Vector2(2781, 96)
+
+[sub_resource type="Environment" id="Environment_5e7m8"]
+background_mode = 3
+glow_intensity = 2.3
+glow_strength = 0.87
+glow_bloom = 0.1
 
 [node name="garage_scene" type="Node2D"]
 
@@ -92,20 +91,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-
-[node name="Label" type="Label" parent="UI/Control/MarginContainer/VBoxContainer3/VBoxContainer"]
-layout_mode = 2
-text = "garage scene"
-
-[node name="Debug - Menu" type="Button" parent="UI/Control/MarginContainer/VBoxContainer3/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Debug - Menu"
-
-[node name="Debug - Garage" type="Button" parent="UI/Control/MarginContainer/VBoxContainer3/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Debug - Garage"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer3/VBoxContainer"]
 layout_mode = 2
@@ -198,15 +183,6 @@ text = "Player Damage"
 layout_mode = 2
 text = "0"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer3"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-
-[node name="Label" type="Label" parent="UI/Control/MarginContainer/VBoxContainer3/VBoxContainer2"]
-layout_mode = 2
-text = "...."
-
 [node name="Player" parent="." instance=ExtResource("8_khro0")]
 position = Vector2(761, 832)
 
@@ -243,7 +219,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/TrainCabin/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/TrainCabin/MarginContainer"]
 layout_mode = 2
@@ -260,6 +236,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/TrainCabin/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to play"
 
 [node name="FuelTank" type="Node2D" parent="Environment"]
@@ -293,7 +270,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/FuelTank/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/FuelTank/MarginContainer"]
 layout_mode = 2
@@ -310,10 +287,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/FuelTank/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to upgrade fuel"
 
 [node name="Cost" type="Label" parent="Environment/FuelTank/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="TrainResistence" type="Node2D" parent="Environment"]
@@ -347,7 +326,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/TrainResistence/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/TrainResistence/MarginContainer"]
 layout_mode = 2
@@ -364,10 +343,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/TrainResistence/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to upgrade motor resistance"
 
 [node name="Cost" type="Label" parent="Environment/TrainResistence/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="TrainSpeed" type="Node2D" parent="Environment"]
@@ -385,7 +366,6 @@ texture = ExtResource("4_2fy4i")
 [node name="Interactable" parent="Environment/TrainSpeed" instance=ExtResource("5_rjc3w")]
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/TrainSpeed"]
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -401,7 +381,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/TrainSpeed/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/TrainSpeed/MarginContainer"]
 layout_mode = 2
@@ -415,13 +395,16 @@ layout_mode = 2
 
 [node name="Panel" type="Panel" parent="Environment/TrainSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 
 [node name="Label" type="Label" parent="Environment/TrainSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to upgrade train speed"
 
 [node name="Cost" type="Label" parent="Environment/TrainSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="PlayerDamage" type="Node2D" parent="Environment"]
@@ -455,7 +438,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/PlayerDamage/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/PlayerDamage/MarginContainer"]
 layout_mode = 2
@@ -472,10 +455,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/PlayerDamage/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to upgrade damage"
 
 [node name="Cost" type="Label" parent="Environment/PlayerDamage/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="PlayerHP" type="Node2D" parent="Environment"]
@@ -509,7 +494,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/PlayerHP/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/PlayerHP/MarginContainer"]
 layout_mode = 2
@@ -526,10 +511,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/PlayerHP/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to upgrade HP"
 
 [node name="Cost" type="Label" parent="Environment/PlayerHP/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="PlayerSpeed" type="Node2D" parent="Environment"]
@@ -563,7 +550,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/PlayerSpeed/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/PlayerSpeed/MarginContainer"]
 layout_mode = 2
@@ -580,10 +567,12 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/PlayerSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to upgrade speed"
 
 [node name="Cost" type="Label" parent="Environment/PlayerSpeed/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="InvisibleWalls" type="Node2D" parent="Environment"]
@@ -651,7 +640,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/Tutorial/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_3i4kl")
+theme = ExtResource("10_06lja")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/Tutorial/MarginContainer"]
 layout_mode = 2
@@ -668,18 +657,24 @@ layout_mode = 2
 
 [node name="Label3" type="Label" parent="Environment/Tutorial/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
-text = "[W][A][S][D] to move"
+theme = ExtResource("10_06lja")
+text = "[WASD] to move"
 
 [node name="Label2" type="Label" parent="Environment/Tutorial/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[J] to attack"
 
 [node name="Label" type="Label" parent="Environment/Tutorial/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_06lja")
 text = "[E] to interact/close text"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/Tutorial"]
 root_node = NodePath("")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_5e7m8")
 
 [connection signal="timeout" from="GameplayManager/GarageGameplayManager/Timer" to="GameplayManager/GarageGameplayManager" method="_on_timer_timeout"]
 [connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]

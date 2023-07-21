@@ -18,6 +18,7 @@ config/features=PackedStringArray("4.1", "Forward Plus")
 
 Globals="*res://src/utils/scripts/Globals.gd"
 SignalBus="*res://src/utils/scripts/SignalBus.gd"
+SceneLoader="*res://src/utils/scenes/scene_loader.tscn"
 
 [display]
 

@@ -11,4 +11,4 @@ func _on_train_stopped():
 
 func change_scenes(next_scene: String):
 	ResourceSaver.save(player_progress, player_progress.resource_path)
-	get_tree().change_scene_to_file(next_scene)
+	SceneLoader.scene_transition(next_scene)

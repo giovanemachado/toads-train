@@ -6,11 +6,11 @@ extends Control
 
 
 func _on_menu_pressed():
-	get_tree().change_scene_to_file(Globals.MAIN_SCENES.MENU)
+	SceneLoader.scene_transition(Globals.MAIN_SCENES.MENU)
 
 
 func _on_debug__garage_pressed():
-	get_tree().change_scene_to_file(Globals.MAIN_SCENES.GARAGE)
+	SceneLoader.scene_transition(Globals.MAIN_SCENES.GARAGE)
 
 
 func _on_train_distance_updated(value: int):

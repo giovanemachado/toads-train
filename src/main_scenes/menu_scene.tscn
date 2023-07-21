@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://cufdtc738y2yd"]
+[gd_scene load_steps=4 format=3 uid="uid://cufdtc738y2yd"]
 
 [ext_resource type="Script" path="res://src/ui/Menu.gd" id="1_x4hru"]
+[ext_resource type="Texture2D" uid="uid://m4cyxxchaa3q" path="res://src/assets/initial.png" id="2_n1pyo"]
+[ext_resource type="Theme" uid="uid://bdnxwfd5an272" path="res://src/assets/general_theme.tres" id="2_w85rk"]
 
 [node name="menu_scene" type="CanvasLayer"]
 
@@ -13,6 +15,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_x4hru")
 
+[node name="TextureRect" type="TextureRect" parent="menu_scene"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_n1pyo")
+
 [node name="MarginContainer" type="MarginContainer" parent="menu_scene"]
 layout_mode = 1
 anchors_preset = 15
@@ -21,7 +29,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 35
-theme_override_constants/margin_top = 35
+theme_override_constants/margin_top = 275
 theme_override_constants/margin_right = 35
 theme_override_constants/margin_bottom = 35
 
@@ -33,22 +41,11 @@ size_flags_vertical = 4
 layout_mode = 2
 theme_override_constants/margin_bottom = 50
 
-[node name="Label" type="Label" parent="menu_scene/MarginContainer/VBoxContainer/MarginContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "project-w"
-
 [node name="Play" type="Button" parent="menu_scene/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
+theme = ExtResource("2_w85rk")
 text = "Play"
 
-[node name="Debug_go_to_garage" type="Button" parent="menu_scene/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 8
-text = "debug_train"
-
 [connection signal="pressed" from="menu_scene/MarginContainer/VBoxContainer/Play" to="menu_scene" method="_on_play_pressed"]
-[connection signal="pressed" from="menu_scene/MarginContainer/VBoxContainer/Debug_go_to_garage" to="menu_scene" method="_on_debug_go_to_garage_pressed"]

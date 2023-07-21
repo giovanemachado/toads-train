@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/traintrack2.mp3-d986e2e45688322f0752978aff54c
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

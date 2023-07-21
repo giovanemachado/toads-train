@@ -1,11 +1,11 @@
-[gd_resource type="Resource" script_class="PlayerProgress" load_steps=2 format=3 uid="uid://capbyo57ra6h3"]
+[gd_resource type="Resource" script_class="PlayerProgress" load_steps=2 format=3 uid="uid://blyctve4wee0y"]
 
 [ext_resource type="Script" path="res://src/resources/progress/PlayerProgress.gd" id="1_hecnw"]
 
 [resource]
 script = ExtResource("1_hecnw")
-max_distance_reach = 1080
-money = 51
+max_distance_reach = 0
+money = 0
 damage = 1
 damage_level = 0
 speed = 300
@@ -18,4 +18,4 @@ train_resist = 10
 train_resist_level = 0
 train_speed = 100
 train_speed_level = 0
-garage_visited = 4
+garage_visited = 0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=27 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="10_cfm16"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/EventsManager.gd" id="10_gf7ns"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/train/ExplosiveValve.gd" id="10_hjluc"]
+[ext_resource type="Theme" uid="uid://bdnxwfd5an272" path="res://src/assets/general_theme.tres" id="10_s1vfd"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="12_baklc"]
 [ext_resource type="Script" path="res://src/gameplay/train/Motor.gd" id="12_pl4cb"]
 [ext_resource type="AudioStream" uid="uid://pu6yjrmty076" path="res://src/gameplay/audios/traintrack2.mp3" id="14_bxc84"]
@@ -64,16 +65,15 @@ _data = {
 "event": SubResource("Animation_pshai")
 }
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pewvw"]
-bg_color = Color(0.192157, 0.192157, 0.192157, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.709804, 0.709804, 0.709804, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t0e1"]
 size = Vector2(95, 94)
+
+[sub_resource type="Environment" id="Environment_ebo0f"]
+background_mode = 3
+glow_intensity = 1.7
+glow_bloom = 0.55
+
+[sub_resource type="CameraAttributesPractical" id="CameraAttributesPractical_hc05x"]
 
 [node name="train_scene" type="Node"]
 
@@ -120,16 +120,6 @@ custom_minimum_size = Vector2(200, 25)
 layout_mode = 2
 step = 1.0
 show_percentage = false
-
-[node name="Debug - Menu" type="Button" parent="UI/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Debug - Menu"
-
-[node name="Debug - Garage" type="Button" parent="UI/Control/MarginContainer/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-text = "Debug - Garage"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -213,13 +203,6 @@ texture = ExtResource("8_7vvql")
 [node name="Interactable" parent="Environment/FuelLeaking" instance=ExtResource("9_wfkmt")]
 visible = false
 
-[node name="Label2" type="Label" parent="Environment/FuelLeaking"]
-offset_left = -49.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Fuel Leaking"
-
 [node name="Timer" type="Timer" parent="Environment/FuelLeaking"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/FuelLeaking"]
@@ -244,7 +227,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/FuelLeaking/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+theme = ExtResource("10_s1vfd")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/FuelLeaking/MarginContainer"]
 layout_mode = 2
@@ -261,6 +244,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/FuelLeaking/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_s1vfd")
 text = "[E] to kick the tank"
 
 [node name="ExplosiveValve" type="Node2D" parent="Environment"]
@@ -276,13 +260,6 @@ texture = ExtResource("8_7vvql")
 
 [node name="Interactable" parent="Environment/ExplosiveValve" instance=ExtResource("9_wfkmt")]
 visible = false
-
-[node name="Label2" type="Label" parent="Environment/ExplosiveValve"]
-offset_left = -49.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Explosive Valve"
 
 [node name="Timer" type="Timer" parent="Environment/ExplosiveValve"]
 
@@ -308,7 +285,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/ExplosiveValve/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+theme = ExtResource("10_s1vfd")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/ExplosiveValve/MarginContainer"]
 layout_mode = 2
@@ -325,6 +302,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/ExplosiveValve/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="ExplosiveValve2" type="Node2D" parent="Environment"]
@@ -372,7 +350,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/ExplosiveValve2/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+theme = ExtResource("10_s1vfd")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/ExplosiveValve2/MarginContainer"]
 layout_mode = 2
@@ -389,6 +367,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/ExplosiveValve2/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="ExplosiveValve3" type="Node2D" parent="Environment"]
@@ -436,7 +415,7 @@ size_flags_vertical = 8
 
 [node name="Panel" type="Panel" parent="Environment/ExplosiveValve3/MarginContainer"]
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+theme = ExtResource("10_s1vfd")
 
 [node name="MarginContainer2" type="MarginContainer" parent="Environment/ExplosiveValve3/MarginContainer"]
 layout_mode = 2
@@ -453,6 +432,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="Environment/ExplosiveValve3/MarginContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="EventsManager" type="Node" parent="Environment" node_paths=PackedStringArray("events")]
@@ -525,8 +505,10 @@ position = Vector2(1563, 656)
 limit_right = 3600
 editor_draw_limits = true
 
-[connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Menu" to="UI/Control" method="_on_menu_pressed"]
-[connection signal="pressed" from="UI/Control/MarginContainer/VBoxContainer/Debug - Garage" to="UI/Control" method="_on_debug__garage_pressed"]
+[node name="PostProcessing" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ebo0f")
+camera_attributes = SubResource("CameraAttributesPractical_hc05x")
+
 [connection signal="money_updated" from="GameplayManager/TrainGameplayManager" to="UI/Control" method="_on_train_gameplay_manager_money_updated"]
 [connection signal="distance_updated" from="Environment/Train" to="UI/Control" method="_on_train_distance_updated"]
 [connection signal="stopped" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_stopped"]
