@@ -11,6 +11,8 @@ signal money_updated
 @export var speed_extra_on_explosive_valve: int = 50
 @onready var event_label = $"../../UI/Control/MarginContainer/VBoxContainer/HBoxContainer3/Event"
 
+@onready var player: Player = %Player
+
 var normal_fuel_leaking: int = 0
 
 func _on_train_stopped():
@@ -31,6 +33,7 @@ func _on_fuel_leaking_event_started(event_name):
 	normal_fuel_leaking = train.fuel_amount_per_tick
 	train.fuel_amount_per_tick += fuel_extra_on_leaking
 	event_label.text = event_name
+	player.text_box.show_text("We have a fuel leaking!")
 
 
 func _on_fuel_leaking_event_success(event_name):
@@ -79,6 +82,7 @@ func _on_fuel_leaking_event_fail(event_name):
 
 func _on_explosive_valve_event_started(event_name):
 	event_label.text = event_name
+	player.text_box.show_text("A valve is about to explode!")
 
 
 func _on_explosive_valve_event_success(event_name):
@@ -91,6 +95,7 @@ func _on_explosive_valve_event_fail(event_name):
 
 func _on_explosive_valve_2_event_started(event_name):
 	event_label.text = event_name
+	player.text_box.show_text("A valve is about to explode!")
 
 
 func _on_explosive_valve_2_event_success(event_name):
@@ -99,6 +104,7 @@ func _on_explosive_valve_2_event_success(event_name):
 
 func _on_explosive_valve_3_event_started(event_name):
 	event_label.text = event_name
+	player.text_box.show_text("A valve is about to explode!")
 
 func _on_explosive_valve_3_event_fail(event_name):
 	event_label.text = ""

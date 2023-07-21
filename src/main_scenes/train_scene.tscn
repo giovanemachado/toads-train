@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=24 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
@@ -62,6 +62,14 @@ _data = {
 "RESET": SubResource("Animation_8xsrm"),
 "event": SubResource("Animation_pshai")
 }
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pewvw"]
+bg_color = Color(0.192157, 0.192157, 0.192157, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.709804, 0.709804, 0.709804, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t0e1"]
 size = Vector2(95, 94)
@@ -218,6 +226,42 @@ libraries = {
 "": SubResource("AnimationLibrary_r52bi")
 }
 
+[node name="MarginContainer" type="MarginContainer" parent="Environment/FuelLeaking"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/FuelLeaking/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/FuelLeaking/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/FuelLeaking/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/FuelLeaking/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/FuelLeaking/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to kick the tank"
+
 [node name="ExplosiveValve" type="Node2D" parent="Environment"]
 position = Vector2(2134, 450)
 script = ExtResource("10_hjluc")
@@ -245,6 +289,42 @@ text = "Explosive Valve"
 libraries = {
 "": SubResource("AnimationLibrary_r52bi")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="Environment/ExplosiveValve"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/ExplosiveValve/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/ExplosiveValve/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/ExplosiveValve/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/ExplosiveValve/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/ExplosiveValve/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to kick the valve"
 
 [node name="ExplosiveValve2" type="Node2D" parent="Environment"]
 position = Vector2(2416, 820)
@@ -274,6 +354,42 @@ libraries = {
 "": SubResource("AnimationLibrary_r52bi")
 }
 
+[node name="MarginContainer" type="MarginContainer" parent="Environment/ExplosiveValve2"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/ExplosiveValve2/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/ExplosiveValve2/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/ExplosiveValve2/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/ExplosiveValve2/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/ExplosiveValve2/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to kick the valve"
+
 [node name="ExplosiveValve3" type="Node2D" parent="Environment"]
 position = Vector2(3290, 520)
 script = ExtResource("10_hjluc")
@@ -301,6 +417,42 @@ text = "Explosive Valve"
 libraries = {
 "": SubResource("AnimationLibrary_r52bi")
 }
+
+[node name="MarginContainer" type="MarginContainer" parent="Environment/ExplosiveValve3"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.0
+offset_top = -105.0
+offset_right = 78.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+
+[node name="Panel" type="Panel" parent="Environment/ExplosiveValve3/MarginContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_pewvw")
+
+[node name="MarginContainer2" type="MarginContainer" parent="Environment/ExplosiveValve3/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_right = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Environment/ExplosiveValve3/MarginContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Environment/ExplosiveValve3/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Environment/ExplosiveValve3/MarginContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+text = "[E] to kick the valve"
 
 [node name="EventsManager" type="Node" parent="Environment" node_paths=PackedStringArray("events")]
 script = ExtResource("10_gf7ns")

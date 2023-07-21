@@ -403,6 +403,7 @@ libraries = {
 }
 
 [node name="TextBox" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_left = -18.0
