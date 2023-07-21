@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=25 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/gameplay/interactables/train/ExplosiveValve.gd" id="10_hjluc"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="12_baklc"]
 [ext_resource type="Script" path="res://src/gameplay/train/Motor.gd" id="12_pl4cb"]
+[ext_resource type="AudioStream" uid="uid://pu6yjrmty076" path="res://src/gameplay/audios/traintrack2.mp3" id="14_bxc84"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6hy"]
@@ -474,6 +475,11 @@ position = Vector2(1.5, 2)
 shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="Health" parent="Environment/Motor" instance=ExtResource("12_baklc")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Environment"]
+stream = ExtResource("14_bxc84")
+volume_db = -5.0
+autoplay = true
 
 [node name="Enemies" type="Node" parent="."]
 
