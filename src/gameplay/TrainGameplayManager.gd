@@ -9,11 +9,17 @@ signal money_updated
 
 @export var fuel_extra_on_leaking: int = 2
 @export var speed_extra_on_explosive_valve: int = 50
-@onready var event_label = $"../../UI/Control/MarginContainer/VBoxContainer/HBoxContainer3/Event"
 
 @onready var player: Player = %Player
 
 var normal_fuel_leaking: int = 0
+
+@onready var sound_effects = $"../../SoundEffects"
+var audio = preload("res://src/gameplay/audios/horn.mp3")
+
+func _ready():
+	sound_effects.stream = audio
+	sound_effects.play()
 
 func _on_train_stopped():
 	gameplay_manager.change_scenes(Globals.MAIN_SCENES.GARAGE)
@@ -32,22 +38,35 @@ func _on_fuel_leaking_event_started(event_name):
 	# if restarted, it will increase. Ok
 	normal_fuel_leaking = train.fuel_amount_per_tick
 	train.fuel_amount_per_tick += fuel_extra_on_leaking
-	event_label.text = event_name
 	player.text_box.show_text("We have a fuel leaking!")
 
 
 func _on_fuel_leaking_event_success(event_name):
 	train.fuel_amount_per_tick = normal_fuel_leaking
-	event_label.text = ""
+
+
+func _on_explosive_valve_2_event_started(event_name):
+	player.text_box.show_text("A valve is about to explode!")
+
 
 func _on_explosive_valve_2_event_fail(event_name):
 	train.current_speed += speed_extra_on_explosive_valve
-	event_label.text = ""
 
 
-func _on_explosive_valve_3_event_success(event_name):
+func _on_explosive_valve_3_event_fail(event_name):
 	train.current_speed += speed_extra_on_explosive_valve
-	event_label.text = ""
+	
+	
+func _on_explosive_valve_3_event_started(event_name):
+	player.text_box.show_text("A valve is about to explode!")
+
+
+func _on_explosive_valve_event_started(event_name):
+	player.text_box.show_text("A valve is about to explode!")
+
+
+func _on_explosive_valve_event_fail(event_name):
+	train.current_speed += speed_extra_on_explosive_valve
 
 
 # motor health
@@ -76,35 +95,3 @@ func get_difficult_multiplier():
 	return difficult_multiplier
 
 
-func _on_fuel_leaking_event_fail(event_name):
-	event_label.text = ""
-
-
-func _on_explosive_valve_event_started(event_name):
-	event_label.text = event_name
-	player.text_box.show_text("A valve is about to explode!")
-
-
-func _on_explosive_valve_event_success(event_name):
-	event_label.text = ""
-
-func _on_explosive_valve_event_fail(event_name):
-	train.current_speed += speed_extra_on_explosive_valve
-	event_label.text = ""
-	
-
-func _on_explosive_valve_2_event_started(event_name):
-	event_label.text = event_name
-	player.text_box.show_text("A valve is about to explode!")
-
-
-func _on_explosive_valve_2_event_success(event_name):
-	event_label.text = ""
-
-
-func _on_explosive_valve_3_event_started(event_name):
-	event_label.text = event_name
-	player.text_box.show_text("A valve is about to explode!")
-
-func _on_explosive_valve_3_event_fail(event_name):
-	event_label.text = ""

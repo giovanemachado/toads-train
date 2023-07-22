@@ -29,7 +29,6 @@ var random_phrases = [
 	"Where does this sword come from?"
 ]
 
-
 func _ready():
 	update_labels_debug()
 	timer.start(lore_timing)

@@ -55,6 +55,7 @@ func spawn_enemies():
 						enemy_to_spawn_instance.difficult_was_born(difficult_multiplier)
 					
 					add_child(enemy_to_spawn_instance)
+					enemy_to_spawn_instance.spawned()
 
 
 	var cooldown = timing_to_first_spawn - difficult_multiplier

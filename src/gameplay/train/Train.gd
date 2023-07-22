@@ -10,7 +10,7 @@ signal distance_updated
 @export var train_max_speed: int = 700
 
 @export_group("Fuel")
-@onready var fuel_bar: ProgressBar = $"../../UI/Control/MarginContainer/VBoxContainer/FuelBar"
+@onready var fuel_bar: ProgressBar = $"../../UI/Control/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2/FuelBar"
 @onready var fuel_timer: Timer = $FuelTimer
 @export var fuel_timing: float = 1
 @export var fuel_amount_per_tick = 2

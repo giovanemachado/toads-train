@@ -22,17 +22,24 @@ var attack_group_should_be_updated_to_motor = true
 var hp_should_be_updated = true
 var extra_hp_by_difficult = 0
 
+
+var audio = preload("res://src/gameplay/audios/laugh.mp3")
+@onready var audio_stream: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+
+func spawned():
+	audio_stream.stream = audio
+	audio_stream.pitch_scale = randf_range(0.9, 1.1)
+	audio_stream.play()
+	update_attack_group()
+	update_hp()
+
 func _ready():
 	navigation_agent.path_desired_distance = path_desired_distance
 	navigation_agent.target_desired_distance = target_desired_distance
 	
 	randomize_toad()
 	call_deferred("actor_setup")
-
-func _process(delta):
-	update_attack_group()
-	update_hp()
-	
 
 func actor_setup():
 	await get_tree().physics_frame

@@ -19,6 +19,7 @@ signal update_combo(numb: int)
 @onready var text_box: TextBox = $TextBox
 
 var life_bar_is_ready = false
+var tween: Tween
 
 func _ready():
 	health.max_health_points = gameplay_manager.player_progress.hp
@@ -58,6 +59,12 @@ func _on_health_health_update(old_value, new_value, damager_position: Vector2):
 
 	if life_bar != null:
 		life_bar.value = new_value
+		if tween:
+			tween.kill()
+
+		tween = create_tween()
+		tween.tween_property(life_bar, "modulate", Color(1, 1, 1, 0), 0.2)
+		tween.tween_property(life_bar, "modulate", Color(1, 1, 1, 1), 0.3)
 
 
 func _on_health_dead():
