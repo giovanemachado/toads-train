@@ -22,6 +22,7 @@ signal attack_is_done
 var damage_to_cause = 0
 var attack_in_cooldown = false
 
+
 func attack():
 	if attack_in_cooldown:
 		return
@@ -55,8 +56,13 @@ func cause_damage():
 	
 	for node in nodes:
 		if node.is_in_group(attack_group):
+#			if node.has_node("Health"):
 			node.health.damage(damage_to_cause, global_position)
 			successful_attack.emit()
+#			elif node.has_node("../Health"):
+#				var h = node.get_node("../../Motor/Health")
+#				h.damage(damage_to_cause, global_position)
+#				successful_attack.emit()
 
 func _on_delay_to_attack_timeout():
 	cause_damage()

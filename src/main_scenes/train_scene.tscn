@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=29 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
@@ -15,6 +15,7 @@
 [ext_resource type="Script" path="res://src/gameplay/interactables/train/ExplosiveValve.gd" id="10_hjluc"]
 [ext_resource type="Theme" uid="uid://bdnxwfd5an272" path="res://src/assets/general_theme.tres" id="10_s1vfd"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="12_baklc"]
+[ext_resource type="Script" path="res://src/gameplay/units/health/RedirectHealth.gd" id="12_bitib"]
 [ext_resource type="Script" path="res://src/gameplay/train/Motor.gd" id="12_pl4cb"]
 [ext_resource type="AudioStream" uid="uid://pu6yjrmty076" path="res://src/gameplay/audios/traintrack2.mp3" id="14_bxc84"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
@@ -72,7 +73,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t0e1"]
-size = Vector2(95, 94)
+size = Vector2(178.5, 159)
 
 [sub_resource type="Environment" id="Environment_ebo0f"]
 background_mode = 3
@@ -378,13 +379,12 @@ layout_mode = 2
 theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve" groups=["motor"]]
+script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve/StaticBody2D"]
 position = Vector2(1.5, 2)
 shape = SubResource("RectangleShape2D_3t0e1")
-
-[node name="Health" parent="Environment/ExplosiveValve" instance=ExtResource("12_baklc")]
 
 [node name="ExplosiveValve2" type="Node2D" parent="Environment" groups=["motor"]]
 position = Vector2(2533, 820)
@@ -445,13 +445,12 @@ layout_mode = 2
 theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve2" groups=["motor"]]
+script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve2/StaticBody2D"]
 position = Vector2(1.5, 2)
 shape = SubResource("RectangleShape2D_3t0e1")
-
-[node name="Health" parent="Environment/ExplosiveValve2" instance=ExtResource("12_baklc")]
 
 [node name="ExplosiveValve3" type="Node2D" parent="Environment" groups=["motor"]]
 position = Vector2(3176, 819)
@@ -512,13 +511,12 @@ layout_mode = 2
 theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve3"]
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve3" groups=["motor"]]
+script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve3/StaticBody2D"]
-position = Vector2(1.5, 2)
+position = Vector2(-3, -10)
 shape = SubResource("RectangleShape2D_3t0e1")
-
-[node name="Health" parent="Environment/ExplosiveValve3" instance=ExtResource("12_baklc")]
 
 [node name="EventsManager" type="Node" parent="Environment" node_paths=PackedStringArray("events")]
 script = ExtResource("10_gf7ns")
@@ -537,7 +535,7 @@ script = ExtResource("12_pl4cb")
 texture = ExtResource("8_7vvql")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Motor"]
-position = Vector2(1.5, 2)
+position = Vector2(-1, -6)
 shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="Health" parent="Environment/Motor" instance=ExtResource("12_baklc")]
@@ -551,9 +549,8 @@ autoplay = true
 
 [node name="EnemiesManager" type="Node" parent="Enemies" node_paths=PackedStringArray("spawns_marks")]
 script = ExtResource("7_4bgps")
-timing_to_first_spawn = 5.0
 spawns_marks = [NodePath("SpawnMarks/Marker2D"), NodePath("SpawnMarks/Marker2D2"), NodePath("SpawnMarks/Marker2D3"), NodePath("SpawnMarks/Marker2D4"), NodePath("SpawnMarks/Marker2D5"), NodePath("SpawnMarks/Marker2D6")]
-chance_of_attack_motor = 99
+chance_of_attack_motor = 150
 
 [node name="SpawnMarks" type="Node" parent="Enemies/EnemiesManager"]
 
@@ -610,20 +607,14 @@ volume_db = -10.0
 [connection signal="event_started" from="Environment/ExplosiveValve" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_event_started"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve/Interactable" to="Environment/ExplosiveValve" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve/Timer" to="Environment/ExplosiveValve" method="_on_timer_timeout"]
-[connection signal="dead" from="Environment/ExplosiveValve/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
-[connection signal="health_update" from="Environment/ExplosiveValve/Health" to="Environment/Motor" method="_on_health_health_update"]
 [connection signal="event_fail" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_fail"]
 [connection signal="event_started" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_started"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve2/Interactable" to="Environment/ExplosiveValve2" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve2/Timer" to="Environment/ExplosiveValve2" method="_on_timer_timeout"]
-[connection signal="dead" from="Environment/ExplosiveValve2/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
-[connection signal="health_update" from="Environment/ExplosiveValve2/Health" to="Environment/Motor" method="_on_health_health_update"]
 [connection signal="event_fail" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_fail"]
 [connection signal="event_started" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_started"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve3/Interactable" to="Environment/ExplosiveValve3" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve3/Timer" to="Environment/ExplosiveValve3" method="_on_timer_timeout"]
-[connection signal="dead" from="Environment/ExplosiveValve3/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
-[connection signal="health_update" from="Environment/ExplosiveValve3/Health" to="Environment/Motor" method="_on_health_health_update"]
 [connection signal="timeout" from="Environment/EventsManager/Timer" to="Environment/EventsManager" method="_on_timer_timeout"]
 [connection signal="dead" from="Environment/Motor/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
 [connection signal="health_update" from="Environment/Motor/Health" to="Environment/Motor" method="_on_health_health_update"]

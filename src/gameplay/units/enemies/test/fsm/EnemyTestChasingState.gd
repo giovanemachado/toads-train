@@ -26,7 +26,9 @@ func _on_update(_delta: float):
 		attack = enemy_test.attack
 		
 		if state_manager.target == null:
-			state_manager.target = get_tree().get_nodes_in_group(attack.attack_group).pick_random()
+			var nodes_in_attack_group = get_tree().get_nodes_in_group(attack.attack_group)
+			var nodes_to_attack = nodes_in_attack_group.filter(func(n): return n is Event || n is Player || n is Motor)
+			state_manager.target = nodes_to_attack.pick_random()
 			
 		health.can_be_attacked(false)
 		return

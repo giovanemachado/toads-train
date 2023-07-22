@@ -22,10 +22,6 @@ func _on_update(_delta: float):
 		health = enemy_test.health
 		navigation_agent = enemy_test.navigation_agent
 		attack = enemy_test.attack
-		
-		if state_manager.target == null:
-			state_manager.target = get_tree().get_nodes_in_group(attack.attack_group).pick_random()
-			
 		return
 	
 	if health.is_damaged:

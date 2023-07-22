@@ -403,7 +403,6 @@ position = Vector2(-50.507, 0)
 scale = Vector2(2.98692, 2.98692)
 
 [node name="Attack" parent="." instance=ExtResource("8_q45ml")]
-visible = false
 attack_group = "player"
 
 [node name="Area2D" type="Area2D" parent="Attack"]

@@ -13,6 +13,8 @@ var enemy_test = preload("res://src/gameplay/units/enemies/test/enemy_test_scene
 var wave_number = 0
 @export var chance_of_attack_motor = 30
 
+var total_enemies = 0
+
 @onready var train_gameplay_manager: TrainGameplayManager = $"../../GameplayManager/TrainGameplayManager"
 
 func get_all_enemies():
@@ -37,25 +39,27 @@ func spawn_enemies():
 	for k in spawn_pos.size():
 		var current_spawn_pos = spawn_pos[k]
 		
-		for l in current_spawn_pos.enemies.size():
-			var enemy_to_spawn = current_spawn_pos.enemies[l]
-		
-			if enemy_to_spawn.type.to_lower() == enemy_test_name:
-				var qtd_to_spawn = randi_range(2, enemy_to_spawn.qtd + difficult_multiplier)
-				
-				for m in qtd_to_spawn:
-					var slightly_random_spawn_position = randomize_position(spawns_marks[current_spawn_pos.position_number].global_position)
-					var enemy_to_spawn_instance = enemy_test.instantiate()
-					enemy_to_spawn_instance.position = slightly_random_spawn_position
+		if total_enemies < 50:
+			for l in current_spawn_pos.enemies.size():
+				var enemy_to_spawn = current_spawn_pos.enemies[l]
+			
+				if enemy_to_spawn.type.to_lower() == enemy_test_name:
+					var qtd_to_spawn = randi_range(2, enemy_to_spawn.qtd + difficult_multiplier)
 					
-					var n = randf_range(0, 100)
-					
-					if chance_of_attack_motor > n:
-						enemy_to_spawn_instance.attack_motor()
-						enemy_to_spawn_instance.difficult_was_born(difficult_multiplier)
-					
-					add_child(enemy_to_spawn_instance)
-					enemy_to_spawn_instance.spawned()
+					for m in qtd_to_spawn:
+						var slightly_random_spawn_position = randomize_position(spawns_marks[current_spawn_pos.position_number].global_position)
+						var enemy_to_spawn_instance = enemy_test.instantiate()
+						enemy_to_spawn_instance.position = slightly_random_spawn_position
+						
+						var n = randf_range(0, 100)
+						
+						if chance_of_attack_motor > n:
+							enemy_to_spawn_instance.attack_motor()
+							enemy_to_spawn_instance.difficult_was_born(difficult_multiplier)
+						
+						add_child(enemy_to_spawn_instance)
+						enemy_to_spawn_instance.spawned()
+						total_enemies += 1
 
 
 	var cooldown = timing_to_first_spawn - difficult_multiplier
@@ -79,6 +83,7 @@ func randomize_position(pos: Vector2):
 
 func on_enemy_die(value: int):
 	an_enemy_died.emit(value)
+	total_enemies -= 1
 
 
 func _on_timer_timeout():

@@ -42,7 +42,6 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("player_attack"):
 		attack.attack()
 		
-
 #	if Input.is_action_just_pressed("player_strong_attack"):
 #		attack.strong_attack()
 	
@@ -56,7 +55,7 @@ func _on_health_health_update(old_value, new_value, damager_position: Vector2):
 		life_bar.max_value = health.max_health_points
 		life_bar.value = health.max_health_points
 		life_bar_is_ready = true
-
+	
 	if life_bar != null:
 		life_bar.value = new_value
 		if tween:

@@ -1,5 +1,7 @@
 extends StaticBody2D
 
+class_name Motor
+
 @onready var train: Train = $"../Train"
 @onready var health: Health = $Health
 @onready var life_bar: ProgressBar = $"../../UI/Control/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2/TrainLifeBar"
@@ -9,6 +11,7 @@ extends StaticBody2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	health.max_health_points = train.current_resist
+	health.health_points = train.current_resist
 	
 	life_bar.max_value = health.max_health_points
 	life_bar.value = health.max_health_points
