@@ -13,6 +13,12 @@ var attack: Attack
 
 func _on_enter():
 	state_manager.animation_player.play("atk")
+	
+	if is_original_ready_done:
+		enemy_test.audio_player_walk.stop()
+		enemy_test.audio_player_parachute.stop()
+		enemy_test.audio_player_general.stream = enemy_test.sound_attack
+		enemy_test.audio_player_general.play()
 
 
 func _on_update(_delta: float):

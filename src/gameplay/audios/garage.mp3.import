@@ -12,7 +12,7 @@ dest_files=["res://.godot/imported/garage.mp3-3c26799fb49edce55651a5b992f170a5.m
 
 [params]
 
-loop=false
+loop=true
 loop_offset=0
 bpm=0
 beat_count=0

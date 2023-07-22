@@ -1,15 +1,17 @@
-[gd_scene load_steps=29 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=30 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
 [ext_resource type="Script" path="res://src/gameplay/TrainGameplayManager.gd" id="3_c3a6g"]
 [ext_resource type="PackedScene" uid="uid://dic06qvwx0s5o" path="res://src/gameplay/train/train_unit_scene.tscn" id="4_o8fs0"]
-[ext_resource type="Texture2D" uid="uid://bgyhkbtrs4xwp" path="res://src/utils/assets/all_sizes.png" id="6_mo4hc"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/EnemiesManager.gd" id="7_4bgps"]
+[ext_resource type="Texture2D" uid="uid://cixtqvvdlmcis" path="res://src/gameplay/environments/clud_background.png" id="7_36stu"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/train/FuelLeaking.gd" id="7_de43a"]
 [ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="8_7vvql"]
+[ext_resource type="Texture2D" uid="uid://5xrmapbvv6s0" path="res://src/gameplay/environments/garage map.png" id="8_qoodf"]
 [ext_resource type="Script" path="res://src/gameplay/visuals/AutoMovingParallaxLayer.gd" id="9_ah3o0"]
 [ext_resource type="PackedScene" uid="uid://5ao27mu0w7gw" path="res://src/gameplay/interactables/interactable_scene.tscn" id="9_wfkmt"]
+[ext_resource type="Texture2D" uid="uid://cge4ojl6328nb" path="res://src/gameplay/environments/rails.png" id="9_xoqoc"]
 [ext_resource type="PackedScene" uid="uid://bkmri4446vtux" path="res://src/gameplay/camera/camera_scene.tscn" id="10_cfm16"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/EventsManager.gd" id="10_gf7ns"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/train/ExplosiveValve.gd" id="10_hjluc"]
@@ -30,9 +32,6 @@ bg_color = Color(0.168627, 0.4, 0.12549, 1)
 vertices = PackedVector2Array(2345, 746, 3052, 456, 3152, 453, 3357, 457, 3360, 885, 2343, 890, -69, 945, 4138, 906, 4388, 944, 682, 964, -358, 955, -107, 911, 2030, 260, 2009, 473, 1927, 264, 1480, -1030, 1926, 465, 588, 254, -494, -996, 890, 264, 1008, 250, 1475, 270, 1579, 267, 4501, -629, 3507, 263, 2408, -1087, 3157, 256, 2728, 258, 2724, 457, 2627, 261, 2626, 459, 1119, 749, 1121, 891, 685, 898, 676, 452, 856.572, 453.66, 989.011, 454.878, 1114, 625, 1202, 749, 2220, 464, 2222, 609, 2221, 747, 2348, 457, 2342, 608, 3047, 255, 2221, 261, 1581, 460, 1482, 462, 2220, 886, 1203, 890, 1209, 619, 1111, 456, 1216, 464)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 6, 10), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 14, 13), PackedInt32Array(17, 11, 10, 18, 15), PackedInt32Array(19, 17, 15, 20), PackedInt32Array(21, 20, 15, 22), PackedInt32Array(23, 8, 7, 24, 25), PackedInt32Array(25, 24, 26), PackedInt32Array(27, 28, 29, 25), PackedInt32Array(30, 29, 28), PackedInt32Array(31, 32, 33, 34, 35, 36, 37), PackedInt32Array(38, 13, 39, 40, 41), PackedInt32Array(28, 1, 0, 30), PackedInt32Array(42, 30, 0, 43), PackedInt32Array(43, 0, 41, 40), PackedInt32Array(2, 1, 44, 26), PackedInt32Array(25, 26, 44), PackedInt32Array(25, 44, 27), PackedInt32Array(15, 25, 29, 45, 12), PackedInt32Array(15, 14, 22), PackedInt32Array(21, 22, 46, 47), PackedInt32Array(48, 49, 38, 41), PackedInt32Array(50, 47, 46, 16, 13, 38, 31), PackedInt32Array(36, 51, 37), PackedInt32Array(31, 37, 50), PackedInt32Array(47, 50, 52)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-494, -996, 1480, -1030, 2408, -1087, 4501, -629, 4388, 944, 682, 964, -358, 955), PackedVector2Array(676, 452, 685, 898, 1121, 891, 1119, 749, 1202, 749, 1203, 890, 2220, 886, 2221, 747, 2345, 746, 2343, 890, 3360, 885, 3357, 457, 3152, 453, 3157, 256, 3507, 263, 4138, 906, -69, 945, -107, 911, 588, 254, 890, 264, 1008, 250, 1475, 270, 1482, 462, 1216, 464, 1209, 619, 1114, 625, 1111, 456, 989.011, 454.878, 856.572, 453.66), PackedVector2Array(1579, 267, 1581, 460, 1926, 465, 1927, 264), PackedVector2Array(2030, 260, 2009, 473, 2220, 464, 2222, 609, 2342, 608, 2348, 457, 2626, 459, 2627, 261, 2221, 261), PackedVector2Array(2728, 258, 2724, 457, 3052, 456, 3047, 255)])
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_khbpd"]
-load_path = "res://.godot/imported/all_sizes.png-e3e4c38394243e5424b121e8072d4f5c.ctex"
 
 [sub_resource type="Animation" id="Animation_8xsrm"]
 length = 0.001
@@ -116,6 +115,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r6tyj")
+
+[node name="ColorRect" type="ColorRect" parent="UI/Control"]
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 205.0
+color = Color(0.203922, 0.203922, 0.203922, 0.72549)
 
 [node name="MarginContainer" type="MarginContainer" parent="UI/Control"]
 layout_mode = 1
@@ -243,23 +248,28 @@ navigation_polygon = SubResource("NavigationPolygon_sk6hy")
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Environment/ParallaxBackground"]
 position = Vector2(1284, 400)
 motion_scale = Vector2(0.5, 0.5)
-motion_mirroring = Vector2(2560, 0)
+motion_mirroring = Vector2(6000, 0)
 script = ExtResource("9_ah3o0")
 
-[node name="Sprite2D" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer"]
-scale = Vector2(0.646934, 0.646934)
-texture = ExtResource("6_mo4hc")
+[node name="CludBackground" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer"]
+position = Vector2(1615, 347)
+scale = Vector2(4, 4)
+texture = ExtResource("7_36stu")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="Environment/ParallaxBackground"]
 position = Vector2(0, 128)
-motion_mirroring = Vector2(1152, 0)
+motion_mirroring = Vector2(2450, 0)
 script = ExtResource("9_ah3o0")
 
-[node name="Ground" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer2"]
-modulate = Color(0.278431, 0.133333, 0.0980392, 1)
-position = Vector2(1920, 869)
-scale = Vector2(1, 0.12)
-texture = SubResource("CompressedTexture2D_khbpd")
+[node name="GarageMap" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1233, 1006)
+scale = Vector2(2, -2)
+texture = ExtResource("8_qoodf")
+
+[node name="Rails" type="Sprite2D" parent="Environment/ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1147, 636)
+scale = Vector2(2, 2)
+texture = ExtResource("9_xoqoc")
 
 [node name="FuelLeaking" type="Node2D" parent="Environment"]
 position = Vector2(1732, 449)
@@ -344,6 +354,7 @@ libraries = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/ExplosiveValve"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -380,6 +391,7 @@ theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve" groups=["motor"]]
+collision_mask = 0
 script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve/StaticBody2D"]
@@ -410,6 +422,7 @@ libraries = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/ExplosiveValve2"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -446,6 +459,7 @@ theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve2" groups=["motor"]]
+collision_mask = 0
 script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve2/StaticBody2D"]
@@ -476,6 +490,7 @@ libraries = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/ExplosiveValve3"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -512,6 +527,7 @@ theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve3" groups=["motor"]]
+collision_mask = 0
 script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve3/StaticBody2D"]
@@ -521,7 +537,7 @@ shape = SubResource("RectangleShape2D_3t0e1")
 [node name="EventsManager" type="Node" parent="Environment" node_paths=PackedStringArray("events")]
 script = ExtResource("10_gf7ns")
 events = [NodePath("../FuelLeaking"), NodePath("../ExplosiveValve"), NodePath("../ExplosiveValve2"), NodePath("../ExplosiveValve3")]
-timing_to_first_event = 5.0
+timing_to_first_event = 15.0
 
 [node name="Timer" type="Timer" parent="Environment/EventsManager"]
 one_shot = true
@@ -542,6 +558,7 @@ shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Environment"]
 stream = ExtResource("14_bxc84")
+volume_db = -10.0
 autoplay = true
 
 [node name="Enemies" type="Node" parent="."]
@@ -585,8 +602,9 @@ unique_name_in_owner = true
 position = Vector2(1563, 656)
 
 [node name="Camera2D" parent="Player" instance=ExtResource("10_cfm16")]
-limit_right = 3600
+limit_right = 3400
 editor_draw_screen = true
+editor_draw_limits = true
 
 [node name="PostProcessing" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ebo0f")
@@ -598,23 +616,28 @@ environment = SubResource("Environment_ebo0f")
 [connection signal="stopped" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_stopped"]
 [connection signal="event_fail" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_fail"]
 [connection signal="event_started" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_started"]
+[connection signal="event_started" from="Environment/FuelLeaking" to="Player" method="_on_fuel_leaking_event_started"]
 [connection signal="event_success" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_success"]
 [connection signal="player_interacted" from="Environment/FuelLeaking/Interactable" to="Environment/FuelLeaking" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/FuelLeaking/Timer" to="Environment/FuelLeaking" method="_on_timer_timeout"]
 [connection signal="event_fail" from="Environment/ExplosiveValve" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_event_fail"]
 [connection signal="event_started" from="Environment/ExplosiveValve" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_event_started"]
+[connection signal="event_started" from="Environment/ExplosiveValve" to="Player" method="_on_explosive_valve_event_started"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve/Interactable" to="Environment/ExplosiveValve" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve/Timer" to="Environment/ExplosiveValve" method="_on_timer_timeout"]
 [connection signal="event_fail" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_fail"]
 [connection signal="event_started" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_started"]
+[connection signal="event_started" from="Environment/ExplosiveValve2" to="Player" method="_on_explosive_valve_2_event_started"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve2/Interactable" to="Environment/ExplosiveValve2" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve2/Timer" to="Environment/ExplosiveValve2" method="_on_timer_timeout"]
 [connection signal="event_fail" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_fail"]
 [connection signal="event_started" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_started"]
+[connection signal="event_started" from="Environment/ExplosiveValve3" to="Player" method="_on_explosive_valve_3_event_started"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve3/Interactable" to="Environment/ExplosiveValve3" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve3/Timer" to="Environment/ExplosiveValve3" method="_on_timer_timeout"]
 [connection signal="timeout" from="Environment/EventsManager/Timer" to="Environment/EventsManager" method="_on_timer_timeout"]
 [connection signal="dead" from="Environment/Motor/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
+[connection signal="health_update" from="Environment/Motor/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_health_update"]
 [connection signal="health_update" from="Environment/Motor/Health" to="Environment/Motor" method="_on_health_health_update"]
 [connection signal="an_enemy_died" from="Enemies/EnemiesManager" to="GameplayManager/TrainGameplayManager" method="_on_enemies_manager_an_enemy_died"]
 [connection signal="timeout" from="Enemies/EnemiesManager/Timer" to="Enemies/EnemiesManager" method="_on_timer_timeout"]

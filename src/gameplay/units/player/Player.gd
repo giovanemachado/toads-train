@@ -29,6 +29,7 @@ var sound_death = preload("res://src/gameplay/audios/sound player/playerdeath.mp
 var sound_groan1 = preload("res://src/gameplay/audios/sound player/groan1.mp3")
 var sound_groan2 = preload("res://src/gameplay/audios/sound player/groan2.mp3")
 var sound_groan3 = preload("res://src/gameplay/audios/sound player/groan3.mp3")
+var sound_alert = preload("res://src/gameplay/audios/sound player/playeralert.mp3")
 
 func _ready():
 	health.max_health_points = gameplay_manager.player_progress.hp
@@ -104,4 +105,24 @@ func _on_interaction_interacted():
 
 func _on_attack_attack_try():
 	audio_player_general_sounds.stream = sound_attack
+	audio_player_general_sounds.play()
+
+
+func _on_fuel_leaking_event_started(event_name):
+	audio_player_general_sounds.stream = sound_alert
+	audio_player_general_sounds.play()
+
+
+func _on_explosive_valve_event_started(event_name):
+	audio_player_general_sounds.stream = sound_alert
+	audio_player_general_sounds.play()
+
+
+func _on_explosive_valve_2_event_started(event_name):
+	audio_player_general_sounds.stream = sound_alert
+	audio_player_general_sounds.play()
+
+
+func _on_explosive_valve_3_event_started(event_name):
+	audio_player_general_sounds.stream = sound_alert
 	audio_player_general_sounds.play()

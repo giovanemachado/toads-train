@@ -87,6 +87,7 @@ one_shot = true
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Control" type="Control" parent="UI"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -207,14 +208,6 @@ text = "Player Damage"
 layout_mode = 2
 text = "0"
 
-[node name="Player" parent="." instance=ExtResource("8_khro0")]
-position = Vector2(761, 832)
-
-[node name="Camera2D" parent="Player" instance=ExtResource("9_dg3ip")]
-zoom = Vector2(1, 1)
-limit_right = 1500
-editor_draw_limits = true
-
 [node name="Environment" type="Node" parent="."]
 
 [node name="TrainCabin" type="Node2D" parent="Environment"]
@@ -228,6 +221,7 @@ texture = ExtResource("4_2fy4i")
 [node name="Interactable" parent="Environment/TrainCabin" instance=ExtResource("5_rjc3w")]
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/TrainCabin"]
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -279,6 +273,7 @@ texture = ExtResource("4_2fy4i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/FuelTank"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -335,6 +330,7 @@ texture = ExtResource("4_2fy4i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/TrainResistence"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -391,6 +387,7 @@ texture = ExtResource("4_2fy4i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/TrainSpeed"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -448,6 +445,7 @@ texture = ExtResource("4_2fy4i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/PlayerDamage"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -504,6 +502,7 @@ texture = ExtResource("4_2fy4i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/PlayerHP"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -560,6 +559,7 @@ texture = ExtResource("4_2fy4i")
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/PlayerSpeed"]
 visible = false
+z_index = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -698,16 +698,22 @@ text = "[E] to interact/close text"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/Tutorial"]
 root_node = NodePath("")
 
+[node name="Player" parent="." instance=ExtResource("8_khro0")]
+position = Vector2(761, 832)
+
+[node name="Camera2D" parent="Player" instance=ExtResource("9_dg3ip")]
+zoom = Vector2(1, 1)
+limit_right = 1500
+editor_draw_limits = true
+
 [node name="PostProcessing" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_hvf43")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("17_rkhja")
-volume_db = -15.0
 autoplay = true
 
 [connection signal="timeout" from="GameplayManager/GarageGameplayManager/Timer" to="GameplayManager/GarageGameplayManager" method="_on_timer_timeout"]
-[connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]
 [connection signal="player_entered_in_cabin" from="Environment/TrainCabin" to="GameplayManager/GarageGameplayManager" method="_on_train_cabin_player_entered_in_cabin" flags=18]
 [connection signal="player_interacted" from="Environment/TrainCabin/Interactable" to="Environment/TrainCabin" method="_on_interactable_player_interacted" flags=18]
 [connection signal="upgrade_success" from="Environment/FuelTank" to="GameplayManager/GarageGameplayManager" method="_on_fuel_tank_upgrade_success"]
@@ -722,3 +728,4 @@ autoplay = true
 [connection signal="player_interacted" from="Environment/PlayerHP/Interactable" to="Environment/PlayerHP" method="_on_interactable_player_interacted" flags=18]
 [connection signal="upgrade_success" from="Environment/PlayerSpeed" to="GameplayManager/GarageGameplayManager" method="_on_player_speed_upgrade_success"]
 [connection signal="player_interacted" from="Environment/PlayerSpeed/Interactable" to="Environment/PlayerSpeed" method="_on_interactable_player_interacted" flags=18]
+[connection signal="update_combo" from="Player" to="GameplayManager/GarageGameplayManager" method="_on_player_update_combo"]

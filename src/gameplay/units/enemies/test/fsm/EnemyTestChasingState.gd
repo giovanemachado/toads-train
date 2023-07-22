@@ -15,6 +15,10 @@ var chasing_animation = "falling"
 
 func _on_enter():
 	state_manager.animation_player.play(chasing_animation)
+	
+	if is_original_ready_done:
+		enemy_test.audio_player_walk.play()
+	
 
 
 func _on_update(_delta: float):
@@ -24,6 +28,7 @@ func _on_update(_delta: float):
 		is_original_ready_done = true
 		health = enemy_test.health
 		attack = enemy_test.attack
+		enemy_test.audio_player_parachute.play()
 		
 		if state_manager.target == null:
 			var nodes_in_attack_group = get_tree().get_nodes_in_group(attack.attack_group)
@@ -73,6 +78,8 @@ func _on_area_2d_area_entered(area):
 	if is_in_train:
 		return
 	
+	enemy_test.audio_player_parachute.stop()
+	enemy_test.audio_player_walk.play()
 	health.can_be_attacked(true)
 	chasing_animation = "run"
 	is_in_train = true

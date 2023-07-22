@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bkq1ueojo62vb"]
+[gd_scene load_steps=25 format=3 uid="uid://bkq1ueojo62vb"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="1_15g8g"]
 [ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="3_ivy8j"]
@@ -13,6 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://bblltl4n3c0cb" path="res://src/gameplay/units/enemies/animation/staple frog falling.png" id="12_58v1m"]
 [ext_resource type="Texture2D" uid="uid://djj545qb270kq" path="res://src/gameplay/units/enemies/animation/Staple frog atk.png" id="13_6ydic"]
 [ext_resource type="Texture2D" uid="uid://ch30ntmci2frq" path="res://src/gameplay/units/enemies/animation/staple frog hurt.png" id="14_6b7f2"]
+[ext_resource type="AudioStream" uid="uid://ba21xnv1wvs6p" path="res://src/gameplay/audios/sound frog/frogwalk.mp3" id="14_wqwpd"]
+[ext_resource type="AudioStream" uid="uid://dnpiywm0btskl" path="res://src/gameplay/audios/sound frog/parachute.mp3" id="15_oydsm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ieuyy"]
 radius = 31.0
@@ -435,9 +437,17 @@ collision_mask = 524288
 position = Vector2(2, -7.5)
 shape = SubResource("RectangleShape2D_18d0u")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-attenuation = 4.43828
-max_polyphony = 10
+[node name="SoundEffects" type="Node2D" parent="."]
+
+[node name="Walk" type="AudioStreamPlayer2D" parent="SoundEffects"]
+stream = ExtResource("14_wqwpd")
+
+[node name="Parachute" type="AudioStreamPlayer2D" parent="SoundEffects"]
+stream = ExtResource("15_oydsm")
+volume_db = -15.0
+
+[node name="General" type="AudioStreamPlayer2D" parent="SoundEffects"]
+volume_db = 10.0
 
 [connection signal="turning_to" from="Movement" to="." method="_on_movement_turning_to"]
 [connection signal="turning_to" from="Movement" to="EnemyAttack" method="_on_movement_turning_to"]

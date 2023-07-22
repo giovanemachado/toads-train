@@ -22,9 +22,3 @@ func _physics_process(delta: float):
 	pushback_force = lerp(pushback_force, Vector2.ZERO, delta * 10)
 	velocity = pushback_force
 	move_and_slide()
-
-
-func _on_health_health_update(old_value, new_value, damager_position):
-	if old_value > new_value:
-		knock_back(damager_position)
-

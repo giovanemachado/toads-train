@@ -23,16 +23,22 @@ var hp_should_be_updated = true
 var extra_hp_by_difficult = 0
 
 
-var audio = preload("res://src/gameplay/audios/laugh.mp3")
-@onready var audio_stream: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var audio_player_walk = $SoundEffects/Walk
+@onready var audio_player_parachute = $SoundEffects/Parachute
+@onready var audio_player_general = $SoundEffects/General
+
+var sound_spawned = preload("res://src/gameplay/audios/laugh.mp3")
+var sound_attack = preload("res://src/gameplay/audios/sound frog/frogattack.mp3")
+var sound_damage = preload("res://src/gameplay/audios/sound frog/frogdamage.mp3")
 
 
 func spawned():
-	audio_stream.stream = audio
-	audio_stream.pitch_scale = randf_range(0.9, 1.1)
-	audio_stream.play()
+	audio_player_general.stream = sound_spawned
+	audio_player_general.pitch_scale = randf_range(0.9, 1.1)
+	audio_player_general.play()
 	update_attack_group()
 	update_hp()
+
 
 func _ready():
 	navigation_agent.path_desired_distance = path_desired_distance
@@ -40,6 +46,7 @@ func _ready():
 	
 	randomize_toad()
 	call_deferred("actor_setup")
+
 
 func actor_setup():
 	await get_tree().physics_frame
@@ -49,6 +56,8 @@ func actor_setup():
 
 
 func _on_health_dead():
+	audio_player_general.stream = sound_damage
+	audio_player_general.play()
 	enemy_die.emit(money_per_kill)
 	queue_free()
 
@@ -87,3 +96,11 @@ func randomize_toad():
 	var random_scale = randf_range(3.8, 4.4)
 	sprite.scale = Vector2(random_scale, random_scale)
 	sprite.modulate = Color(1, randf_range(0.8, 1.4), 1, 1)
+
+
+func _on_health_health_update(old_value, new_value, damager_position):
+	if old_value > new_value:
+		knock_back(damager_position)
+	
+	audio_player_general.stream = sound_damage
+	audio_player_general.play()

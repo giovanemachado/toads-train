@@ -49,4 +49,9 @@ func upgrade():
 
 	current_level += 1
 	
+	if current_level >= max_level:
+		label_cost.text = "MAX LEVEL"
+	else:
+		label_cost.text = "Cost: $" + str(cost_to_upgrade_by_level[current_level])
+	
 	return true
