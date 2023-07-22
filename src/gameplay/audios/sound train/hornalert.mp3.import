@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5ym46gp4402j"
+path="res://.godot/imported/hornalert.mp3-ebf5ed24fe063a5019aa66fae39db72b.mp3str"
+
+[deps]
+
+source_file="res://src/gameplay/audios/sound train/hornalert.mp3"
+dest_files=["res://.godot/imported/hornalert.mp3-ebf5ed24fe063a5019aa66fae39db72b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

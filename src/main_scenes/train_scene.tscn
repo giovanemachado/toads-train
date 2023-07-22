@@ -542,7 +542,6 @@ shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Environment"]
 stream = ExtResource("14_bxc84")
-volume_db = -15.0
 autoplay = true
 
 [node name="Enemies" type="Node" parent="."]
@@ -550,7 +549,7 @@ autoplay = true
 [node name="EnemiesManager" type="Node" parent="Enemies" node_paths=PackedStringArray("spawns_marks")]
 script = ExtResource("7_4bgps")
 spawns_marks = [NodePath("SpawnMarks/Marker2D"), NodePath("SpawnMarks/Marker2D2"), NodePath("SpawnMarks/Marker2D3"), NodePath("SpawnMarks/Marker2D4"), NodePath("SpawnMarks/Marker2D5"), NodePath("SpawnMarks/Marker2D6")]
-chance_of_attack_motor = 150
+chance_of_attack_motor = 40
 
 [node name="SpawnMarks" type="Node" parent="Enemies/EnemiesManager"]
 
@@ -593,7 +592,6 @@ editor_draw_screen = true
 environment = SubResource("Environment_ebo0f")
 
 [node name="SoundEffects" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
 
 [connection signal="money_updated" from="GameplayManager/TrainGameplayManager" to="UI/Control" method="_on_train_gameplay_manager_money_updated"]
 [connection signal="distance_updated" from="Environment/Train" to="UI/Control" method="_on_train_distance_updated"]

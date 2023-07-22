@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://i0vh1qtp5j6h"
+path="res://.godot/imported/interaction.mp3-65d5816d11e2eb25748b9ebea17f831f.mp3str"
+
+[deps]
+
+source_file="res://src/gameplay/audios/sound player/interaction.mp3"
+dest_files=["res://.godot/imported/interaction.mp3-65d5816d11e2eb25748b9ebea17f831f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

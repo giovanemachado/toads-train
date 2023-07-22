@@ -2,6 +2,8 @@ extends Node2D
 
 class_name Interaction
 
+signal interacted
+
 var current_interactable: Node2D
 
 func _on_area_2d_area_entered(area: Area2D):
@@ -23,3 +25,4 @@ func _on_area_2d_area_exited(area: Area2D):
 func interaction():
 	if current_interactable != null:
 		current_interactable.player_interact()
+		interacted.emit()

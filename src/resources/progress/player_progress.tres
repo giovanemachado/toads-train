@@ -18,4 +18,4 @@ train_resist = 50
 train_resist_level = 0
 train_speed = 100
 train_speed_level = 0
-garage_visited = 0
+garage_visited = 2

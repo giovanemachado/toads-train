@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://daypaejubmfth"
+path="res://.godot/imported/hornfuel.mp3-64f4803f11adc0de19e9695071419fcc.mp3str"
+
+[deps]
+
+source_file="res://src/gameplay/audios/sound train/hornfuel.mp3"
+dest_files=["res://.godot/imported/hornfuel.mp3-64f4803f11adc0de19e9695071419fcc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://ib7ajxwbvqjn"]
+[gd_scene load_steps=30 format=3 uid="uid://ib7ajxwbvqjn"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/player/Player.gd" id="1_sw0e8"]
 [ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="2_41y0w"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://drrrtqtdwhf1u" path="res://src/gameplay/units/player/animation/Main Char run side.png" id="10_mfchk"]
 [ext_resource type="Script" path="res://src/gameplay/units/player/TextBox.gd" id="15_e11nd"]
 [ext_resource type="Theme" uid="uid://bdnxwfd5an272" path="res://src/assets/general_theme.tres" id="16_j5gld"]
+[ext_resource type="AudioStream" uid="uid://buudpwbc8mohn" path="res://src/gameplay/audios/sound player/walk.mp3" id="17_sp80l"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_h8ium"]
 radius = 58.903
@@ -444,9 +445,18 @@ uppercase = true
 visible_characters = 0
 visible_ratio = 0.0
 
+[node name="SoundEffects" type="Node2D" parent="."]
+
+[node name="Walk" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource("17_sp80l")
+
+[node name="GeneralSounds" type="AudioStreamPlayer" parent="SoundEffects"]
+stream = ExtResource("17_sp80l")
+
 [connection signal="update_combo" from="PlayerAttack" to="." method="_on_player_attack_update_combo"]
 [connection signal="timeout" from="PlayerAttack/ComboTimer" to="PlayerAttack" method="_on_combo_timer_timeout"]
 [connection signal="attack_is_done" from="Attack" to="PlayerStateManager/PlayerAttackState" method="_on_attack_attack_is_done"]
+[connection signal="attack_try" from="Attack" to="." method="_on_attack_attack_try"]
 [connection signal="attack_try" from="Attack" to="PlayerStateManager/PlayerIdleState" method="_on_attack_attacked"]
 [connection signal="attack_try" from="Attack" to="PlayerStateManager/PlayerRunState" method="_on_attack_attacked"]
 [connection signal="successful_attack" from="Attack" to="." method="_on_attack_attacked"]
@@ -454,5 +464,6 @@ visible_ratio = 0.0
 [connection signal="turning_to" from="Movement" to="PlayerAttack" method="_on_movement_turning_to"]
 [connection signal="dead" from="Health" to="." method="_on_health_dead"]
 [connection signal="health_update" from="Health" to="." method="_on_health_health_update"]
+[connection signal="interacted" from="Interaction" to="." method="_on_interaction_interacted"]
 [connection signal="area_entered" from="Interaction/Area2D" to="Interaction" method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Interaction/Area2D" to="Interaction" method="_on_area_2d_area_exited"]

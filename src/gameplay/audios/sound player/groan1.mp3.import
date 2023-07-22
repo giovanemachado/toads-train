@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c5yu31e6e7adw"
+path="res://.godot/imported/groan1.mp3-5ddea2e8899bc610619d213f7c9ba83e.mp3str"
+
+[deps]
+
+source_file="res://src/gameplay/audios/sound player/groan1.mp3"
+dest_files=["res://.godot/imported/groan1.mp3-5ddea2e8899bc610619d213f7c9ba83e.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

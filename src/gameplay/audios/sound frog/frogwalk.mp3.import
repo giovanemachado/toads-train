@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ba21xnv1wvs6p"
+path="res://.godot/imported/frogwalk.mp3-ebd814c41781f06cca2008ad25d3a775.mp3str"
+
+[deps]
+
+source_file="res://src/gameplay/audios/sound frog/frogwalk.mp3"
+dest_files=["res://.godot/imported/frogwalk.mp3-ebd814c41781f06cca2008ad25d3a775.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

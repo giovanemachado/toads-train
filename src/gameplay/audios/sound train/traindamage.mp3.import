@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ceamvhgltxxk0"
+path="res://.godot/imported/traindamage.mp3-aa72cd4a6ab6847ab2ff2429dbbb022d.mp3str"
+
+[deps]
+
+source_file="res://src/gameplay/audios/sound train/traindamage.mp3"
+dest_files=["res://.godot/imported/traindamage.mp3-aa72cd4a6ab6847ab2ff2429dbbb022d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
