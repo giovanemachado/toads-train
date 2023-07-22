@@ -12,7 +12,6 @@ var attack: Attack
 var is_in_train = false
 var chasing_animation = "falling"
 
-var target
 
 func _on_enter():
 	state_manager.animation_player.play(chasing_animation)
@@ -25,14 +24,17 @@ func _on_update(_delta: float):
 		is_original_ready_done = true
 		health = enemy_test.health
 		attack = enemy_test.attack
-		target = get_tree().get_first_node_in_group(attack.attack_group)
+		
+		if state_manager.target == null:
+			state_manager.target = get_tree().get_nodes_in_group(attack.attack_group).pick_random()
+			
 		health.can_be_attacked(false)
 		return
 
 	if !enemy_test.agent_is_ready:
 		return
 	
-	navigation_agent.target_position = target.position
+	navigation_agent.target_position = state_manager.target.position
 	
 	if navigation_agent.distance_to_target() < 100 && is_in_train:
 		Transitioned.emit(self, "EnemyTestAttackingState") 

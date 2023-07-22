@@ -26,6 +26,7 @@ func _ready():
 	navigation_agent.path_desired_distance = path_desired_distance
 	navigation_agent.target_desired_distance = target_desired_distance
 	
+	randomize_toad()
 	call_deferred("actor_setup")
 
 func _process(delta):
@@ -52,6 +53,7 @@ func update_attack_group():
 	attack.attack_group = 'motor'
 	attack_group_should_be_updated_to_motor = true
 	
+	
 func update_hp():
 	if hp_should_be_updated:
 		return
@@ -60,12 +62,21 @@ func update_hp():
 	health.update_max_hp()
 	hp_should_be_updated = true
 	
+	
 func _on_movement_turning_to(direction: int):
 	sprite.flip_h = direction != 1
+	
 	
 func attack_motor():
 	attack_group_should_be_updated_to_motor = false
 
+
 func difficult_was_born(difficult: int):
 	hp_should_be_updated = false
 	extra_hp_by_difficult = difficult
+
+
+func randomize_toad():
+	var random_scale = randf_range(3.8, 4.4)
+	sprite.scale = Vector2(random_scale, random_scale)
+	sprite.modulate = Color(1, randf_range(0.8, 1.4), 1, 1)

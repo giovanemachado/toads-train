@@ -243,7 +243,7 @@ text = "[E] to play"
 position = Vector2(760, 586)
 script = ExtResource("6_li1gu")
 upgrade_name = "train_fuel"
-cost_to_upgrade_by_level = Array[int]([15, 50, 100])
+cost_to_upgrade_by_level = Array[int]([10, 50, 100])
 upgrade_amount_by_level = Array[int]([50, 75, 175])
 max_level = 3
 
@@ -296,10 +296,10 @@ theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="TrainResistence" type="Node2D" parent="Environment"]
-position = Vector2(1351, 927)
+position = Vector2(1298, 927)
 script = ExtResource("7_yypja")
 upgrade_name = "train_resist"
-cost_to_upgrade_by_level = Array[int]([15, 50, 100])
+cost_to_upgrade_by_level = Array[int]([10, 50, 100])
 upgrade_amount_by_level = Array[int]([15, 15, 15])
 max_level = 3
 
@@ -352,10 +352,10 @@ theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="TrainSpeed" type="Node2D" parent="Environment"]
-position = Vector2(1379, 570)
+position = Vector2(1356, 659)
 script = ExtResource("8_6ir4g")
 upgrade_name = "train_speed"
-cost_to_upgrade_by_level = Array[int]([50, 100, 200])
+cost_to_upgrade_by_level = Array[int]([10, 50, 100])
 upgrade_amount_by_level = Array[int]([100, 150, 150])
 max_level = 3
 
@@ -366,6 +366,7 @@ texture = ExtResource("4_2fy4i")
 [node name="Interactable" parent="Environment/TrainSpeed" instance=ExtResource("5_rjc3w")]
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/TrainSpeed"]
+visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -408,10 +409,10 @@ theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="PlayerDamage" type="Node2D" parent="Environment"]
-position = Vector2(160, 598)
+position = Vector2(249, 580)
 script = ExtResource("9_exm60")
 upgrade_name = "damage"
-cost_to_upgrade_by_level = Array[int]([10, 20, 30])
+cost_to_upgrade_by_level = Array[int]([10, 50, 100])
 upgrade_amount_by_level = Array[int]([1, 1, 1])
 max_level = 3
 
@@ -464,10 +465,10 @@ theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="PlayerHP" type="Node2D" parent="Environment"]
-position = Vector2(79, 815)
+position = Vector2(125, 815)
 script = ExtResource("10_rt46t")
 upgrade_name = "hp"
-cost_to_upgrade_by_level = Array[int]([10, 20, 50])
+cost_to_upgrade_by_level = Array[int]([10, 50, 100])
 upgrade_amount_by_level = Array[int]([5, 5, 5])
 max_level = 3
 
@@ -523,9 +524,9 @@ text = "Cost: $10"
 position = Vector2(409, 950)
 script = ExtResource("11_5m07c")
 upgrade_name = "speed"
-cost_to_upgrade_by_level = Array[int]([25, 50])
-upgrade_amount_by_level = Array[int]([100, 100])
-max_level = 2
+cost_to_upgrade_by_level = Array[int]([10, 50, 100])
+upgrade_amount_by_level = Array[int]([100, 100, 100])
+max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerSpeed"]
 modulate = Color(0.468276, 0.321616, 0.699581, 1)

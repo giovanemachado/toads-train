@@ -345,6 +345,7 @@ position = Vector2(-46.1308, 0)
 scale = Vector2(2.98692, 2.98692)
 
 [node name="ComboTimer" type="Timer" parent="PlayerAttack"]
+one_shot = true
 
 [node name="Attack" parent="." instance=ExtResource("2_41y0w")]
 attack_cooldown = 0.4

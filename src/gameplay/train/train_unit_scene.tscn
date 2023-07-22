@@ -41,6 +41,7 @@ scale = Vector2(3.5, 3.5)
 texture = ExtResource("2_jsr8s")
 
 [node name="FuelTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="InvisibleWalls" type="Node2D" parent="."]
 visible = false
@@ -116,6 +117,7 @@ shape = SubResource("RectangleShape2D_moe05")
 [node name="Distance" type="Node" parent="."]
 
 [node name="DistanceTimer" type="Timer" parent="Distance"]
+one_shot = true
 
 [node name="TrainArea" type="Area2D" parent="." groups=["detect_train"]]
 visible = false

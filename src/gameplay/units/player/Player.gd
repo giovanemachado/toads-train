@@ -42,8 +42,8 @@ func _physics_process(delta):
 		attack.attack()
 		
 
-	if Input.is_action_just_pressed("player_strong_attack"):
-		attack.strong_attack()
+#	if Input.is_action_just_pressed("player_strong_attack"):
+#		attack.strong_attack()
 	
 
 	if Input.is_action_just_pressed("player_interact"):

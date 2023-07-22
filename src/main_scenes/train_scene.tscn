@@ -20,9 +20,9 @@
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6hy"]
-vertices = PackedVector2Array(2345, 746, 3052, 456, 3152, 453, 3357, 457, 3360, 885, 2343, 890, -69, 945, 3530, 918, 4388, 944, 682, 964, -358, 955, -107, 911, 2030, 260, 2009, 473, 1927, 264, 1480, -1030, 1926, 465, 588, 254, -494, -996, 1475, 270, 1579, 267, 2728, 258, 2724, 457, 2627, 261, 2408, -1087, 2626, 459, 685, 898, 676, 452, 1111, 456, 1114, 625, 1121, 891, 1119, 749, 1202, 749, 2220, 464, 2222, 609, 2221, 747, 2348, 457, 2342, 608, 3047, 255, 3157, 256, 2220, 886, 1203, 890, 1581, 460, 1209, 619, 1482, 462, 4501, -629, 3507, 263, 2221, 261, 1216, 464)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 6, 10), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 14, 13), PackedInt32Array(17, 11, 10, 18, 15), PackedInt32Array(19, 17, 15, 20), PackedInt32Array(21, 22, 23, 24), PackedInt32Array(25, 23, 22), PackedInt32Array(26, 27, 28, 29), PackedInt32Array(30, 26, 29, 31), PackedInt32Array(32, 13, 33, 34, 35), PackedInt32Array(22, 1, 0, 25), PackedInt32Array(36, 25, 0, 37), PackedInt32Array(37, 0, 35, 34), PackedInt32Array(2, 1, 38, 39), PackedInt32Array(40, 41, 32, 35), PackedInt32Array(42, 16, 13, 32, 31, 43, 44), PackedInt32Array(31, 29, 43), PackedInt32Array(45, 8, 7, 46), PackedInt32Array(24, 45, 46, 39), PackedInt32Array(24, 39, 38), PackedInt32Array(24, 38, 21), PackedInt32Array(15, 24, 23, 47, 12), PackedInt32Array(15, 14, 20), PackedInt32Array(19, 20, 42, 44), PackedInt32Array(44, 43, 48)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-494, -996, 1480, -1030, 2408, -1087, 4501, -629, 4388, 944, 682, 964, -358, 955), PackedVector2Array(676, 452, 685, 898, 1121, 891, 1119, 749, 1202, 749, 1203, 890, 2220, 886, 2221, 747, 2345, 746, 2343, 890, 3360, 885, 3357, 457, 3152, 453, 3157, 256, 3507, 263, 3530, 918, -69, 945, -107, 911, 588, 254, 1475, 270, 1482, 462, 1216, 464, 1209, 619, 1114, 625, 1111, 456), PackedVector2Array(1579, 267, 1581, 460, 1926, 465, 1927, 264), PackedVector2Array(2030, 260, 2009, 473, 2220, 464, 2222, 609, 2342, 608, 2348, 457, 2626, 459, 2627, 261, 2221, 261), PackedVector2Array(2728, 258, 2724, 457, 3052, 456, 3047, 255)])
+vertices = PackedVector2Array(2345, 746, 3052, 456, 3152, 453, 3357, 457, 3360, 885, 2343, 890, -69, 945, 4138, 906, 4388, 944, 682, 964, -358, 955, -107, 911, 2030, 260, 2009, 473, 1927, 264, 1480, -1030, 1926, 465, 588, 254, -494, -996, 890, 264, 1008, 250, 1475, 270, 1579, 267, 4501, -629, 3507, 263, 2408, -1087, 3157, 256, 2728, 258, 2724, 457, 2627, 261, 2626, 459, 1119, 749, 1121, 891, 685, 898, 676, 452, 856.572, 453.66, 989.011, 454.878, 1114, 625, 1202, 749, 2220, 464, 2222, 609, 2221, 747, 2348, 457, 2342, 608, 3047, 255, 2221, 261, 1581, 460, 1482, 462, 2220, 886, 1203, 890, 1209, 619, 1111, 456, 1216, 464)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 6, 10), PackedInt32Array(12, 13, 14, 15), PackedInt32Array(16, 14, 13), PackedInt32Array(17, 11, 10, 18, 15), PackedInt32Array(19, 17, 15, 20), PackedInt32Array(21, 20, 15, 22), PackedInt32Array(23, 8, 7, 24, 25), PackedInt32Array(25, 24, 26), PackedInt32Array(27, 28, 29, 25), PackedInt32Array(30, 29, 28), PackedInt32Array(31, 32, 33, 34, 35, 36, 37), PackedInt32Array(38, 13, 39, 40, 41), PackedInt32Array(28, 1, 0, 30), PackedInt32Array(42, 30, 0, 43), PackedInt32Array(43, 0, 41, 40), PackedInt32Array(2, 1, 44, 26), PackedInt32Array(25, 26, 44), PackedInt32Array(25, 44, 27), PackedInt32Array(15, 25, 29, 45, 12), PackedInt32Array(15, 14, 22), PackedInt32Array(21, 22, 46, 47), PackedInt32Array(48, 49, 38, 41), PackedInt32Array(50, 47, 46, 16, 13, 38, 31), PackedInt32Array(36, 51, 37), PackedInt32Array(31, 37, 50), PackedInt32Array(47, 50, 52)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-494, -996, 1480, -1030, 2408, -1087, 4501, -629, 4388, 944, 682, 964, -358, 955), PackedVector2Array(676, 452, 685, 898, 1121, 891, 1119, 749, 1202, 749, 1203, 890, 2220, 886, 2221, 747, 2345, 746, 2343, 890, 3360, 885, 3357, 457, 3152, 453, 3157, 256, 3507, 263, 4138, 906, -69, 945, -107, 911, 588, 254, 890, 264, 1008, 250, 1475, 270, 1482, 462, 1216, 464, 1209, 619, 1114, 625, 1111, 456, 989.011, 454.878, 856.572, 453.66), PackedVector2Array(1579, 267, 1581, 460, 1926, 465, 1927, 264), PackedVector2Array(2030, 260, 2009, 473, 2220, 464, 2222, 609, 2342, 608, 2348, 457, 2626, 459, 2627, 261, 2221, 261), PackedVector2Array(2728, 258, 2724, 457, 3052, 456, 3047, 255)])
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_khbpd"]
 load_path = "res://.godot/imported/all_sizes.png-e3e4c38394243e5424b121e8072d4f5c.ctex"
@@ -163,7 +163,6 @@ distance_timing = 0.5
 distance_amount_per_tick = 5
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="Environment"]
-visible = false
 navigation_polygon = SubResource("NavigationPolygon_sk6hy")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Environment"]
@@ -190,7 +189,7 @@ scale = Vector2(1, 0.12)
 texture = SubResource("CompressedTexture2D_khbpd")
 
 [node name="FuelLeaking" type="Node2D" parent="Environment"]
-position = Vector2(1744, 449)
+position = Vector2(1732, 449)
 script = ExtResource("7_de43a")
 event_name = "fuel_leaking"
 event_timing = 15.0
@@ -204,6 +203,7 @@ texture = ExtResource("8_7vvql")
 visible = false
 
 [node name="Timer" type="Timer" parent="Environment/FuelLeaking"]
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/FuelLeaking"]
 libraries = {
@@ -247,8 +247,8 @@ layout_mode = 2
 theme = ExtResource("10_s1vfd")
 text = "[E] to kick the tank"
 
-[node name="ExplosiveValve" type="Node2D" parent="Environment"]
-position = Vector2(2134, 450)
+[node name="ExplosiveValve" type="Node2D" parent="Environment" groups=["motor"]]
+position = Vector2(1727, 833)
 script = ExtResource("10_hjluc")
 event_name = "explosive_valve"
 event_timing = 20.0
@@ -262,6 +262,7 @@ texture = ExtResource("8_7vvql")
 visible = false
 
 [node name="Timer" type="Timer" parent="Environment/ExplosiveValve"]
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/ExplosiveValve"]
 libraries = {
@@ -305,8 +306,16 @@ layout_mode = 2
 theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
-[node name="ExplosiveValve2" type="Node2D" parent="Environment"]
-position = Vector2(2416, 820)
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve/StaticBody2D"]
+position = Vector2(1.5, 2)
+shape = SubResource("RectangleShape2D_3t0e1")
+
+[node name="Health" parent="Environment/ExplosiveValve" instance=ExtResource("12_baklc")]
+
+[node name="ExplosiveValve2" type="Node2D" parent="Environment" groups=["motor"]]
+position = Vector2(2533, 820)
 script = ExtResource("10_hjluc")
 event_name = "explosive_valve"
 event_timing = 20.0
@@ -319,14 +328,8 @@ texture = ExtResource("8_7vvql")
 [node name="Interactable" parent="Environment/ExplosiveValve2" instance=ExtResource("9_wfkmt")]
 visible = false
 
-[node name="Label2" type="Label" parent="Environment/ExplosiveValve2"]
-offset_left = -49.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Explosive Valve"
-
 [node name="Timer" type="Timer" parent="Environment/ExplosiveValve2"]
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/ExplosiveValve2"]
 libraries = {
@@ -370,8 +373,16 @@ layout_mode = 2
 theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
-[node name="ExplosiveValve3" type="Node2D" parent="Environment"]
-position = Vector2(3290, 520)
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve2/StaticBody2D"]
+position = Vector2(1.5, 2)
+shape = SubResource("RectangleShape2D_3t0e1")
+
+[node name="Health" parent="Environment/ExplosiveValve2" instance=ExtResource("12_baklc")]
+
+[node name="ExplosiveValve3" type="Node2D" parent="Environment" groups=["motor"]]
+position = Vector2(3176, 819)
 script = ExtResource("10_hjluc")
 event_name = "explosive_valve"
 event_timing = 20.0
@@ -384,14 +395,8 @@ texture = ExtResource("8_7vvql")
 [node name="Interactable" parent="Environment/ExplosiveValve3" instance=ExtResource("9_wfkmt")]
 visible = false
 
-[node name="Label2" type="Label" parent="Environment/ExplosiveValve3"]
-offset_left = -49.0
-offset_top = 70.0
-offset_right = 48.0
-offset_bottom = 96.0
-text = "Explosive Valve"
-
 [node name="Timer" type="Timer" parent="Environment/ExplosiveValve3"]
+one_shot = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/ExplosiveValve3"]
 libraries = {
@@ -435,15 +440,24 @@ layout_mode = 2
 theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
+[node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve3"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve3/StaticBody2D"]
+position = Vector2(1.5, 2)
+shape = SubResource("RectangleShape2D_3t0e1")
+
+[node name="Health" parent="Environment/ExplosiveValve3" instance=ExtResource("12_baklc")]
+
 [node name="EventsManager" type="Node" parent="Environment" node_paths=PackedStringArray("events")]
 script = ExtResource("10_gf7ns")
 events = [NodePath("../FuelLeaking"), NodePath("../ExplosiveValve"), NodePath("../ExplosiveValve2"), NodePath("../ExplosiveValve3")]
 timing_to_first_event = 5.0
 
 [node name="Timer" type="Timer" parent="Environment/EventsManager"]
+one_shot = true
 
 [node name="Motor" type="StaticBody2D" parent="Environment" groups=["motor"]]
-position = Vector2(908, 674)
+position = Vector2(779, 674)
 collision_mask = 0
 script = ExtResource("12_pl4cb")
 
@@ -465,9 +479,9 @@ autoplay = true
 
 [node name="EnemiesManager" type="Node" parent="Enemies" node_paths=PackedStringArray("spawns_marks")]
 script = ExtResource("7_4bgps")
-timing_to_first_spawn = 10.0
+timing_to_first_spawn = 5.0
 spawns_marks = [NodePath("SpawnMarks/Marker2D"), NodePath("SpawnMarks/Marker2D2"), NodePath("SpawnMarks/Marker2D3"), NodePath("SpawnMarks/Marker2D4"), NodePath("SpawnMarks/Marker2D5"), NodePath("SpawnMarks/Marker2D6")]
-chance_of_attack_motor = 20
+chance_of_attack_motor = 38
 
 [node name="SpawnMarks" type="Node" parent="Enemies/EnemiesManager"]
 
@@ -496,6 +510,7 @@ position = Vector2(3177, 41)
 scale = Vector2(7.64117, 7.64117)
 
 [node name="Timer" type="Timer" parent="Enemies/EnemiesManager"]
+one_shot = true
 
 [node name="Player" parent="." instance=ExtResource("15_bwlow")]
 unique_name_in_owner = true
@@ -522,16 +537,22 @@ camera_attributes = SubResource("CameraAttributesPractical_hc05x")
 [connection signal="event_success" from="Environment/ExplosiveValve" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_event_success"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve/Interactable" to="Environment/ExplosiveValve" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve/Timer" to="Environment/ExplosiveValve" method="_on_timer_timeout"]
+[connection signal="dead" from="Environment/ExplosiveValve/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
+[connection signal="health_update" from="Environment/ExplosiveValve/Health" to="Environment/Motor" method="_on_health_health_update"]
 [connection signal="event_fail" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_fail"]
 [connection signal="event_started" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_started"]
 [connection signal="event_success" from="Environment/ExplosiveValve2" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_2_event_success"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve2/Interactable" to="Environment/ExplosiveValve2" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve2/Timer" to="Environment/ExplosiveValve2" method="_on_timer_timeout"]
+[connection signal="dead" from="Environment/ExplosiveValve2/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
+[connection signal="health_update" from="Environment/ExplosiveValve2/Health" to="Environment/Motor" method="_on_health_health_update"]
 [connection signal="event_fail" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_fail"]
 [connection signal="event_started" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_started"]
 [connection signal="event_success" from="Environment/ExplosiveValve3" to="GameplayManager/TrainGameplayManager" method="_on_explosive_valve_3_event_success"]
 [connection signal="player_interacted" from="Environment/ExplosiveValve3/Interactable" to="Environment/ExplosiveValve3" method="_on_interactable_player_interacted" flags=18]
 [connection signal="timeout" from="Environment/ExplosiveValve3/Timer" to="Environment/ExplosiveValve3" method="_on_timer_timeout"]
+[connection signal="dead" from="Environment/ExplosiveValve3/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
+[connection signal="health_update" from="Environment/ExplosiveValve3/Health" to="Environment/Motor" method="_on_health_health_update"]
 [connection signal="timeout" from="Environment/EventsManager/Timer" to="Environment/EventsManager" method="_on_timer_timeout"]
 [connection signal="dead" from="Environment/Motor/Health" to="GameplayManager/TrainGameplayManager" method="_on_health_dead"]
 [connection signal="health_update" from="Environment/Motor/Health" to="Environment/Motor" method="_on_health_health_update"]

@@ -15,9 +15,9 @@ class_name PlayerProgress
 @export var hp_level: int = 0
 
 @export_group("Train Upgrades")
-@export var train_fuel: int = 100
+@export var train_fuel: int = 200
 @export var train_fuel_level: int = 0
-@export var train_resist: int = 10
+@export var train_resist: int = 50
 @export var train_resist_level: int = 0
 @export var train_speed: int = 100
 @export var train_speed_level: int = 0

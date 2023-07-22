@@ -41,7 +41,7 @@ func spawn_enemies():
 			var enemy_to_spawn = current_spawn_pos.enemies[l]
 		
 			if enemy_to_spawn.type.to_lower() == enemy_test_name:
-				var qtd_to_spawn = randi_range(1, enemy_to_spawn.qtd + difficult_multiplier)
+				var qtd_to_spawn = randi_range(2, enemy_to_spawn.qtd + difficult_multiplier)
 				
 				for m in qtd_to_spawn:
 					var slightly_random_spawn_position = randomize_position(spawns_marks[current_spawn_pos.position_number].global_position)
@@ -57,7 +57,7 @@ func spawn_enemies():
 					add_child(enemy_to_spawn_instance)
 
 
-	var cooldown = waves_of_enemies[wave_number].wave_cooldown - difficult_multiplier
+	var cooldown = timing_to_first_spawn - difficult_multiplier
 	if cooldown < 0:
 		cooldown = 0.1
 
@@ -67,6 +67,7 @@ func spawn_enemies():
 	
 	if wave_number > 5:
 		wave_number = 0
+
 
 func randomize_position(pos: Vector2):
 	var new_pos: Vector2 = pos

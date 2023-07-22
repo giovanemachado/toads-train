@@ -61,7 +61,7 @@ func get_difficult_multiplier():
 	if train.current_distance > 200:
 		difficult_multiplier = 1
 	
-	if train.current_distance > 800:
+	if train.current_distance > 500:
 		difficult_multiplier = 2
 		
 	if train.current_distance > 1000:

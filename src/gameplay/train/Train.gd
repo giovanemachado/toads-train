@@ -63,7 +63,7 @@ func increase_distance():
 	
 	if gameplay_manager.player_progress.max_distance_reach < current_distance:
 		gameplay_manager.player_progress.max_distance_reach = current_distance
-
+	
 	distance_updated.emit(current_distance)
 
 
