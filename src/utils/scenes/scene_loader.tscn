@@ -57,3 +57,6 @@ color = Color(0.460938, 0.515625, 0.398438, 1)
 libraries = {
 "": SubResource("AnimationLibrary_v57i0")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -8.0

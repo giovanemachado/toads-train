@@ -15,7 +15,8 @@ func in_player_range():
 
 func out_of_player_range():
 	there_is_interactable_in_range = false
-	icon.hide()
+	if get_parent().name != "TrainCabin":
+		icon.hide()
 
 
 func player_interact():

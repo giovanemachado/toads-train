@@ -20,11 +20,15 @@ var sound_alert = preload("res://src/gameplay/audios/sound train/hornalert.mp3")
 var sound_fuel = preload("res://src/gameplay/audios/sound train/hornfuel.mp3")
 var sound_breaking = preload("res://src/gameplay/audios/sound train/trainbreaking.mp3")
 var sound_damage = preload("res://src/gameplay/audios/sound train/traindamage.mp3")
+var sound_gate = preload("res://src/gameplay/audios/gate.mp3")
 
+@onready var motor = $"../../Environment/Motor"
+var current_distance_mark = 0
 
 func _ready():
 	sound_effects.stream = sound_horn
 	sound_effects.play()
+	money_updated.emit(gameplay_manager.player_progress.money)
 
 
 func _on_train_stopped():
@@ -63,10 +67,12 @@ func _on_explosive_valve_2_event_started(event_name):
 
 func _on_explosive_valve_2_event_fail(event_name):
 	train.current_speed += speed_extra_on_explosive_valve
+	motor.health.damage(10, Vector2.ZERO)
 
 
 func _on_explosive_valve_3_event_fail(event_name):
 	train.current_speed += speed_extra_on_explosive_valve
+	motor.health.damage(10, Vector2.ZERO)
 	
 	
 func _on_explosive_valve_3_event_started(event_name):
@@ -81,6 +87,7 @@ func _on_explosive_valve_event_started(event_name):
 
 func _on_explosive_valve_event_fail(event_name):
 	train.current_speed += speed_extra_on_explosive_valve
+	motor.health.damage(10, Vector2.ZERO)
 
 
 # motor health
@@ -93,19 +100,19 @@ func _on_health_dead():
 func get_difficult_multiplier():
 	var difficult_multiplier = 0
 	
-	if train.current_distance > 200:
+	if train.current_distance > 300:
 		difficult_multiplier = 1
 	
-	if train.current_distance > 500:
+	if train.current_distance > 800:
 		difficult_multiplier = 2
 		
-	if train.current_distance > 1000:
+	if train.current_distance > 1500:
 		difficult_multiplier = 3
 		
-	if train.current_distance > 1500:
+	if train.current_distance > 2500:
 		difficult_multiplier = 4
 		
-	if train.current_distance > 2500:
+	if train.current_distance > 3000:
 		difficult_multiplier = 5
 	
 	return difficult_multiplier
@@ -114,3 +121,11 @@ func get_difficult_multiplier():
 func _on_health_health_update(old_value, new_value, damager_position):
 	sound_effects.stream = sound_damage
 	sound_effects.play()
+
+
+func _on_train_distance_updated(_value):
+	var distance_mark = get_difficult_multiplier()
+	if distance_mark != current_distance_mark:
+		current_distance_mark = distance_mark
+		sound_effects.stream = sound_gate
+		sound_effects.play()

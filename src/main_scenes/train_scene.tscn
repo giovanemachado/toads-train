@@ -1,13 +1,13 @@
-[gd_scene load_steps=30 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=36 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
+[ext_resource type="Texture2D" uid="uid://chyfqqqlw80a8" path="res://src/gameplay/interactables/garage/life_upgrade.png" id="3_2er22"]
 [ext_resource type="Script" path="res://src/gameplay/TrainGameplayManager.gd" id="3_c3a6g"]
 [ext_resource type="PackedScene" uid="uid://dic06qvwx0s5o" path="res://src/gameplay/train/train_unit_scene.tscn" id="4_o8fs0"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/EnemiesManager.gd" id="7_4bgps"]
 [ext_resource type="Texture2D" uid="uid://cixtqvvdlmcis" path="res://src/gameplay/environments/clud_background.png" id="7_36stu"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/train/FuelLeaking.gd" id="7_de43a"]
-[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="8_7vvql"]
 [ext_resource type="Texture2D" uid="uid://5xrmapbvv6s0" path="res://src/gameplay/environments/garage map.png" id="8_qoodf"]
 [ext_resource type="Script" path="res://src/gameplay/visuals/AutoMovingParallaxLayer.gd" id="9_ah3o0"]
 [ext_resource type="PackedScene" uid="uid://5ao27mu0w7gw" path="res://src/gameplay/interactables/interactable_scene.tscn" id="9_wfkmt"]
@@ -16,11 +16,14 @@
 [ext_resource type="Script" path="res://src/gameplay/interactables/EventsManager.gd" id="10_gf7ns"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/train/ExplosiveValve.gd" id="10_hjluc"]
 [ext_resource type="Theme" uid="uid://bdnxwfd5an272" path="res://src/assets/general_theme.tres" id="10_s1vfd"]
+[ext_resource type="Texture2D" uid="uid://cpais28vc8cdh" path="res://src/gameplay/interactables/garage/fuel.png" id="11_cdaqw"]
 [ext_resource type="PackedScene" uid="uid://uibaq1sunysu" path="res://src/gameplay/units/health/health_scene.tscn" id="12_baklc"]
 [ext_resource type="Script" path="res://src/gameplay/units/health/RedirectHealth.gd" id="12_bitib"]
 [ext_resource type="Script" path="res://src/gameplay/train/Motor.gd" id="12_pl4cb"]
 [ext_resource type="AudioStream" uid="uid://pu6yjrmty076" path="res://src/gameplay/audios/traintrack2.mp3" id="14_bxc84"]
+[ext_resource type="Texture2D" uid="uid://dvrvbvbrlfjma" path="res://src/gameplay/interactables/garage/valvula.png" id="14_rxty1"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
+[ext_resource type="Texture2D" uid="uid://cg8xdg0s3mj6h" path="res://src/gameplay/interactables/garage/stove_on.png" id="18_devxj"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slewc"]
 bg_color = Color(0.466667, 0.729412, 0.419608, 1)
@@ -72,7 +75,94 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3t0e1"]
-size = Vector2(178.5, 159)
+size = Vector2(143, 113.25)
+
+[sub_resource type="Animation" id="Animation_x1mky"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_naa5o"]
+resource_name = "idle"
+length = 0.6
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:hframes")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.37, 0.56),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_urkyj"]
+_data = {
+"RESET": SubResource("Animation_x1mky"),
+"idle": SubResource("Animation_naa5o")
+}
 
 [sub_resource type="Environment" id="Environment_ebo0f"]
 background_mode = 3
@@ -160,6 +250,11 @@ theme = ExtResource("10_s1vfd")
 step = 1.0
 show_percentage = false
 
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/LifeBar"]
+position = Vector2(-7, -7)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_2er22")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="UI/Control/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -191,7 +286,7 @@ text = "0"
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI/Control/MarginContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 25
+theme_override_constants/margin_left = 35
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="UI/Control/MarginContainer/HBoxContainer/MarginContainer2"]
 layout_mode = 2
@@ -214,18 +309,28 @@ theme = ExtResource("10_s1vfd")
 step = 1.0
 show_percentage = false
 
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2/TrainLifeBar"]
+position = Vector2(-10, -2)
+scale = Vector2(1.3, 1.3)
+texture = ExtResource("18_devxj")
+hframes = 4
+
 [node name="MarginContainer3" type="MarginContainer" parent="UI/Control/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
 layout_mode = 2
 theme_override_constants/margin_top = 5
 
 [node name="FuelBar" type="ProgressBar" parent="UI/Control/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2"]
-custom_minimum_size = Vector2(200, 25)
+custom_minimum_size = Vector2(200, 15)
 layout_mode = 2
 theme = ExtResource("10_s1vfd")
 theme_override_styles/background = SubResource("StyleBoxFlat_slewc")
 theme_override_styles/fill = SubResource("StyleBoxFlat_ckqld")
 step = 1.0
 show_percentage = false
+
+[node name="Sprite2D" type="Sprite2D" parent="UI/Control/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer2/FuelBar"]
+position = Vector2(-11, 1)
+texture = ExtResource("11_cdaqw")
 
 [node name="GameplayManager" parent="." instance=ExtResource("2_j3kmv")]
 
@@ -279,11 +384,11 @@ event_timing = 15.0
 kicks_to_solve = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/FuelLeaking"]
-modulate = Color(0.468276, 0.321616, 0.699581, 1)
-texture = ExtResource("8_7vvql")
+position = Vector2(-18, -21)
+scale = Vector2(5, 5)
+texture = ExtResource("11_cdaqw")
 
 [node name="Interactable" parent="Environment/FuelLeaking" instance=ExtResource("9_wfkmt")]
-visible = false
 
 [node name="Timer" type="Timer" parent="Environment/FuelLeaking"]
 one_shot = true
@@ -334,12 +439,13 @@ text = "[E] to kick the tank"
 position = Vector2(1727, 833)
 script = ExtResource("10_hjluc")
 event_name = "explosive_valve"
-event_timing = 20.0
+event_timing = 15.0
 kicks_to_solve = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/ExplosiveValve"]
-modulate = Color(0.468276, 0.321616, 0.699581, 1)
-texture = ExtResource("8_7vvql")
+position = Vector2(-3, -20)
+scale = Vector2(5, 5)
+texture = ExtResource("14_rxty1")
 
 [node name="Interactable" parent="Environment/ExplosiveValve" instance=ExtResource("9_wfkmt")]
 visible = false
@@ -391,23 +497,25 @@ theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve" groups=["motor"]]
+visible = false
 collision_mask = 0
 script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve/StaticBody2D"]
-position = Vector2(1.5, 2)
+position = Vector2(-0.375, 42.25)
 shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="ExplosiveValve2" type="Node2D" parent="Environment" groups=["motor"]]
 position = Vector2(2533, 820)
 script = ExtResource("10_hjluc")
 event_name = "explosive_valve"
-event_timing = 20.0
+event_timing = 15.0
 kicks_to_solve = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/ExplosiveValve2"]
-modulate = Color(0.468276, 0.321616, 0.699581, 1)
-texture = ExtResource("8_7vvql")
+position = Vector2(6, -8)
+scale = Vector2(5, 5)
+texture = ExtResource("14_rxty1")
 
 [node name="Interactable" parent="Environment/ExplosiveValve2" instance=ExtResource("9_wfkmt")]
 visible = false
@@ -459,23 +567,25 @@ theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve2" groups=["motor"]]
+visible = false
 collision_mask = 0
 script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve2/StaticBody2D"]
-position = Vector2(1.5, 2)
+position = Vector2(-3, 35)
 shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="ExplosiveValve3" type="Node2D" parent="Environment" groups=["motor"]]
 position = Vector2(3176, 819)
 script = ExtResource("10_hjluc")
 event_name = "explosive_valve"
-event_timing = 20.0
+event_timing = 15.0
 kicks_to_solve = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/ExplosiveValve3"]
-modulate = Color(0.468276, 0.321616, 0.699581, 1)
-texture = ExtResource("8_7vvql")
+position = Vector2(-7, -9)
+scale = Vector2(5, 5)
+texture = ExtResource("14_rxty1")
 
 [node name="Interactable" parent="Environment/ExplosiveValve3" instance=ExtResource("9_wfkmt")]
 visible = false
@@ -527,11 +637,12 @@ theme = ExtResource("10_s1vfd")
 text = "[E] to kick the valve"
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Environment/ExplosiveValve3" groups=["motor"]]
+visible = false
 collision_mask = 0
 script = ExtResource("12_bitib")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/ExplosiveValve3/StaticBody2D"]
-position = Vector2(-3, -10)
+position = Vector2(-7, 33)
 shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="EventsManager" type="Node" parent="Environment" node_paths=PackedStringArray("events")]
@@ -543,18 +654,27 @@ timing_to_first_event = 15.0
 one_shot = true
 
 [node name="Motor" type="StaticBody2D" parent="Environment" groups=["motor"]]
-position = Vector2(779, 674)
+position = Vector2(836, 674)
 collision_mask = 0
 script = ExtResource("12_pl4cb")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/Motor"]
-texture = ExtResource("8_7vvql")
+position = Vector2(7, -51)
+scale = Vector2(4, 4)
+texture = ExtResource("18_devxj")
+hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Environment/Motor"]
-position = Vector2(-1, -6)
+position = Vector2(17.5, -23.375)
 shape = SubResource("RectangleShape2D_3t0e1")
 
 [node name="Health" parent="Environment/Motor" instance=ExtResource("12_baklc")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Environment/Motor"]
+autoplay = "idle"
+libraries = {
+"": SubResource("AnimationLibrary_urkyj")
+}
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Environment"]
 stream = ExtResource("14_bxc84")
@@ -565,6 +685,7 @@ autoplay = true
 
 [node name="EnemiesManager" type="Node" parent="Enemies" node_paths=PackedStringArray("spawns_marks")]
 script = ExtResource("7_4bgps")
+timing_to_first_spawn = 6.0
 spawns_marks = [NodePath("SpawnMarks/Marker2D"), NodePath("SpawnMarks/Marker2D2"), NodePath("SpawnMarks/Marker2D3"), NodePath("SpawnMarks/Marker2D4"), NodePath("SpawnMarks/Marker2D5"), NodePath("SpawnMarks/Marker2D6")]
 chance_of_attack_motor = 40
 
@@ -613,6 +734,7 @@ environment = SubResource("Environment_ebo0f")
 
 [connection signal="money_updated" from="GameplayManager/TrainGameplayManager" to="UI/Control" method="_on_train_gameplay_manager_money_updated"]
 [connection signal="distance_updated" from="Environment/Train" to="UI/Control" method="_on_train_distance_updated"]
+[connection signal="distance_updated" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_distance_updated"]
 [connection signal="stopped" from="Environment/Train" to="GameplayManager/TrainGameplayManager" method="_on_train_stopped"]
 [connection signal="event_fail" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_fail"]
 [connection signal="event_started" from="Environment/FuelLeaking" to="GameplayManager/TrainGameplayManager" method="_on_fuel_leaking_event_started"]

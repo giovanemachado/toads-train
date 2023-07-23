@@ -1,5 +1,6 @@
 extends Upgrade
 
+
 func _ready():
 	garage_gameplay_manager = $"../../GameplayManager/GarageGameplayManager"
 	super._ready()

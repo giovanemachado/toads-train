@@ -4,16 +4,8 @@ class_name GarageGameplayManager
 
 @onready var gameplay_manager: GameplayManager = $".."
 
-@onready var fuel_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer3/Fuel"
-@onready var resist_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer6/ResistDebug"
-@onready var speed_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer5/SpeedDebug"
 @onready var money_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer2/Money"
 @onready var distance_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer/Distance"
-#@onready var combo_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer4/ComboDebug"
-
-@onready var player_speed_label =$"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer4/Money"
-@onready var player_damage_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer8/ResistDebug"
-@onready var player_hp_label = $"../../UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer7/SpeedDebug"
 
 @onready var player: Player = $"../../Player"
 @onready var timer: Timer = $Timer
@@ -50,18 +42,11 @@ func _on_train_cabin_player_entered_in_cabin():
 
 
 func update_labels_debug():
-	fuel_label.text = str(gameplay_manager.player_progress.train_fuel)
-	resist_label.text = str(gameplay_manager.player_progress.train_resist)
-	speed_label.text = str(gameplay_manager.player_progress.train_speed)
-	money_label.text = str(gameplay_manager.player_progress.money)
+	money_label.text = "$" + str(gameplay_manager.player_progress.money)
 	distance_label.text = str(gameplay_manager.player_progress.max_distance_reach)
-	player_speed_label.text = str(gameplay_manager.player_progress.speed)
-	player_damage_label.text = str(gameplay_manager.player_progress.damage)
-	player_hp_label.text = str(gameplay_manager.player_progress.hp)
 
 
 func _on_player_update_combo(numb):
-#	combo_label.text = str(numb)
 	pass
 
 

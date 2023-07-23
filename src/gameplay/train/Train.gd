@@ -39,6 +39,7 @@ func _ready():
 		fuel_bar.value = current_fuel
 	
 	distance_timer.start(distance_timing)
+	distance_updated.emit(current_distance)
 
 
 func _process(delta):

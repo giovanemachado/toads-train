@@ -9,6 +9,9 @@ signal upgrade_fail(upgrade_name: String)
 @export var cost_to_upgrade_by_level: Array[int] = [10]
 @export var upgrade_amount_by_level:  Array[int] = [10]
 @export var max_level: int = 1
+@onready var audio_stream_player = $"../AudioStreamPlayer"
+var sound_no_money = preload("res://src/gameplay/audios/othersounds/soudnegative.mp3")
+var sound_money = preload("res://src/gameplay/audios/othersounds/cashregister.mp3")
 
 var current_level: int = 0
 var garage_gameplay_manager: GarageGameplayManager
@@ -35,12 +38,16 @@ func _ready():
 
 func upgrade():
 	if current_level >= max_level:
+		audio_stream_player.stream = sound_no_money
+		audio_stream_player.play()
 		return false
 	
 	var current_cost = cost_to_upgrade_by_level[current_level]
 	var current_amount = upgrade_amount_by_level[current_level]
 
 	if garage_gameplay_manager.gameplay_manager.player_progress.money < current_cost:
+		audio_stream_player.stream = sound_no_money
+		audio_stream_player.play()
 		return false
 
 	garage_gameplay_manager.gameplay_manager.player_progress[upgrade_name] += current_amount
@@ -54,4 +61,6 @@ func upgrade():
 	else:
 		label_cost.text = "Cost: $" + str(cost_to_upgrade_by_level[current_level])
 	
+	audio_stream_player.stream = sound_money
+	audio_stream_player.play()
 	return true
