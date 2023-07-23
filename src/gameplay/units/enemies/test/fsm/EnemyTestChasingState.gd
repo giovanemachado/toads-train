@@ -44,7 +44,7 @@ func _on_update(_delta: float):
 	
 	navigation_agent.target_position = state_manager.target.position
 	
-	if navigation_agent.distance_to_target() < 70 && is_in_train:
+	if navigation_agent.distance_to_target() < 60 && is_in_train:
 		Transitioned.emit(self, "EnemyTestAttackingState") 
 
 func _on_physics_update(delta):

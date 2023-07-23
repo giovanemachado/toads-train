@@ -1,11 +1,13 @@
-[gd_scene load_steps=29 format=3 uid="uid://deraw4ot1ok6y"]
+[gd_scene load_steps=32 format=3 uid="uid://deraw4ot1ok6y"]
 
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="1_mqfaw"]
 [ext_resource type="Texture2D" uid="uid://ck08m57ywe1f" path="res://src/gameplay/train/sprites/train map.png" id="2_d0271"]
 [ext_resource type="Script" path="res://src/gameplay/GarageGameplayManager.gd" id="2_t24wa"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainCabin.gd" id="3_qsfj7"]
+[ext_resource type="Texture2D" uid="uid://bt5mdtbpbebif" path="res://src/assets/broken_marks.png" id="5_brhyl"]
 [ext_resource type="PackedScene" uid="uid://5ao27mu0w7gw" path="res://src/gameplay/interactables/interactable_scene.tscn" id="5_rjc3w"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/FuelTank.gd" id="6_li1gu"]
+[ext_resource type="Texture2D" uid="uid://hpr82jraa0dx" path="res://src/assets/light_point.png" id="7_a6cvk"]
 [ext_resource type="Texture2D" uid="uid://dw4mn0u0vbjuu" path="res://src/gameplay/interactables/garage/stair.png" id="7_anpsj"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainResistence.gd" id="7_yypja"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainSpeed.gd" id="8_6ir4g"]
@@ -23,6 +25,7 @@
 [ext_resource type="AudioStream" uid="uid://ch2yki8231obn" path="res://src/gameplay/audios/garage.mp3" id="17_rkhja"]
 [ext_resource type="Texture2D" uid="uid://chyfqqqlw80a8" path="res://src/gameplay/interactables/garage/life_upgrade.png" id="17_vfxug"]
 [ext_resource type="Texture2D" uid="uid://b512nm5r4iwc5" path="res://src/gameplay/interactables/garage/boots.png" id="20_jivj6"]
+[ext_resource type="Texture2D" uid="uid://bmli338abmnyo" path="res://src/assets/100x100.png" id="25_bxq4b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwhb2"]
 size = Vector2(101, 1219)
@@ -66,21 +69,6 @@ adjustment_contrast = 0.85
 adjustment_saturation = 0.95
 
 [node name="garage_scene" type="Node2D"]
-
-[node name="GarageBackground2" type="Sprite2D" parent="."]
-position = Vector2(1840, 1345)
-scale = Vector2(-3, -3)
-texture = ExtResource("15_axgft")
-
-[node name="GarageBackground" type="Sprite2D" parent="."]
-position = Vector2(1840, 85)
-scale = Vector2(3, 3)
-texture = ExtResource("15_axgft")
-
-[node name="TrainMap" type="Sprite2D" parent="."]
-position = Vector2(1607, 218)
-scale = Vector2(3.5, 3.5)
-texture = ExtResource("2_d0271")
 
 [node name="GameplayManager" parent="." instance=ExtResource("1_mqfaw")]
 
@@ -167,6 +155,98 @@ text = "0"
 
 [node name="Environment" type="Node" parent="."]
 
+[node name="GarageBackground2" type="Sprite2D" parent="Environment"]
+position = Vector2(1840, 1345)
+rotation = -3.14159
+scale = Vector2(3, 3)
+texture = ExtResource("15_axgft")
+
+[node name="GarageBackground" type="Sprite2D" parent="Environment"]
+position = Vector2(1840, 85)
+scale = Vector2(3, 3)
+texture = ExtResource("15_axgft")
+
+[node name="Decoration" type="Node2D" parent="Environment"]
+
+[node name="BrokenMarks" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.498039, 0.423529, 0.215686, 0.592157)
+position = Vector2(467, 762)
+scale = Vector2(-33.9632, -33.9632)
+texture = ExtResource("5_brhyl")
+hframes = 3
+frame = 2
+
+[node name="BrokenMarks2" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.498039, 0.423529, 0.215686, 0.592157)
+position = Vector2(1486, 930)
+rotation = -1.19986
+scale = Vector2(-33.9632, -33.9632)
+texture = ExtResource("5_brhyl")
+hframes = 3
+frame = 2
+
+[node name="100x100" type="Sprite2D" parent="Environment/Decoration"]
+visible = false
+modulate = Color(0.294118, 0.294118, 0.294118, 0.627451)
+z_index = 10
+position = Vector2(1358.5, 240)
+scale = Vector2(15.33, 5.58)
+texture = ExtResource("25_bxq4b")
+
+[node name="LightPoint" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+z_index = 10
+position = Vector2(-76, 960)
+scale = Vector2(-7.34694, -7.34694)
+texture = ExtResource("7_a6cvk")
+
+[node name="LightPoint2" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+z_index = 10
+position = Vector2(1749, 756)
+scale = Vector2(-9.89414, -9.89414)
+texture = ExtResource("7_a6cvk")
+
+[node name="LightPoint3" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+z_index = 10
+position = Vector2(1192, 1373)
+scale = Vector2(-9.89414, -9.89414)
+texture = ExtResource("7_a6cvk")
+
+[node name="LightPoint4" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+z_index = 10
+position = Vector2(563, 1481)
+scale = Vector2(-9.89414, -9.89414)
+texture = ExtResource("7_a6cvk")
+
+[node name="LightPoint5" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+z_index = 10
+position = Vector2(851, -71)
+scale = Vector2(-9.89414, -9.89414)
+texture = ExtResource("7_a6cvk")
+
+[node name="LightPoint7" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+z_index = 10
+position = Vector2(1454, 16)
+scale = Vector2(-9.89414, -9.89414)
+texture = ExtResource("7_a6cvk")
+
+[node name="LightPoint6" type="Sprite2D" parent="Environment/Decoration"]
+modulate = Color(0.0745098, 0.0745098, 0.0745098, 0.478431)
+z_index = 10
+position = Vector2(-149, -32)
+scale = Vector2(-9.89414, -9.89414)
+texture = ExtResource("7_a6cvk")
+
+[node name="TrainMap" type="Sprite2D" parent="Environment"]
+position = Vector2(1607, 218)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("2_d0271")
+
 [node name="TrainCabin" type="Node2D" parent="Environment"]
 position = Vector2(1054, 512)
 script = ExtResource("3_qsfj7")
@@ -181,7 +261,7 @@ texture = ExtResource("7_anpsj")
 position = Vector2(12, 69)
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/TrainCabin"]
-z_index = 1
+z_index = 55
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5

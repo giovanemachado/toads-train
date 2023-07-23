@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bkq1ueojo62vb"]
+[gd_scene load_steps=34 format=3 uid="uid://bkq1ueojo62vb"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="1_15g8g"]
 [ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="3_ivy8j"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="8_q45ml"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyAttack.gd" id="8_xuq4l"]
 [ext_resource type="Texture2D" uid="uid://bksmbrfcbh8k7" path="res://src/gameplay/units/enemies/animation/staple frog run .png" id="10_7ymjg"]
+[ext_resource type="Texture2D" uid="uid://hpr82jraa0dx" path="res://src/assets/light_point.png" id="10_ysec4"]
 [ext_resource type="Texture2D" uid="uid://dolmo5tcet3iv" path="res://src/assets/particles.png" id="11_d2spq"]
 [ext_resource type="Texture2D" uid="uid://bblltl4n3c0cb" path="res://src/gameplay/units/enemies/animation/staple frog falling.png" id="12_58v1m"]
 [ext_resource type="Texture2D" uid="uid://djj545qb270kq" path="res://src/gameplay/units/enemies/animation/Staple frog atk.png" id="13_6ydic"]
@@ -154,6 +155,7 @@ tracks/5/keys = {
 [sub_resource type="Animation" id="Animation_plfff"]
 resource_name = "atk"
 length = 0.8
+step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -482,6 +484,7 @@ position = Vector2(-50.507, 0)
 scale = Vector2(2.98692, 2.98692)
 
 [node name="Attack" parent="." instance=ExtResource("8_q45ml")]
+attack_delay = 0.8
 attack_group = "player"
 
 [node name="Area2D" type="Area2D" parent="Attack"]
@@ -490,6 +493,12 @@ position = Vector2(50.5069, 0.506899)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Attack/Area2D"]
 shape = SubResource("CircleShape2D_secqe")
 debug_color = Color(0.839216, 0.0666667, 0.101961, 0.419608)
+
+[node name="LightPoint" type="Sprite2D" parent="."]
+modulate = Color(0.415686, 0.741176, 0.188235, 0.627451)
+position = Vector2(4, -5)
+scale = Vector2(1.41912, 1.41912)
+texture = ExtResource("10_ysec4")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-4, -60)

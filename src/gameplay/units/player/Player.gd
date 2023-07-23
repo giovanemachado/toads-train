@@ -35,6 +35,7 @@ var sound_alert = preload("res://src/gameplay/audios/sound player/playeralert.mp
 
 func _ready():
 	health.max_health_points = gameplay_manager.player_progress.hp
+	health.health_points = gameplay_manager.player_progress.hp
 	movement.speed = gameplay_manager.player_progress.speed
 	attack.attack_damage = gameplay_manager.player_progress.damage
 	

@@ -15,12 +15,15 @@ signal money_updated
 var normal_fuel_leaking: int = 0
 
 @onready var sound_effects = $"../../SoundEffects"
+@onready var sound_effects_event = $"../../SoundEffectsEvent"
 var sound_horn = preload("res://src/gameplay/audios/horn.mp3")
 var sound_alert = preload("res://src/gameplay/audios/sound train/hornalert.mp3")
 var sound_fuel = preload("res://src/gameplay/audios/sound train/hornfuel.mp3")
 var sound_breaking = preload("res://src/gameplay/audios/sound train/trainbreaking.mp3")
 var sound_damage = preload("res://src/gameplay/audios/sound train/traindamage.mp3")
 var sound_gate = preload("res://src/gameplay/audios/gate.mp3")
+var sound_explosion = preload("res://src/gameplay/audios/explosin.mp3")
+var sound_fuel_leaking = preload("res://src/gameplay/audios/liquid_leaking.mp3")
 
 @onready var motor = $"../../Environment/Motor"
 var current_distance_mark = 0
@@ -58,6 +61,8 @@ func _on_fuel_leaking_event_started(event_name):
 	fuel_alert_started()
 	sound_effects.stream = sound_alert
 	sound_effects.play()
+	sound_effects.stream = sound_alert
+	sound_effects.play()
 
 
 func _on_fuel_leaking_event_success(event_name):
@@ -72,12 +77,16 @@ func _on_explosive_valve_2_event_started(event_name):
 
 
 func _on_explosive_valve_2_event_fail(event_name):
+	sound_effects_event.stream = sound_explosion
+	sound_effects_event.play()
 	train.current_speed += speed_extra_on_explosive_valve
 	motor.health.damage(10, Vector2.ZERO)
 	alert_finished()
 
 
 func _on_explosive_valve_3_event_fail(event_name):
+	sound_effects_event.stream = sound_explosion
+	sound_effects_event.play()
 	train.current_speed += speed_extra_on_explosive_valve
 	motor.health.damage(10, Vector2.ZERO)
 	alert_finished()
@@ -94,6 +103,8 @@ func _on_explosive_valve_event_started(event_name):
 
 
 func _on_explosive_valve_event_fail(event_name):
+	sound_effects_event.stream = sound_explosion
+	sound_effects_event.play()
 	train.current_speed += speed_extra_on_explosive_valve
 	motor.health.damage(10, Vector2.ZERO)
 	alert_finished()
@@ -141,6 +152,8 @@ func _on_train_distance_updated(_value):
 
 
 func fuel_alert_started():
+	sound_effects_event.stream = sound_fuel_leaking
+	sound_effects_event.play()
 	fuel_leaking_alert.show()
 	valve_alert.hide()
 	alert_started()
@@ -164,10 +177,12 @@ func alert_finished():
 
 func _on_fuel_leaking_event_fail(event_name):
 	alert_finished()
+	sound_effects_event.stop()
 
 
 func _on_explosive_valve_event_success(event_name):
 	alert_finished()
+	sound_effects_event.stop()
 	
 func _on_explosive_valve_2_event_success(event_name):
 	alert_finished()

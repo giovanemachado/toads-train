@@ -36,7 +36,7 @@ func _on_update(_delta: float):
 	enemy_test.attack.attack()
 	navigation_agent.target_position = state_manager.target.position
 
-	if navigation_agent.distance_to_target() > 100:
+	if navigation_agent.distance_to_target() > 60:
 		Transitioned.emit(self, "EnemyTestChasingState") 
 
 

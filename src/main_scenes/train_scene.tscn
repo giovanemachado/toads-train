@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://diiom6d5in6qa"]
+[gd_scene load_steps=41 format=3 uid="uid://diiom6d5in6qa"]
 
 [ext_resource type="Script" path="res://src/ui/UI.gd" id="1_r6tyj"]
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="2_j3kmv"]
@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://dvrvbvbrlfjma" path="res://src/gameplay/interactables/garage/valvula.png" id="14_rxty1"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="15_bwlow"]
 [ext_resource type="Texture2D" uid="uid://cg8xdg0s3mj6h" path="res://src/gameplay/interactables/garage/stove_on.png" id="18_devxj"]
+[ext_resource type="Texture2D" uid="uid://bt5mdtbpbebif" path="res://src/assets/broken_marks.png" id="22_yhl1h"]
+[ext_resource type="Texture2D" uid="uid://hpr82jraa0dx" path="res://src/assets/light_point.png" id="23_2mv5m"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slewc"]
 bg_color = Color(0.466667, 0.729412, 0.419608, 1)
@@ -811,6 +813,158 @@ stream = ExtResource("14_bxc84")
 volume_db = -10.0
 autoplay = true
 
+[node name="Decoration" type="Node2D" parent="Environment"]
+
+[node name="Floor" type="Node2D" parent="Environment/Decoration"]
+
+[node name="BrokenFloor" type="Sprite2D" parent="Environment/Decoration/Floor"]
+modulate = Color(0.294118, 0.160784, 0.0196078, 1)
+position = Vector2(1302, 678)
+rotation = -2.08516
+scale = Vector2(3.32309, 3.32309)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+
+[node name="BrokenFloor2" type="Sprite2D" parent="Environment/Decoration/Floor"]
+modulate = Color(0.294118, 0.160784, 0.0196078, 1)
+position = Vector2(2614, 568)
+rotation = 3.08756
+scale = Vector2(3.27792, 3.27792)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 2
+
+[node name="BrokenFloor3" type="Sprite2D" parent="Environment/Decoration/Floor"]
+modulate = Color(0.294118, 0.160784, 0.0196078, 1)
+position = Vector2(846, 809)
+rotation = -1.19555
+scale = Vector2(2.39123, 2.39123)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 1
+
+[node name="BrokenFloor4" type="Sprite2D" parent="Environment/Decoration/Floor"]
+modulate = Color(0.294118, 0.160784, 0.0196078, 1)
+position = Vector2(2109, 557)
+rotation = -1.19555
+scale = Vector2(2.39123, 2.39123)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+
+[node name="BrokenFloor6" type="Sprite2D" parent="Environment/Decoration/Floor"]
+modulate = Color(0.294118, 0.160784, 0.0196078, 1)
+position = Vector2(1801, 710)
+rotation = -1.49384
+scale = Vector2(6.4303, 6.4303)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+
+[node name="BrokenFloor5" type="Sprite2D" parent="Environment/Decoration/Floor"]
+modulate = Color(0.294118, 0.160784, 0.0196078, 1)
+position = Vector2(2975, 737)
+rotation = -2.26716
+scale = Vector2(9.98278, 9.98278)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 2
+
+[node name="Wall" type="Node2D" parent="Environment/Decoration"]
+
+[node name="BrokenFloor" type="Sprite2D" parent="Environment/Decoration/Wall"]
+modulate = Color(0.173325, 0.162954, 0.162955, 1)
+position = Vector2(2151, 370)
+rotation = -1.38161
+scale = Vector2(2.82021, 2.67488)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+
+[node name="BrokenFloor2" type="Sprite2D" parent="Environment/Decoration/Wall"]
+modulate = Color(0.173325, 0.162954, 0.162955, 1)
+position = Vector2(798, 390)
+rotation = 2.33006
+scale = Vector2(5.55529, 5.55529)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 2
+
+[node name="BrokenFloor3" type="Sprite2D" parent="Environment/Decoration/Wall"]
+modulate = Color(0.173325, 0.162954, 0.162955, 1)
+position = Vector2(1290, 419)
+rotation = -1.77868
+scale = Vector2(2.39123, 2.39123)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 1
+
+[node name="BrokenFloor6" type="Sprite2D" parent="Environment/Decoration/Wall"]
+modulate = Color(0.173325, 0.162954, 0.162955, 1)
+position = Vector2(1406, 416)
+rotation = -0.985067
+scale = Vector2(2.39123, 2.39123)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 1
+
+[node name="BrokenFloor4" type="Sprite2D" parent="Environment/Decoration/Wall"]
+modulate = Color(0.173325, 0.162954, 0.162955, 1)
+position = Vector2(2417, 396)
+rotation = -1.64152
+scale = Vector2(1.68817, 1.68817)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+
+[node name="BrokenFloor5" type="Sprite2D" parent="Environment/Decoration/Wall"]
+modulate = Color(0.173325, 0.162954, 0.162955, 1)
+position = Vector2(3291, 395)
+rotation = -2.53544
+scale = Vector2(2.9448, 3.78141)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 2
+
+[node name="Windows" type="Node2D" parent="Environment/Decoration"]
+
+[node name="BrokenFloor" type="Sprite2D" parent="Environment/Decoration/Windows"]
+modulate = Color(0.133333, 0.247059, 0.305882, 1)
+position = Vector2(933, 374)
+rotation = -1.38161
+scale = Vector2(0.545764, 0.517641)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+
+[node name="BrokenFloor2" type="Sprite2D" parent="Environment/Decoration/Windows"]
+modulate = Color(0.133333, 0.247059, 0.305882, 1)
+position = Vector2(2008, 373)
+rotation = -2.02194
+scale = Vector2(0.545764, 0.517641)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+
+[node name="BrokenFloor3" type="Sprite2D" parent="Environment/Decoration/Windows"]
+modulate = Color(0.133333, 0.247059, 0.305882, 1)
+position = Vector2(1968, 402)
+rotation = -1.54861
+scale = Vector2(0.545764, 0.517641)
+texture = ExtResource("22_yhl1h")
+hframes = 3
+frame = 2
+
+[node name="Lights" type="Node2D" parent="Environment/Decoration"]
+
+[node name="LightPoint" type="Sprite2D" parent="Environment/Decoration/Lights"]
+modulate = Color(0.796078, 0.992157, 0.784314, 0.2)
+z_index = 10
+position = Vector2(1817, -230)
+scale = Vector2(45.4323, 45.4323)
+texture = ExtResource("23_2mv5m")
+
+[node name="Sprite2D" type="Sprite2D" parent="Environment/Decoration/Lights"]
+modulate = Color(0.596078, 0.415686, 0.321569, 0.639216)
+z_index = 10
+position = Vector2(850, 666)
+scale = Vector2(1.55397, 1.55397)
+texture = ExtResource("23_2mv5m")
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="EnemiesManager" type="Node" parent="Enemies" node_paths=PackedStringArray("spawns_marks")]
@@ -862,6 +1016,8 @@ editor_draw_limits = true
 environment = SubResource("Environment_ebo0f")
 
 [node name="SoundEffects" type="AudioStreamPlayer" parent="."]
+
+[node name="SoundEffectsEvent" type="AudioStreamPlayer" parent="."]
 
 [connection signal="money_updated" from="GameplayManager/TrainGameplayManager" to="UI/Control" method="_on_train_gameplay_manager_money_updated"]
 [connection signal="distance_updated" from="Environment/Train" to="UI/Control" method="_on_train_distance_updated"]
