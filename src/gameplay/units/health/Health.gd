@@ -52,6 +52,7 @@ func damage(amount: int, damager_position: Vector2):
 	health_update.emit(old_value, health_points, damager_position)
 	
 	if (health_points == 0):
+		can_be_attacked(false)
 		death()
 
 

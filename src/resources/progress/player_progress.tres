@@ -4,18 +4,18 @@
 
 [resource]
 script = ExtResource("1_hecnw")
-max_distance_reach = 2180
-money = 32
-damage = 2
-damage_level = 1
-speed = 400
-speed_level = 1
-hp = 20
-hp_level = 1
-train_fuel = 250
-train_fuel_level = 1
-train_resist = 125
-train_resist_level = 1
-train_speed = 200
-train_speed_level = 1
-garage_visited = 2
+max_distance_reach = 0
+money = 0
+damage = 1
+damage_level = 0
+speed = 300
+speed_level = 0
+hp = 15
+hp_level = 0
+train_fuel = 200
+train_fuel_level = 0
+train_resist = 100
+train_resist_level = 0
+train_speed = 100
+train_speed_level = 0
+garage_visited = 0

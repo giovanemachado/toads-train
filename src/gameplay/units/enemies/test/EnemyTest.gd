@@ -32,7 +32,8 @@ var sound_attack = preload("res://src/gameplay/audios/sound frog/frogattack.mp3"
 var sound_damage = preload("res://src/gameplay/audios/sound frog/frogdamage.mp3")
 
 @onready var movement_particle = $Sprite2D/GPUParticles2D
-	
+@onready var blood_particle = $Sprite2D/GPUParticles2DBlood
+
 func spawned():
 	audio_player_general.stream = sound_spawned
 	audio_player_general.pitch_scale = randf_range(0.9, 1.1)
@@ -60,6 +61,10 @@ func _on_health_dead():
 	audio_player_general.stream = sound_damage
 	audio_player_general.play()
 	enemy_die.emit(money_per_kill)
+	var color: Color = sprite.modulate
+	color.a = 0.3
+	sprite.modulate = color
+	await get_tree().create_timer(1.0).timeout
 	queue_free()
 
 
@@ -105,3 +110,5 @@ func _on_health_health_update(old_value, new_value, damager_position):
 	
 	audio_player_general.stream = sound_damage
 	audio_player_general.play()
+	blood_particle.rotation = get_angle_to(damager_position) + PI
+	

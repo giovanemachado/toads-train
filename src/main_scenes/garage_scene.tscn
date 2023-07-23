@@ -1,12 +1,12 @@
-[gd_scene load_steps=27 format=3 uid="uid://deraw4ot1ok6y"]
+[gd_scene load_steps=29 format=3 uid="uid://deraw4ot1ok6y"]
 
 [ext_resource type="PackedScene" uid="uid://b7ea3yswnma8o" path="res://src/gameplay/game_manager_scene.tscn" id="1_mqfaw"]
 [ext_resource type="Texture2D" uid="uid://ck08m57ywe1f" path="res://src/gameplay/train/sprites/train map.png" id="2_d0271"]
 [ext_resource type="Script" path="res://src/gameplay/GarageGameplayManager.gd" id="2_t24wa"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainCabin.gd" id="3_qsfj7"]
-[ext_resource type="Texture2D" uid="uid://ctknoqft0tyk8" path="res://src/utils/assets/100x100_size.png" id="4_2fy4i"]
 [ext_resource type="PackedScene" uid="uid://5ao27mu0w7gw" path="res://src/gameplay/interactables/interactable_scene.tscn" id="5_rjc3w"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/FuelTank.gd" id="6_li1gu"]
+[ext_resource type="Texture2D" uid="uid://dw4mn0u0vbjuu" path="res://src/gameplay/interactables/garage/stair.png" id="7_anpsj"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainResistence.gd" id="7_yypja"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/TrainSpeed.gd" id="8_6ir4g"]
 [ext_resource type="PackedScene" uid="uid://ib7ajxwbvqjn" path="res://src/gameplay/units/player/player_scene.tscn" id="8_khro0"]
@@ -19,8 +19,10 @@
 [ext_resource type="Texture2D" uid="uid://cg8xdg0s3mj6h" path="res://src/gameplay/interactables/garage/stove_on.png" id="12_bov3t"]
 [ext_resource type="Texture2D" uid="uid://dvrvbvbrlfjma" path="res://src/gameplay/interactables/garage/valvula.png" id="14_b3chj"]
 [ext_resource type="Texture2D" uid="uid://5xrmapbvv6s0" path="res://src/gameplay/environments/garage map.png" id="15_axgft"]
+[ext_resource type="Texture2D" uid="uid://bi7uynho6gei6" path="res://src/gameplay/interactables/garage/sword.png" id="16_nwwv2"]
 [ext_resource type="AudioStream" uid="uid://ch2yki8231obn" path="res://src/gameplay/audios/garage.mp3" id="17_rkhja"]
 [ext_resource type="Texture2D" uid="uid://chyfqqqlw80a8" path="res://src/gameplay/interactables/garage/life_upgrade.png" id="17_vfxug"]
+[ext_resource type="Texture2D" uid="uid://b512nm5r4iwc5" path="res://src/gameplay/interactables/garage/boots.png" id="20_jivj6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cwhb2"]
 size = Vector2(101, 1219)
@@ -102,7 +104,7 @@ size_flags_vertical = 4
 
 [node name="ColorRect" type="ColorRect" parent="UI/Control"]
 layout_mode = 0
-offset_right = 276.0
+offset_right = 393.0
 offset_bottom = 151.0
 color = Color(0.203922, 0.203922, 0.203922, 0.72549)
 
@@ -142,7 +144,7 @@ layout_mode = 2
 [node name="DistanceDesc" type="Label" parent="UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("10_06lja")
-text = "Max Distance: "
+text = "distance record: "
 
 [node name="Distance" type="Label" parent="UI/Control/MarginContainer/VBoxContainer3/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -170,10 +172,13 @@ position = Vector2(1054, 512)
 script = ExtResource("3_qsfj7")
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainCabin"]
-modulate = Color(0.65098, 0.47451, 0.152941, 1)
-texture = ExtResource("4_2fy4i")
+modulate = Color(0.729412, 0.729412, 0.729412, 1)
+position = Vector2(9, 59)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("7_anpsj")
 
 [node name="Interactable" parent="Environment/TrainCabin" instance=ExtResource("5_rjc3w")]
+position = Vector2(12, 69)
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/TrainCabin"]
 z_index = 1
@@ -182,10 +187,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -75.0
-offset_top = -105.0
-offset_right = 78.0
-offset_bottom = -25.0
+offset_left = -74.0
+offset_top = -67.0
+offset_right = 91.0
+offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
@@ -350,7 +355,7 @@ texture = ExtResource("14_b3chj")
 
 [node name="Sprite2D3" type="Sprite2D" parent="Environment/TrainSpeed"]
 position = Vector2(-9, -18)
-scale = Vector2(3.5, 3.5)
+scale = Vector2(5, 5)
 texture = ExtResource("14_b3chj")
 
 [node name="Interactable" parent="Environment/TrainSpeed" instance=ExtResource("5_rjc3w")]
@@ -401,7 +406,7 @@ theme = ExtResource("10_06lja")
 text = "Cost: $10"
 
 [node name="PlayerDamage" type="Node2D" parent="Environment"]
-position = Vector2(249, 580)
+position = Vector2(268, 591)
 script = ExtResource("9_exm60")
 upgrade_name = "damage"
 cost_to_upgrade_by_level = Array[int]([10, 50, 100])
@@ -409,10 +414,12 @@ upgrade_amount_by_level = Array[int]([1, 1, 1])
 max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerDamage"]
-modulate = Color(0.468276, 0.321616, 0.699581, 1)
-texture = ExtResource("4_2fy4i")
+rotation = 0.561111
+scale = Vector2(4, 4)
+texture = ExtResource("16_nwwv2")
 
 [node name="Interactable" parent="Environment/PlayerDamage" instance=ExtResource("5_rjc3w")]
+visible = false
 
 [node name="MarginContainer" type="MarginContainer" parent="Environment/PlayerDamage"]
 visible = false
@@ -534,8 +541,13 @@ upgrade_amount_by_level = Array[int]([100, 100, 100])
 max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/PlayerSpeed"]
-modulate = Color(0.468276, 0.321616, 0.699581, 1)
-texture = ExtResource("4_2fy4i")
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("20_jivj6")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Environment/PlayerSpeed"]
+position = Vector2(12, 12)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("20_jivj6")
 
 [node name="Interactable" parent="Environment/PlayerSpeed" instance=ExtResource("5_rjc3w")]
 
@@ -689,7 +701,8 @@ position = Vector2(761, 832)
 
 [node name="Camera2D" parent="Player" instance=ExtResource("9_dg3ip")]
 zoom = Vector2(1, 1)
-limit_right = 1500
+limit_left = -50
+limit_right = 1600
 editor_draw_limits = true
 
 [node name="PostProcessing" type="WorldEnvironment" parent="."]
