@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://dic06qvwx0s5o"]
+[gd_scene load_steps=26 format=3 uid="uid://dic06qvwx0s5o"]
 
 [ext_resource type="Script" path="res://src/gameplay/train/Train.gd" id="1_r503i"]
-[ext_resource type="Texture2D" uid="uid://ck08m57ywe1f" path="res://src/gameplay/train/sprites/train map.png" id="2_jsr8s"]
+[ext_resource type="Texture2D" uid="uid://cgfy37xme3ikg" path="res://src/gameplay/train/train_map.png" id="2_ubo13"]
+[ext_resource type="Texture2D" uid="uid://taboltkejg1c" path="res://src/gameplay/train/wheels.png" id="3_iek30"]
 [ext_resource type="Texture2D" uid="uid://dolmo5tcet3iv" path="res://src/assets/particles.png" id="3_kgn3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co488"]
@@ -89,15 +90,108 @@ scale_min = 20.0
 scale_max = 30.0
 color_ramp = SubResource("GradientTexture1D_2sewt")
 
+[sub_resource type="Animation" id="Animation_u3fo4"]
+resource_name = "run"
+length = 0.35
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wheels:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13, 0.26),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wheels:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wheels:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_g0mnh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wheels:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Wheels:vframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Wheels:hframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0hq1h"]
+_data = {
+"RESET": SubResource("Animation_g0mnh"),
+"run": SubResource("Animation_u3fo4")
+}
+
 [node name="Train" type="Node2D"]
 script = ExtResource("1_r503i")
 fuel_amount_per_tick = 1
 distance_amount_per_tick = 10
 
-[node name="TrainMap" type="Sprite2D" parent="."]
-position = Vector2(-132, -86.9999)
+[node name="TrainMap2" type="Sprite2D" parent="."]
+position = Vector2(-249, -46)
 scale = Vector2(3.5, 3.5)
-texture = ExtResource("2_jsr8s")
+texture = ExtResource("2_ubo13")
+
+[node name="Wheels" type="Sprite2D" parent="."]
+position = Vector2(-256, -50)
+scale = Vector2(3.5, 3.5)
+texture = ExtResource("3_iek30")
+hframes = 3
 
 [node name="FuelTimer" type="Timer" parent="."]
 one_shot = true
@@ -226,6 +320,12 @@ texture = ExtResource("3_kgn3o")
 lifetime = 5.0
 randomness = 0.23
 visibility_rect = Rect2(0, 0, 10000, 707.618)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "run"
+libraries = {
+"": SubResource("AnimationLibrary_0hq1h")
+}
 
 [connection signal="timeout" from="FuelTimer" to="." method="_on_fuel_timer_timeout"]
 [connection signal="timeout" from="Distance/DistanceTimer" to="." method="_on_distance_timer_timeout"]

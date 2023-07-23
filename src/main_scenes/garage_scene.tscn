@@ -18,9 +18,9 @@
 [ext_resource type="Texture2D" uid="uid://cpais28vc8cdh" path="res://src/gameplay/interactables/garage/fuel.png" id="10_045uu"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerHP.gd" id="10_rt46t"]
 [ext_resource type="Script" path="res://src/gameplay/interactables/garage/PlayerSpeed.gd" id="11_5m07c"]
-[ext_resource type="Texture2D" uid="uid://cg8xdg0s3mj6h" path="res://src/gameplay/interactables/garage/stove_on.png" id="12_bov3t"]
 [ext_resource type="Texture2D" uid="uid://dvrvbvbrlfjma" path="res://src/gameplay/interactables/garage/valvula.png" id="14_b3chj"]
 [ext_resource type="Texture2D" uid="uid://5xrmapbvv6s0" path="res://src/gameplay/environments/garage map.png" id="15_axgft"]
+[ext_resource type="Texture2D" uid="uid://nq8r5ts8xfdn" path="res://src/gameplay/train/stove_off.png" id="15_lui4s"]
 [ext_resource type="Texture2D" uid="uid://bi7uynho6gei6" path="res://src/gameplay/interactables/garage/sword.png" id="16_nwwv2"]
 [ext_resource type="AudioStream" uid="uid://ch2yki8231obn" path="res://src/gameplay/audios/garage.mp3" id="17_rkhja"]
 [ext_resource type="Texture2D" uid="uid://chyfqqqlw80a8" path="res://src/gameplay/interactables/garage/life_upgrade.png" id="17_vfxug"]
@@ -366,8 +366,7 @@ max_level = 3
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainResistence"]
 position = Vector2(-9, -23)
 scale = Vector2(4, 4)
-texture = ExtResource("12_bov3t")
-hframes = 4
+texture = ExtResource("15_lui4s")
 
 [node name="Interactable" parent="Environment/TrainResistence" instance=ExtResource("5_rjc3w")]
 visible = false
