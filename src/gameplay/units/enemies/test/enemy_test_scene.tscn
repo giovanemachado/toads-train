@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkq1ueojo62vb"]
+[gd_scene load_steps=30 format=3 uid="uid://bkq1ueojo62vb"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyTest.gd" id="1_15g8g"]
 [ext_resource type="PackedScene" uid="uid://chcrmu7w4gumj" path="res://src/gameplay/units/movement/movement_scene.tscn" id="3_ivy8j"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="8_q45ml"]
 [ext_resource type="Script" path="res://src/gameplay/units/enemies/test/EnemyAttack.gd" id="8_xuq4l"]
 [ext_resource type="Texture2D" uid="uid://bksmbrfcbh8k7" path="res://src/gameplay/units/enemies/animation/staple frog run .png" id="10_7ymjg"]
+[ext_resource type="Texture2D" uid="uid://dolmo5tcet3iv" path="res://src/assets/particles.png" id="11_d2spq"]
 [ext_resource type="Texture2D" uid="uid://bblltl4n3c0cb" path="res://src/gameplay/units/enemies/animation/staple frog falling.png" id="12_58v1m"]
 [ext_resource type="Texture2D" uid="uid://djj545qb270kq" path="res://src/gameplay/units/enemies/animation/Staple frog atk.png" id="13_6ydic"]
 [ext_resource type="Texture2D" uid="uid://ch30ntmci2frq" path="res://src/gameplay/units/enemies/animation/staple frog hurt.png" id="14_6b7f2"]
@@ -22,6 +23,36 @@ height = 62.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_secqe"]
 radius = 52.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_ey5ql"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_fxvfb"]
+offsets = PackedFloat32Array(0, 0.805556)
+colors = PackedColorArray(0.233306, 0.59904, 0.367079, 1, 0.0247425, 0.377714, 0.135566, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rxsgy"]
+gradient = SubResource("Gradient_fxvfb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_20ayw"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(-70, -10, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.2
+scale_max = 1.1
+color_ramp = SubResource("GradientTexture1D_rxsgy")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="Animation" id="Animation_c1dif"]
 length = 0.001
@@ -419,6 +450,16 @@ position = Vector2(-4, -60)
 scale = Vector2(4, 4)
 texture = ExtResource("10_7ymjg")
 hframes = 4
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_ey5ql")
+position = Vector2(0.444444, 17.3333)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_20ayw")
+texture = ExtResource("11_d2spq")
+lifetime = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath(".")

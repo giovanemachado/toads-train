@@ -275,7 +275,7 @@ position = Vector2(1298, 927)
 script = ExtResource("7_yypja")
 upgrade_name = "train_resist"
 cost_to_upgrade_by_level = Array[int]([10, 50, 100])
-upgrade_amount_by_level = Array[int]([15, 15, 15])
+upgrade_amount_by_level = Array[int]([25, 25, 50])
 max_level = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="Environment/TrainResistence"]

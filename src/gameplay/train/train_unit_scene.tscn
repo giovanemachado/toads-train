@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://dic06qvwx0s5o"]
+[gd_scene load_steps=22 format=3 uid="uid://dic06qvwx0s5o"]
 
 [ext_resource type="Script" path="res://src/gameplay/train/Train.gd" id="1_r503i"]
 [ext_resource type="Texture2D" uid="uid://ck08m57ywe1f" path="res://src/gameplay/train/sprites/train map.png" id="2_jsr8s"]
+[ext_resource type="Texture2D" uid="uid://dolmo5tcet3iv" path="res://src/assets/particles.png" id="3_kgn3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_co488"]
 size = Vector2(101, 683)
@@ -29,6 +30,64 @@ size = Vector2(107, 173.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vxgge"]
 size = Vector2(2676, 425)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_7oqdb"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_jq33d"]
+offsets = PackedFloat32Array(0.115079, 0.563492, 0.865079)
+colors = PackedColorArray(0.08, 0.08, 0.08, 1, 0.273873, 0.273873, 0.273873, 1, 0.113725, 0, 0.0235294, 0.580392)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rfdma"]
+gradient = SubResource("Gradient_jq33d")
+
+[sub_resource type="Curve" id="Curve_u8u0o"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.578947), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_a6cgp"]
+curve = SubResource("Curve_u8u0o")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_87fun"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(300, 1, 1)
+particle_flag_disable_z = true
+gravity = Vector3(150, -25, 0)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 5.0
+scale_max = 5.0
+scale_curve = SubResource("CurveTexture_a6cgp")
+color_ramp = SubResource("GradientTexture1D_rfdma")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
+
+[sub_resource type="Gradient" id="Gradient_ykyxx"]
+offsets = PackedFloat32Array(0.00793651, 0.464286, 0.785714)
+colors = PackedColorArray(0.244776, 0.244776, 0.244776, 1, 0.525101, 0.525101, 0.525101, 1, 0.266575, 0.266575, 0.266575, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_2sewt"]
+gradient = SubResource("Gradient_ykyxx")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pnws7"]
+lifetime_randomness = 0.5
+particle_flag_disable_z = true
+gravity = Vector3(300, -50, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 20.0
+scale_max = 30.0
+color_ramp = SubResource("GradientTexture1D_2sewt")
 
 [node name="Train" type="Node2D"]
 script = ExtResource("1_r503i")
@@ -127,6 +186,46 @@ collision_mask = 524288
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TrainArea"]
 position = Vector2(180, -2.5)
 shape = SubResource("RectangleShape2D_vxgge")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_7oqdb")
+position = Vector2(-1410, 291)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_87fun")
+texture = ExtResource("3_kgn3o")
+lifetime = 2.0
+randomness = 0.23
+visibility_rect = Rect2(-200, -150, 5000, 200)
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_7oqdb")
+position = Vector2(-294, 294)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_87fun")
+texture = ExtResource("3_kgn3o")
+lifetime = 2.0
+randomness = 0.23
+visibility_rect = Rect2(-1500, -200, 5000, 150)
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_7oqdb")
+position = Vector2(822, 294)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_87fun")
+texture = ExtResource("3_kgn3o")
+lifetime = 2.0
+randomness = 0.23
+visibility_rect = Rect2(-4000, -200, 5000, 150)
+
+[node name="GPUParticles2D4Smoke" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_7oqdb")
+position = Vector2(-1575, -544)
+amount = 40
+process_material = SubResource("ParticleProcessMaterial_pnws7")
+texture = ExtResource("3_kgn3o")
+lifetime = 5.0
+randomness = 0.23
+visibility_rect = Rect2(0, 0, 10000, 707.618)
 
 [connection signal="timeout" from="FuelTimer" to="." method="_on_fuel_timer_timeout"]
 [connection signal="timeout" from="Distance/DistanceTimer" to="." method="_on_distance_timer_timeout"]

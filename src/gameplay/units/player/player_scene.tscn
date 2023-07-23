@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://ib7ajxwbvqjn"]
+[gd_scene load_steps=35 format=3 uid="uid://ib7ajxwbvqjn"]
 
 [ext_resource type="Script" path="res://src/gameplay/units/player/Player.gd" id="1_sw0e8"]
 [ext_resource type="PackedScene" uid="uid://djnem5h51vij2" path="res://src/gameplay/units/attack/attack_scene.tscn" id="2_41y0w"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://cmc4nxpo1nwf1" path="res://src/gameplay/units/player/animation/Main Char Idle front.png" id="8_3xo6u"]
 [ext_resource type="Texture2D" uid="uid://d4vk0pe0cei6" path="res://src/gameplay/units/player/animation/Main Char side atk.png" id="8_c8feq"]
 [ext_resource type="Texture2D" uid="uid://drrrtqtdwhf1u" path="res://src/gameplay/units/player/animation/Main Char run side.png" id="10_mfchk"]
+[ext_resource type="Texture2D" uid="uid://dolmo5tcet3iv" path="res://src/assets/particles.png" id="13_44saa"]
 [ext_resource type="Script" path="res://src/gameplay/units/player/TextBox.gd" id="15_e11nd"]
 [ext_resource type="Theme" uid="uid://bdnxwfd5an272" path="res://src/assets/general_theme.tres" id="16_j5gld"]
 [ext_resource type="AudioStream" uid="uid://buudpwbc8mohn" path="res://src/gameplay/audios/sound player/walk.mp3" id="17_sp80l"]
@@ -27,6 +28,36 @@ size = Vector2(178, 104)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_d1sua"]
 radius = 27.0
 height = 94.0
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cepes"]
+particles_animation = true
+particles_anim_h_frames = 3
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_a2kig"]
+offsets = PackedFloat32Array(0.162698, 0.472222, 0.722222)
+colors = PackedColorArray(0.564957, 0.389235, 0.0613763, 1, 0.352941, 0.223529, 0.0235294, 0.580392, 0.395684, 0.268109, 0.0312978, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_o7pab"]
+gradient = SubResource("Gradient_a2kig")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3ws33"]
+lifetime_randomness = 0.5
+emission_shape = 3
+emission_box_extents = Vector3(3, 1, 1)
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+gravity = Vector3(-70, -10, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+angle_min = -720.0
+angle_max = 720.0
+scale_min = 0.2
+scale_max = 1.1
+color_ramp = SubResource("GradientTexture1D_o7pab")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="Animation" id="Animation_i0nki"]
 length = 0.001
@@ -385,6 +416,16 @@ position = Vector2(0, -40)
 scale = Vector2(4.5, 4.5)
 texture = ExtResource("8_3xo6u")
 hframes = 12
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+z_index = -1
+material = SubResource("CanvasItemMaterial_cepes")
+position = Vector2(-2.98023e-08, 18)
+emitting = false
+amount = 25
+process_material = SubResource("ParticleProcessMaterial_3ws33")
+texture = ExtResource("13_44saa")
+lifetime = 0.5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle front"

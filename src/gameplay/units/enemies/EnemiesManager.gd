@@ -12,6 +12,7 @@ var enemies: Dictionary = {}
 var enemy_test = preload("res://src/gameplay/units/enemies/test/enemy_test_scene.tscn")
 var wave_number = 0
 @export var chance_of_attack_motor = 30
+@export var max_number_of_enemies: int = 50
 
 var total_enemies = 0
 
@@ -39,7 +40,7 @@ func spawn_enemies():
 	for k in spawn_pos.size():
 		var current_spawn_pos = spawn_pos[k]
 		
-		if total_enemies < 50:
+		if total_enemies <= max_number_of_enemies:
 			for l in current_spawn_pos.enemies.size():
 				var enemy_to_spawn = current_spawn_pos.enemies[l]
 			

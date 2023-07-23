@@ -8,17 +8,17 @@ signal event_fail(event_name: String)
 
 @onready var timer: Timer = $Timer
 @onready var animationPlayer: AnimationPlayer = $AnimationPlayer
-
 @export_group("Event details")
 @export var event_name: String
 @export var event_timing: float
 @export var kicks_to_solve: int
+@onready var train_gm = $"../../GameplayManager/TrainGameplayManager"
 
 var current_kicks: int = 0
 var event_is_happening: bool = false
 
 func start_event():
-	timer.start(event_timing)
+	timer.start(event_timing - train_gm.get_difficult_multiplier())
 	current_kicks = 0
 	event_started.emit(event_name)
 	animationPlayer.play("event")

@@ -18,6 +18,7 @@ func _on_enter():
 	
 	if is_original_ready_done:
 		enemy_test.audio_player_walk.play()
+		enemy_test.movement_particle.emitting = true
 	
 
 
@@ -65,6 +66,8 @@ func _on_physics_update(delta):
 
 func _on_exit():
 	enemy_test.movement.movement(Vector2.ZERO)
+	enemy_test.movement_particle.emitting = false
+	enemy_test.audio_player_walk.stop()
 
 
 func _on_health_health_update(old_value, new_value, damager_position):
@@ -80,6 +83,7 @@ func _on_area_2d_area_entered(area):
 	
 	enemy_test.audio_player_parachute.stop()
 	enemy_test.audio_player_walk.play()
+	enemy_test.movement_particle.emitting = true
 	health.can_be_attacked(true)
 	chasing_animation = "run"
 	is_in_train = true

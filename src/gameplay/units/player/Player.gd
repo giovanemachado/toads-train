@@ -31,6 +31,8 @@ var sound_groan2 = preload("res://src/gameplay/audios/sound player/groan2.mp3")
 var sound_groan3 = preload("res://src/gameplay/audios/sound player/groan3.mp3")
 var sound_alert = preload("res://src/gameplay/audios/sound player/playeralert.mp3")
 
+@onready var movement_particle: GPUParticles2D = $Sprite2D/GPUParticles2D
+
 func _ready():
 	health.max_health_points = gameplay_manager.player_progress.hp
 	movement.speed = gameplay_manager.player_progress.speed
@@ -52,6 +54,11 @@ func _physics_process(delta):
 			audio_player_walk.play()
 		elif input_vector == Vector2.ZERO:
 			audio_player_walk.stop()
+			
+		if input_vector != Vector2.ZERO && !movement_particle.emitting:
+			movement_particle.emitting = true
+		elif input_vector == Vector2.ZERO:
+			movement_particle.emitting = false
 	
 	
 	if Input.is_action_just_pressed("player_attack"):

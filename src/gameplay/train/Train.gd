@@ -43,8 +43,9 @@ func _ready():
 
 
 func _process(delta):
-	if current_speed >= train_max_speed:
-		stopped.emit()
+#	if current_speed >= train_max_speed:
+#		stopped.emit()
+	pass
 
 
 func spend_fuel():
