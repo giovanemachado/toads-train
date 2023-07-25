@@ -13,11 +13,11 @@ Unlock upgrades on the garage to go even further!
 Created for Godot Wild Jam #59 https://itch.io/jam/godot-wild-jam-59
 <br>
 <h2 id="#how-to-play"> How to play</h2>
-Play here: [https://giovanemachado.itch.io/ponglypse](https://giovanemachado.itch.io/toadstrain)<br>
-Controls:<br>
-[W][A][S][D] Movement
-[E] Interact/Close text boxes
-[J] Attack
+Play here: [https://giovanemachado.itch.io/ponglypse](https://giovanemachado.itch.io/toadstrain)<br><br>
+<strong>Controls:</strong><br>
+[W][A][S][D] Movement<br>
+[E] Interact/Close text boxes<br>
+[J] Attack<br>
 <br>
 <h2 id="#game-design"> Game design</h2>
 Inspired by classic browser games where you play many times to get further while unlocking new upgrades. The train events try to give a sense of urgency to the player, while the toads keep the pressure on the combat side. Upgrades are there to improve replayability. Working with Godot 4.1.
