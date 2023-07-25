@@ -7,7 +7,7 @@ https://github.com/giovanemachado/toads-train/assets/33123137/a6f45c26-1e31-474d
 Toad's Train is a survival game where you will try to reach further distances inside a train while fighting toads.
 Toads will try to fight you and your train. And your train will be on fire if you don't kick parts some time.
 Unlock upgrades on the garage to go even further!
-Created for Godot Wild Jam #59 [https://itch.io/jam/pongjam](https://itch.io/jam/godot-wild-jam-59)
+Created for Godot Wild Jam #59 https://itch.io/jam/godot-wild-jam-59
 <br>
 <h2 id="#how-to-play"> How to play</h2>
 Play here: [https://giovanemachado.itch.io/ponglypse](https://giovanemachado.itch.io/toadstrain)<br>
