@@ -1,6 +1,9 @@
 # Toad's Train
 
-https://github.com/giovanemachado/toads-train/assets/33123137/a6f45c26-1e31-474d-8c7b-0686cbd2c6c7
+
+
+https://github.com/giovanemachado/toads-train/assets/33123137/da745178-89ed-460a-a055-6e7d19161eab
+
 
 <br>
 <h2 id="#about-the-game"> About the game</h2>
